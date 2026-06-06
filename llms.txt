@@ -14,6 +14,10 @@ https://github.com/security-commons-nl/Handelingsperspectief
 
 - [Volledige methode met alle hoofdstukken](https://security-commons-nl.github.io/Handelingsperspectief/): tabbladen per hoofdstuk, inclusief KQL-query's
 
+## Tools
+
+- [Toolpagina](https://security-commons-nl.github.io/tools/): aankondiging van gratis, regelgebaseerde scan-tools voor de publieke sector (websitecompliance, digitale soevereiniteit, code-repoveiligheid, OSINT)
+
 ## Bronbestanden (Markdown)
 
 - [Overzicht en leeswijzer](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/README.md)
