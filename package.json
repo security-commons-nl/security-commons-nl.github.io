@@ -1,0 +1,14 @@
+{
+  "name": "security-commons-root-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Builds the root landing page from the organisation profile README",
+  "license": "EUPL-1.2",
+  "scripts": {
+    "build": "node site/build.mjs"
+  },
+  "dependencies": {
+    "marked": "18.0.5"
+  }
+}
