@@ -43,6 +43,24 @@ strong { color: var(--blauw-donker); }
 hr { border: 0; border-top: 1px solid var(--lijn); margin: 2rem 0; }
 img { max-width: 100%; height: auto; }
 
+.toolbanner {
+  display: block;
+  margin: 1.5rem 0 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--blauw);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  border-left: 6px solid var(--oranje);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+.toolbanner strong { color: #fff; }
+.toolbanner:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13, 43, 77, 0.25); }
+
+.backlink { margin: 1.5rem 0 0; font-size: 0.9rem; }
+.backlink a { text-decoration: none; color: var(--grijs); }
+.backlink a:hover { color: var(--oranje); }
+
 .callout {
   margin: 1.25rem 0;
   padding: 0.9rem 1.2rem;

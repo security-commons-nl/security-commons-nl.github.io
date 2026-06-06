@@ -34,9 +34,19 @@ function escapeHtml(text) {
  */
 function statusClass(status) {
   const key = status.toLowerCase();
-  if (key.includes('actief')) return 'badge badge-actief';
-  if (key.includes('ontwikkeling')) return 'badge badge-bouw';
+  if (key.includes('actief') || key.includes('live')) return 'badge badge-actief';
+  if (key.includes('ontwikkeling') || key.includes('cli')) return 'badge badge-bouw';
   return 'badge badge-concept';
+}
+
+/**
+ * Replaces Markdown links with their plain text. Needed inside cards: the
+ * card itself is an anchor, and nested anchors are invalid HTML.
+ * @param {string} text Markdown text.
+ * @returns {string} Text with links flattened.
+ */
+function stripLinks(text) {
+  return text.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
 }
 
 /**
@@ -53,8 +63,8 @@ function projectCards(token) {
       `<a class="card" href="${escapeHtml(link[2])}" style="--d:${i}">`,
       `<span class="card-top"><span class="card-title">${escapeHtml(link[1])}</span>`,
       `<span class="${statusClass(status)}">${escapeHtml(status)}</span></span>`,
-      `<span class="card-desc">${marked.parseInline(row[2].text)}</span>`,
-      `<span class="card-doelgroep">${marked.parseInline(row[3].text)}</span>`,
+      `<span class="card-desc">${marked.parseInline(stripLinks(row[2].text))}</span>`,
+      `<span class="card-doelgroep">${marked.parseInline(stripLinks(row[3].text))}</span>`,
       `</a>`,
     ].join('');
   });
@@ -75,6 +85,10 @@ function renderToken(token) {
   if (token.type === 'blockquote') {
     return `<div class="callout">${marked.parser(token.tokens)}</div>`;
   }
+  if (token.type === 'heading' && token.depth === 2) {
+    const id = token.text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    return `<h2 id="${id}">${marked.parseInline(token.text)}</h2>`;
+  }
   return marked.parser([token]);
 }
 
@@ -90,41 +104,77 @@ function rewriteLinks(html) {
 }
 
 /**
- * Assembles the complete landing page document.
+ * Wraps rendered body content in the shared page shell.
+ * @param {{title: string, description: string, canonical: string, body: string, generatedFrom: string}} page Page data.
  * @returns {string} Full HTML document.
  */
-function buildPage() {
-  const markdown = readFileSync(PROFILE_README, 'utf8');
+function pageShell(page) {
   const css = readFileSync(join(ROOT, 'site', 'landing.css'), 'utf8');
-  const tokens = marked.lexer(markdown, { gfm: true });
-  const body = rewriteLinks(tokens.map(renderToken).join(''));
   return `<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Security Commons NL — open securitykennis voor de publieke sector</title>
-<meta name="description" content="Publieke organisaties bouwen samen aan digitale weerbaarheid: kennis, tooling en aanpakken, open source onder EUPL-1.2.">
-<link rel="canonical" href="https://security-commons-nl.github.io/">
+<title>${page.title}</title>
+<meta name="description" content="${page.description}">
+<link rel="canonical" href="${page.canonical}">
 <style>
 ${css}
 </style>
 </head>
 <body>
 <main class="inner">
-${body}
+${page.body}
 </main>
 <footer class="inner">
   <p>Bron: <a href="https://github.com/security-commons-nl">github.com/security-commons-nl</a> ·
      Voor geautomatiseerde systemen: <a href="/llms.txt">llms.txt</a> en <a href="/robots.txt">robots.txt</a> ·
-     Deze pagina wordt automatisch gegenereerd uit de organisatie-README.</p>
+     Deze pagina wordt automatisch gegenereerd uit ${page.generatedFrom}.</p>
 </footer>
 </body>
 </html>
 `;
 }
 
-mkdirSync(join(ROOT, 'dist'), { recursive: true });
-writeFileSync(join(ROOT, 'dist', 'index.html'), buildPage());
+/**
+ * Assembles the landing page from the organisation profile README.
+ * @returns {string} Full HTML document.
+ */
+function buildLandingPage() {
+  const markdown = readFileSync(PROFILE_README, 'utf8');
+  const tokens = marked.lexer(markdown, { gfm: true });
+  const banner = [
+    `<a class="toolbanner" href="/tools/"><strong>Toolpagina</strong> — gratis scan-tools om je`,
+    ` organisatie van buitenaf te toetsen <span aria-hidden="true">→</span></a>`,
+  ].join('');
+  return pageShell({
+    title: 'Security Commons NL — open securitykennis voor de publieke sector',
+    description: 'Publieke organisaties bouwen samen aan digitale weerbaarheid: kennis, tooling en aanpakken, open source onder EUPL-1.2.',
+    canonical: 'https://security-commons-nl.github.io/',
+    body: banner + rewriteLinks(tokens.map(renderToken).join('')),
+    generatedFrom: 'de organisatie-README',
+  });
+}
+
+/**
+ * Assembles the tools page from tools.md.
+ * @returns {string} Full HTML document.
+ */
+function buildToolsPage() {
+  const markdown = readFileSync(join(ROOT, 'tools.md'), 'utf8');
+  const tokens = marked.lexer(markdown, { gfm: true });
+  const backlink = `<p class="backlink"><a href="/">← Security Commons NL</a></p>`;
+  return pageShell({
+    title: 'Toolpagina — Security Commons NL',
+    description: 'Gratis, onafhankelijke scan-tools voor de publieke sector: websitecompliance, digitale soevereiniteit, repo-veiligheid en OSINT.',
+    canonical: 'https://security-commons-nl.github.io/tools/',
+    body: backlink + tokens.map(renderToken).join(''),
+    generatedFrom: '<a href="https://github.com/security-commons-nl/security-commons-nl.github.io/blob/main/tools.md">tools.md</a>',
+  });
+}
+
+mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
+writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
+writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsPage());
 for (const file of STATIC_FILES) copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
-console.log('Wrote dist/index.html and static root files');
+console.log('Wrote dist/index.html, dist/tools/index.html and static root files');
