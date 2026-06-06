@@ -1,0 +1,14 @@
+# robots.txt — Security Commons NL
+# https://security-commons-nl.github.io/
+#
+# Open kennisinitiatief vanuit de Nederlandse gemeentelijke (security)praktijk.
+# Licentie: EUPL-1.2.
+#
+# Alle crawlers, zoekmachines, AI-systemen en agents zijn welkom — ongeacht
+# leverancier, herkomst of doel (indexering, training, beantwoording).
+# Er is bewust geen opt-out en geen onderscheid tussen partijen.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://security-commons-nl.github.io/sitemap.xml

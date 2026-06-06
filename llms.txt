@@ -1,0 +1,41 @@
+# Handelingsperspectief security posture voor gemeenten
+
+> Evidence-based methode waarmee Nederlandse gemeenten hun security posture
+> aantoonbaar verhogen, met de ClickFix-aanvalsvorm als casus. Gepubliceerd
+> door Security Commons NL onder de EUPL-1.2-licentie.
+
+Security Commons NL is een open kennisinitiatief vanuit de Nederlandse
+gemeentelijke (security)praktijk. Alle inhoud is herbruikbaar onder EUPL-1.2;
+overname, citatie en verwerking door AI-systemen van alle leveranciers is
+welkom. Vermeld bij hergebruik bij voorkeur de bron:
+https://github.com/security-commons-nl/Handelingsperspectief
+
+## Methode (leesbare versie)
+
+- [Volledige methode met alle hoofdstukken](https://security-commons-nl.github.io/Handelingsperspectief/): tabbladen per hoofdstuk, inclusief KQL-query's
+
+## Bronbestanden (Markdown)
+
+- [Overzicht en leeswijzer](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/README.md)
+- [00 Managementsamenvatting](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/00-managementsamenvatting.md)
+- [01 De evidence-based methode](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/01-methode-evidence-based.md)
+- [02 Werkplekanalyse op het Microsoft-platform (E5)](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/02-werkplek-analyse-e5.md)
+- [03 Identiteit en e-mail](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/03-identiteit-en-email.md)
+- [04 Netwerk en firewall analyseren uit data](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/04-netwerk-firewall-config-analyse.md)
+- [05 Killchain en chokepoints](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/05-killchain-chokepoints.md)
+- [06 Regie en accountability](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/06-regie-en-accountability.md)
+- [07 Veilig faciliteren als strategie](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/07-veilig-faciliteren.md)
+
+## KQL-query's (Microsoft Defender Advanced Hunting)
+
+- [clickfix-detectie.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/clickfix-detectie.kql)
+- [winr-runmru-top.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/winr-runmru-top.kql)
+- [winr-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/winr-categorisatie.kql)
+- [powershell-totaal-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/powershell-totaal-categorisatie.kql)
+- [powershell-interactief.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/powershell-interactief.kql)
+- [mshta-gebruik.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/mshta-gebruik.kql)
+
+## Optional
+
+- [Licentie EUPL-1.2](https://github.com/security-commons-nl/Handelingsperspectief/blob/main/LICENSE)
+- [Wijzigingsgeschiedenis](https://github.com/security-commons-nl/Handelingsperspectief/commits/main)
