@@ -166,7 +166,7 @@ function buildToolsPage() {
   const backlink = `<p class="backlink"><a href="/">← Security Commons NL</a></p>`;
   return pageShell({
     title: 'Toolpagina — Security Commons NL',
-    description: 'Gratis, onafhankelijke scan-tools voor de publieke sector: websitecompliance, digitale soevereiniteit, repo-veiligheid en OSINT.',
+    description: 'Gratis, onafhankelijke scan-tools voor de publieke sector: publicatiehygiëne, websitecompliance, digitale soevereiniteit, repo-veiligheid en OSINT.',
     canonical: 'https://security-commons-nl.github.io/tools/',
     body: backlink + tokens.map(renderToken).join(''),
     generatedFrom: '<a href="https://github.com/security-commons-nl/security-commons-nl.github.io/blob/main/tools.md">tools.md</a>',
