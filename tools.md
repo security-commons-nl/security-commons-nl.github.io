@@ -32,16 +32,20 @@ Gemeenten publiceren doorlopend: officiële bekendmakingen, raadsinformatie, bes
 bijlagen. In die stroom kan een burgerservicenummer, rekeningnummer of adres meeliften dat er
 niet hoort. Meestal in een bijlage die niemand meer heeft opengeslagen.
 
-De publicatiescan haalt je publicaties op en controleert de tekstlaag op persoonsgegevens.
-De detectie is deterministisch: een BSN wordt getoetst met de elfproef, een IBAN met mod-97.
-Geen AI, geen kansberekening, geen black box. Elke bevinding is terug te leiden tot de regel
-die hem vond. Alle gevonden waarden staan gemaskeerd in het rapport, inclusief de andere
+De publicatiescan haalt je publicaties op en controleert ze op persoonsgegevens, tot in de
+bijlagen bij een besluit — daar zit het risico, niet in de kennisgeving erboven. De detectie
+is deterministisch: een BSN wordt getoetst met de elfproef, een IBAN met mod-97, en een naam
+met een woonadres eronder is het patroon van een echt publicatielek. Geen kansberekening, geen
+black box; elke bevinding is terug te leiden tot de regel die hem vond. Ingescande documenten
+zonder tekstlaag leest hij desgewenst met OCR, on-prem, zodat de gegevens op je eigen machine
+blijven. Alle gevonden waarden staan gemaskeerd in het rapport, inclusief de andere
 persoonsgegevens die toevallig in hetzelfde tekstfragment stonden. Het rapport is dus zelf
 geen datalek.
 
-Wat de scan aankan: de landelijke bekendmakingen-API (KOOP/SRU) en raadsinformatiesystemen
-(Qualigraf/Parlaeus), naast een gewone crawl van je eigen website. Onderbreken mag, de status
-staat in een lokale database en de volgende run pakt de wachtrij op waar hij gebleven was.
+Wat de scan aankan: de landelijke bekendmakingen-API (KOOP/SRU) inclusief de externe bijlagen,
+de terinzageleggingen op mijnpublicaties.nl, en de raadsinformatiesystemen (Qualigraf/Parlaeus,
+iBabs en Open Raadsinformatie), naast een gewone crawl van je eigen website. Onderbreken mag, de
+status staat in een lokale database en de volgende run pakt de wachtrij op waar hij gebleven was.
 
 Belangrijk: **het rapport ordent en maskeert, het oordeelt niet.** Een elfproef-geldige reeks
 van negen cijfers is niet automatisch een BSN. Elke bevinding vraagt menselijke beoordeling,
