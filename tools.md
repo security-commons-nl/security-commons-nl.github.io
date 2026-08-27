@@ -36,7 +36,7 @@ met gegevens die je al hebt.
 
 **Publicatiehygiëne: staan er persoonsgegevens in je eigen openbare publicaties?**
 
-Gemeenten publiceren doorlopend: officiële bekendmakingen, raadsinformatie, besluitenlijsten,
+Publieke organisaties publiceren doorlopend: officiële bekendmakingen, raadsinformatie, besluitenlijsten,
 bijlagen. In die stroom kan een burgerservicenummer, rekeningnummer of adres meeliften dat er
 niet hoort. Meestal in een bijlage die niemand meer heeft opengeslagen.
 
