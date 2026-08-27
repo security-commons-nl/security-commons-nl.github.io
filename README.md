@@ -1,5 +1,7 @@
 # security-commons-nl.github.io
 
+> **Live:** [security-commons-nl.github.io](https://security-commons-nl.github.io/)
+
 Root-site van Security Commons NL. Deze repo bestaat omdat crawlers `robots.txt`,
 `llms.txt` en `sitemap.xml` uitsluitend op de domeinroot lezen; projectsites
 (zoals [Handelingsperspectief](https://github.com/security-commons-nl/Handelingsperspectief))

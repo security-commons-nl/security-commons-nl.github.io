@@ -1,24 +1,36 @@
-# Handelingsperspectief security posture voor gemeenten
+# Security Commons NL
 
-> Evidence-based methode waarmee Nederlandse gemeenten hun security posture
-> aantoonbaar verhogen, met de ClickFix-aanvalsvorm als casus. Gepubliceerd
-> door Security Commons NL onder de EUPL-1.2-licentie.
+> Open kennisinitiatief vanuit de Nederlandse gemeentelijke (security)praktijk:
+> publieke organisaties bouwen samen aan digitale weerbaarheid met kennis, tooling
+> en aanpakken die van iedereen zijn. Alle inhoud is herbruikbaar onder EUPL-1.2.
 
-Security Commons NL is een open kennisinitiatief vanuit de Nederlandse
-gemeentelijke (security)praktijk. Alle inhoud is herbruikbaar onder EUPL-1.2;
-overname, citatie en verwerking door AI-systemen van alle leveranciers is
-welkom. Vermeld bij hergebruik bij voorkeur de bron:
-https://github.com/security-commons-nl/Handelingsperspectief
+Overname, citatie en verwerking door AI-systemen van alle leveranciers is welkom.
+Vermeld bij hergebruik bij voorkeur de bron: https://github.com/security-commons-nl
 
-## Methode (leesbare versie)
+Dit bestand wijst naar alles wat direct leesbaar online staat. Repositories zonder
+eigen pagina staan onder Optional.
 
-- [Volledige methode met alle hoofdstukken](https://security-commons-nl.github.io/Handelingsperspectief/): tabbladen per hoofdstuk, inclusief KQL-query's
+## Kennis en methoden
+
+- [Handelingsperspectief security posture](https://security-commons-nl.github.io/Handelingsperspectief/): evidence-based methode waarmee gemeenten hun security posture aantoonbaar verhogen, met de ClickFix-aanvalsvorm als casus. Tabbladen per hoofdstuk, inclusief herbruikbare KQL-query's
+- [AI-gebruik in beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO en FG samen): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's
+- [Kennisbank](https://security-commons-nl.github.io/kennisbank/): werkende kennis uit de publieke sector op security, privacy en continuïteit, geanonimiseerd gedeeld door professionals
+
+## Kennisbank, losse publicaties
+
+- [Stelselkaart security-gremia](https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/): open dataset van 83 partijen en 19 concrete diensten die de digitale weerbaarheid van de Nederlandse overheid organiseren, met vijf visualisaties van overlap en gaten. Peildatum 11 augustus 2026
+- [Aegis, blue team in een doos](https://security-commons-nl.github.io/kennisbank/security/aegis-blue-team-in-een-doos/): fictief lespakket om zelf een dreigingsgericht, tijdelijk interventieteam op te zetten naast de reguliere IV-lijn, met mandaatprotocol en memo's per gremium
+- [AI-beleid van een regionale samenwerking](https://security-commons-nl.github.io/kennisbank/overig/beleid/ai-beleid/): compleet, geanonimiseerd AI-beleid van vier samenwerkende gemeenten (concept v1.0) met vertaalsleutel voor hergebruik; ook als markdown beschikbaar
+- [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle securitybijdragen in de kennisbank
 
 ## Tools
 
-- [Toolpagina](https://security-commons-nl.github.io/tools/): aankondiging van gratis, regelgebaseerde scan-tools voor de publieke sector (websitecompliance, digitale soevereiniteit, code-repoveiligheid, OSINT)
+- [Toolpagina](https://security-commons-nl.github.io/tools/): gratis, regelgebaseerde scan-tools voor de publieke sector (websitecompliance, digitale soevereiniteit, code-repoveiligheid, OSINT)
+- [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
+- [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders
+- [Security-shop](https://security-commons-nl.github.io/security-shop/): catalogus van security-patronen, per gap een shortlist van realistische oplossingsrichtingen met trade-offs en norm-mapping (BIO 2.0, NIS2, AVG)
 
-## Bronbestanden (Markdown)
+## Bronbestanden Handelingsperspectief (Markdown)
 
 - [Overzicht en leeswijzer](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/README.md)
 - [00 Managementsamenvatting](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/00-managementsamenvatting.md)
@@ -29,6 +41,11 @@ https://github.com/security-commons-nl/Handelingsperspectief
 - [05 Killchain en chokepoints](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/05-killchain-chokepoints.md)
 - [06 Regie en accountability](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/06-regie-en-accountability.md)
 - [07 Veilig faciliteren als strategie](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/07-veilig-faciliteren.md)
+
+## Datasets (machineleesbaar)
+
+- [Partijen in het security-stelsel](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/stelselkaart-security-gremia/data/partijen.json): 83 partijen met bestuurslaag, mandaatsoort, functies en toegankelijkheid voor een gemeente. Het meta-blok bevat het volledige vocabulaire
+- [Diensten in het security-stelsel](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/stelselkaart-security-gremia/data/diensten.json): 19 concrete diensten met leveranciers, inclusief vier gaten en het onderscheid tussen niets belegd en werk in uitvoering
 
 ## KQL-query's (Microsoft Defender Advanced Hunting)
 
@@ -41,5 +58,7 @@ https://github.com/security-commons-nl/Handelingsperspectief
 
 ## Optional
 
-- [Licentie EUPL-1.2](https://github.com/security-commons-nl/Handelingsperspectief/blob/main/LICENSE)
-- [Wijzigingsgeschiedenis](https://github.com/security-commons-nl/Handelingsperspectief/commits/main)
+- [Alle repositories](https://github.com/security-commons-nl): ook de projecten zonder eigen pagina, zoals grc-platform, anonimizer-local, publicatiescan, iamscan, blast-radius, procescheck en security-posture-tool
+- [Architectuur- en communityprincipes](https://github.com/security-commons-nl/.github/blob/main/PRINCIPLES.md): EU-soevereiniteit, AI altijd adviserend, auditbaarheid by design, least privilege, open source als standaard
+- [Licentie EUPL-1.2](https://github.com/security-commons-nl/kennisbank/blob/main/LICENSE)
+- [Meedoen](https://github.com/security-commons-nl/kennisbank/issues/new/choose): bijdragen kan met één gecorrigeerde regel, een GitHub-account is genoeg
