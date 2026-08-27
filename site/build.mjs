@@ -12,7 +12,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PROFILE_README = join(ROOT, 'org-profile', 'profile', 'README.md');
 const RAW_BASE = 'https://raw.githubusercontent.com/security-commons-nl/.github/main/profile/';
 const BLOB_BASE = 'https://github.com/security-commons-nl/.github/blob/main/profile/';
-const STATIC_FILES = ['robots.txt', 'llms.txt', 'sitemap.xml', '.nojekyll'];
+const STATIC_FILES = ['robots.txt', 'llms.txt', 'sitemap.xml', '.nojekyll', '.well-known/security.txt'];
 
 /**
  * Escapes HTML special characters in raw text.
@@ -176,5 +176,8 @@ function buildToolsPage() {
 mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsPage());
-for (const file of STATIC_FILES) copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
+for (const file of STATIC_FILES) {
+  mkdirSync(dirname(join(ROOT, 'dist', file)), { recursive: true });
+  copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
+}
 console.log('Wrote dist/index.html, dist/tools/index.html and static root files');

@@ -1,0 +1,8 @@
+# Security Commons NL - kwetsbaarheidsmeldingen (CVD)
+# Zie je iets dat niet klopt in onze code of op deze site? Meld het via het kanaal hieronder.
+# Report a vulnerability in our code or on this site through the contact below.
+
+Contact: https://github.com/security-commons-nl/.github/security/advisories/new
+Expires: 2027-08-27T00:00:00.000Z
+Preferred-Languages: nl, en
+Canonical: https://security-commons-nl.github.io/.well-known/security.txt
