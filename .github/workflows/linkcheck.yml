@@ -1,0 +1,62 @@
+name: Linkcheck (llms.txt en sitemap.xml)
+
+# llms.txt en sitemap.xml zijn de inhoudswijzers van het domein: de een voor
+# AI-systemen, de ander voor zoekmachines. Ze verwijzen naar pagina's in andere
+# repo's, dus een hernoeming daar maakt hier stilletjes een dode link. Deze check
+# haalt elke URL op en faalt bij alles wat geen 200 geeft.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "llms.txt"
+      - "sitemap.xml"
+      - ".github/workflows/linkcheck.yml"
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    # Wekelijks, maandagochtend: vangt hernoemingen in andere repo's.
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Verzamel URL's uit llms.txt en sitemap.xml
+        id: verzamel
+        shell: bash
+        run: |
+          {
+            grep -oE 'https://[^)"<> ]+' llms.txt || true
+            grep -oE '<loc>[^<]+' sitemap.xml | sed 's/<loc>//' || true
+          } | sed 's/[.,]$//' | sort -u > urls.txt
+          echo "aantal=$(wc -l < urls.txt)" >> "$GITHUB_OUTPUT"
+          echo "Te controleren: $(wc -l < urls.txt) URL's"
+
+      - name: Controleer elke URL
+        shell: bash
+        run: |
+          fouten=0
+          while read -r url; do
+            # GitHub geeft 429 bij te snel achter elkaar; even wachten is genoeg.
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 --retry 2 --retry-delay 3 "$url" || echo "000")
+            if [ "$code" = "200" ]; then
+              echo "ok   $code  $url"
+            else
+              echo "FOUT $code  $url"
+              fouten=$((fouten + 1))
+            fi
+            sleep 0.3
+          done < urls.txt
+          echo ""
+          if [ "$fouten" -gt 0 ]; then
+            echo "::error::$fouten dode link(s) in llms.txt of sitemap.xml"
+            exit 1
+          fi
+          echo "Alle links leven."

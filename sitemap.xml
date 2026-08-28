@@ -30,26 +30,30 @@
   </url>
   <url>
     <loc>https://security-commons-nl.github.io/kennisbank/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://security-commons-nl.github.io/kennisbank/security/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
     <loc>https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/</loc>
     <lastmod>2026-08-27</lastmod>
   </url>
   <url>
-    <loc>https://security-commons-nl.github.io/kennisbank/security/aegis-blue-team-in-een-doos/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <loc>https://security-commons-nl.github.io/kennisbank/security/blue-team-opzetten/</loc>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://security-commons-nl.github.io/kennisbank/overig/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <loc>https://security-commons-nl.github.io/kennisbank/governance/</loc>
+    <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://security-commons-nl.github.io/kennisbank/overig/beleid/ai-beleid/</loc>
-    <lastmod>2026-08-27</lastmod>
+    <loc>https://security-commons-nl.github.io/kennisbank/governance/ai-beleid/</loc>
+    <lastmod>2026-08-28</lastmod>
+  </url>
+  <url>
+    <loc>https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/</loc>
+    <lastmod>2026-08-28</lastmod>
   </url>
 </urlset>

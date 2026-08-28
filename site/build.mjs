@@ -115,63 +115,85 @@ function readProjects() {
 }
 
 /**
- * Generates llms.txt from the projects table, so the machine-readable index
- * cannot lag behind the organisation profile (redactiestatuut B9).
- * @returns {string} llms.txt content.
+ * Renders the generated projects block for llms.txt: every project from the
+ * organisation profile, grouped by status label (redactiestatuut B8).
+ * @returns {string} Markdown block, without surrounding markers.
  */
-function buildLlmsTxt() {
+function projectsBlock() {
   const projects = readProjects();
   const line = (p) => {
     const wat = stripLinks(p.wat).replace(/\s+/g, ' ').trim().replace(/\.$/, '');
     const bron = p.live ? ` Broncode: ${p.repo}` : '';
     return `- [${p.naam}](${p.live || p.repo}): ${wat}.${bron}`;
   };
-  const blok = (kop, status, uitleg) => {
-    const rows = projects.filter((p) => p.status.toLowerCase() === status);
+  const groep = (kop, status, uitleg) => {
+    const rows = projects.filter((pr) => pr.status.toLowerCase() === status);
     if (rows.length === 0) return '';
-    return `\n## ${kop}\n\n> ${uitleg}\n\n${rows.map(line).join('\n')}\n`;
+    return `### ${kop}\n\n${uitleg}\n\n${rows.map(line).join('\n')}\n\n`;
   };
-  return `# Security Commons NL
-
-> Open kennis, tooling en aanpakken voor digitale weerbaarheid bij Nederlandse publieke
-> organisaties. Alles is herbruikbaar onder EUPL-1.2; overname, citatie en verwerking door
-> AI-systemen van alle leveranciers is welkom. Vermeld bij hergebruik de bron.
-
-Dit bestand wordt gegenereerd uit de projectentabel van het organisatieprofiel
-(github.com/security-commons-nl/.github, profile/README.md). De statuslabels volgen het
-redactiestatuut B8: in gebruik, prototype, concept, gearchiveerd.
-${blok('In gebruik', 'in gebruik', 'Draait echt en heeft groene tests of CI.')}${blok('Prototype', 'prototype', 'Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.')}${blok('Concept', 'concept', 'Ontwerp, plan of documentatie; nog geen werkende code.')}
-## Overzicht
-
-- [Landingspagina](https://security-commons-nl.github.io/): alle projecten met status en doelgroep
-- [Toolpagina](https://security-commons-nl.github.io/tools/): scan-tools om je organisatie van buitenaf en van binnenuit te toetsen
-- [Organisatieprofiel](https://github.com/security-commons-nl/.github/blob/main/profile/README.md): de bron van deze lijst
-- [Principes](https://github.com/security-commons-nl/.github/blob/main/PRINCIPLES.md)
-- [Redactiestatuut](https://github.com/security-commons-nl/.github/blob/main/REDACTIESTATUUT.md)
-
-## Optional
-
-- [Licentie EUPL-1.2](https://github.com/security-commons-nl/.github/blob/main/LICENSE)
-`;
+  return (
+    'Gegenereerd uit de projectentabel van het organisatieprofiel; statuslabels volgen het\n' +
+    'redactiestatuut B8.\n\n' +
+    groep('In gebruik', 'in gebruik', 'Draait echt en heeft groene tests of CI.') +
+    groep('Prototype', 'prototype', 'Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.') +
+    groep('Concept', 'concept', 'Ontwerp, plan of documentatie; nog geen werkende code.')
+  ).trimEnd();
 }
 
 /**
- * Generates sitemap.xml: this site's own pages plus every project with a
- * published page on this domain.
- * @returns {string} sitemap.xml content.
+ * Replaces the generated projects block inside llms.txt, leaving every
+ * hand-written section untouched. The rest of llms.txt (source files, datasets,
+ * KQL queries) is richer than the projects table and stays hand-written.
+ * @returns {string} Updated llms.txt content.
  */
-function buildSitemap() {
+function updateLlmsTxt() {
+  const pad = join(ROOT, 'llms.txt');
+  const huidig = readFileSync(pad, 'utf8');
+  const START = '<!-- projecten:start (gegenereerd, niet met de hand bewerken) -->';
+  const EIND = '<!-- projecten:eind -->';
+  const blok = `${START}\n\n${projectsBlock()}\n\n${EIND}`;
+  const i = huidig.indexOf(START);
+  const j = huidig.indexOf(EIND);
+  if (i !== -1 && j > i) {
+    return huidig.slice(0, i) + blok + huidig.slice(j + EIND.length);
+  }
+  // Nog geen markers: het blok vlak voor de Optional-sectie invoegen.
+  const optional = huidig.indexOf('## Optional');
+  const sectie = `## Alle projecten\n\n${blok}\n\n`;
+  if (optional === -1) return `${huidig.trimEnd()}\n\n${sectie}`;
+  return huidig.slice(0, optional) + sectie + huidig.slice(optional);
+}
+
+/**
+ * Merges the sitemap: existing entries keep their verified lastmod, and every
+ * project page on this domain that is still missing gets added.
+ * @returns {string} Updated sitemap.xml content.
+ */
+function updateSitemap() {
+  const pad = join(ROOT, 'sitemap.xml');
+  const huidig = readFileSync(pad, 'utf8');
   const vandaag = new Date().toISOString().slice(0, 10);
-  const eigen = [
+  const entries = [];
+  const seen = new Set();
+  const re = /<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g;
+  let m;
+  while ((m = re.exec(huidig)) !== null) {
+    entries.push({ loc: m[1], lastmod: m[2] });
+    seen.add(m[1]);
+  }
+  const kandidaten = [
     'https://security-commons-nl.github.io/',
     'https://security-commons-nl.github.io/tools/',
+    ...readProjects().map((pr) => pr.live).filter(Boolean),
   ];
-  const live = readProjects()
-    .map((p) => p.live)
-    .filter((url) => url && url.startsWith('https://security-commons-nl.github.io/'));
-  const urls = [...new Set([...eigen, ...live])];
-  const body = urls
-    .map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${vandaag}</lastmod>\n  </url>`)
+  for (const loc of kandidaten) {
+    if (loc.startsWith('https://security-commons-nl.github.io/') && !seen.has(loc)) {
+      entries.push({ loc, lastmod: vandaag });
+      seen.add(loc);
+    }
+  }
+  const body = entries
+    .map((e) => `  <url>\n    <loc>${e.loc}</loc>\n    <lastmod>${e.lastmod}</lastmod>\n  </url>`)
     .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schema/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
@@ -281,8 +303,9 @@ function buildToolsPage() {
 mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsPage());
-// Ook naar de repo-root schrijven, zodat de gegenereerde versie in git zichtbaar is.
-for (const [naam, inhoud] of [['llms.txt', buildLlmsTxt()], ['sitemap.xml', buildSitemap()]]) {
+// llms.txt en sitemap.xml worden bijgewerkt, niet overschreven: het projectenblok
+// is gegenereerd, de handgeschreven secties blijven staan (statuut B9).
+for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {
   writeFileSync(join(ROOT, naam), inhoud);
   writeFileSync(join(ROOT, 'dist', naam), inhoud);
 }
