@@ -12,7 +12,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PROFILE_README = join(ROOT, 'org-profile', 'profile', 'README.md');
 const RAW_BASE = 'https://raw.githubusercontent.com/security-commons-nl/.github/main/profile/';
 const BLOB_BASE = 'https://github.com/security-commons-nl/.github/blob/main/profile/';
-const STATIC_FILES = ['robots.txt', 'llms.txt', 'sitemap.xml', '.nojekyll', '.well-known/security.txt'];
+// llms.txt en sitemap.xml worden gegenereerd uit de projectentabel (statuut B9),
+// niet gekopieerd.
+const STATIC_FILES = ['robots.txt', '.nojekyll', '.well-known/security.txt'];
 
 /**
  * Escapes HTML special characters in raw text.
@@ -34,8 +36,9 @@ function escapeHtml(text) {
  */
 function statusClass(status) {
   const key = status.toLowerCase();
-  if (key.includes('actief') || key.includes('live')) return 'badge badge-actief';
-  if (key.includes('ontwikkeling') || key.includes('cli')) return 'badge badge-bouw';
+  if (key.includes('in gebruik')) return 'badge badge-actief';
+  if (key.includes('prototype')) return 'badge badge-bouw';
+  if (key.includes('gearchiveerd')) return 'badge badge-archief';
   return 'badge badge-concept';
 }
 
@@ -56,19 +59,121 @@ function stripLinks(text) {
  */
 function projectCards(token) {
   const cards = token.rows.map((row, i) => {
-    const link = row[0].text.match(/\[(.+?)\]\((.+?)\)/);
-    if (!link) return '';
-    const status = row[1].text.trim();
+    const project = projectFromRow(row);
+    if (!project) return '';
+    // De kaart is zelf een anchor: nooit een tweede anchor erin nesten, dat breekt
+    // de kaart in tweeen. Een live-versie wordt daarom het doel van de kaart zelf,
+    // met een tekstlabel in plaats van een losse link.
+    const href = project.live || project.repo;
+    const opener = project.live ? `<span class="card-open">${escapeHtml(project.liveLabel)}</span>` : '';
     return [
-      `<a class="card" href="${escapeHtml(link[2])}" style="--d:${i}">`,
-      `<span class="card-top"><span class="card-title">${escapeHtml(link[1])}</span>`,
-      `<span class="${statusClass(status)}">${escapeHtml(status)}</span></span>`,
-      `<span class="card-desc">${marked.parseInline(stripLinks(row[2].text))}</span>`,
-      `<span class="card-doelgroep">${marked.parseInline(stripLinks(row[3].text))}</span>`,
+      `<a class="card" href="${escapeHtml(href)}" style="--d:${i}">`,
+      `<span class="card-top"><span class="card-title">${escapeHtml(project.naam)}</span>`,
+      `<span class="${statusClass(project.status)}">${escapeHtml(project.status)}</span></span>`,
+      `<span class="card-desc">${marked.parseInline(stripLinks(project.wat))}</span>`,
+      `<span class="card-doelgroep">${marked.parseInline(stripLinks(project.doelgroep))}</span>`,
+      opener,
       `</a>`,
     ].join('');
   });
   return `<div class="cards">${cards.join('\n')}</div>`;
+}
+
+/**
+ * Reads one row of the projects table into a project object.
+ * Columns: Project | Status | Wat is het? | Direct openen | Doelgroep.
+ * @param {object[]} row Marked table row.
+ * @returns {?object} Project, or null when the row has no project link.
+ */
+function projectFromRow(row) {
+  const link = row[0].text.match(/\[(.+?)\]\((.+?)\)/);
+  if (!link) return null;
+  const openCell = (row[3] ? row[3].text : '').trim();
+  const open = openCell.match(/\[(.+?)\]\((.+?)\)/);
+  return {
+    naam: link[1],
+    repo: link[2],
+    status: row[1].text.trim(),
+    wat: row[2].text,
+    live: open ? open[2] : null,
+    liveLabel: open ? open[1] : '',
+    doelgroep: row[4] ? row[4].text : '',
+  };
+}
+
+/**
+ * Parses the projects table out of the organisation profile README.
+ * @returns {object[]} Projects.
+ */
+function readProjects() {
+  const tokens = marked.lexer(readFileSync(PROFILE_README, 'utf8'), { gfm: true });
+  const table = tokens.find(
+    (tok) => tok.type === 'table' && tok.header.some((h) => h.text.toLowerCase() === 'status'),
+  );
+  if (!table) throw new Error('Projectentabel niet gevonden in profile/README.md');
+  return table.rows.map(projectFromRow).filter(Boolean);
+}
+
+/**
+ * Generates llms.txt from the projects table, so the machine-readable index
+ * cannot lag behind the organisation profile (redactiestatuut B9).
+ * @returns {string} llms.txt content.
+ */
+function buildLlmsTxt() {
+  const projects = readProjects();
+  const line = (p) => {
+    const wat = stripLinks(p.wat).replace(/\s+/g, ' ').trim().replace(/\.$/, '');
+    const bron = p.live ? ` Broncode: ${p.repo}` : '';
+    return `- [${p.naam}](${p.live || p.repo}): ${wat}.${bron}`;
+  };
+  const blok = (kop, status, uitleg) => {
+    const rows = projects.filter((p) => p.status.toLowerCase() === status);
+    if (rows.length === 0) return '';
+    return `\n## ${kop}\n\n> ${uitleg}\n\n${rows.map(line).join('\n')}\n`;
+  };
+  return `# Security Commons NL
+
+> Open kennis, tooling en aanpakken voor digitale weerbaarheid bij Nederlandse publieke
+> organisaties. Alles is herbruikbaar onder EUPL-1.2; overname, citatie en verwerking door
+> AI-systemen van alle leveranciers is welkom. Vermeld bij hergebruik de bron.
+
+Dit bestand wordt gegenereerd uit de projectentabel van het organisatieprofiel
+(github.com/security-commons-nl/.github, profile/README.md). De statuslabels volgen het
+redactiestatuut B8: in gebruik, prototype, concept, gearchiveerd.
+${blok('In gebruik', 'in gebruik', 'Draait echt en heeft groene tests of CI.')}${blok('Prototype', 'prototype', 'Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.')}${blok('Concept', 'concept', 'Ontwerp, plan of documentatie; nog geen werkende code.')}
+## Overzicht
+
+- [Landingspagina](https://security-commons-nl.github.io/): alle projecten met status en doelgroep
+- [Toolpagina](https://security-commons-nl.github.io/tools/): scan-tools om je organisatie van buitenaf en van binnenuit te toetsen
+- [Organisatieprofiel](https://github.com/security-commons-nl/.github/blob/main/profile/README.md): de bron van deze lijst
+- [Principes](https://github.com/security-commons-nl/.github/blob/main/PRINCIPLES.md)
+- [Redactiestatuut](https://github.com/security-commons-nl/.github/blob/main/REDACTIESTATUUT.md)
+
+## Optional
+
+- [Licentie EUPL-1.2](https://github.com/security-commons-nl/.github/blob/main/LICENSE)
+`;
+}
+
+/**
+ * Generates sitemap.xml: this site's own pages plus every project with a
+ * published page on this domain.
+ * @returns {string} sitemap.xml content.
+ */
+function buildSitemap() {
+  const vandaag = new Date().toISOString().slice(0, 10);
+  const eigen = [
+    'https://security-commons-nl.github.io/',
+    'https://security-commons-nl.github.io/tools/',
+  ];
+  const live = readProjects()
+    .map((p) => p.live)
+    .filter((url) => url && url.startsWith('https://security-commons-nl.github.io/'));
+  const urls = [...new Set([...eigen, ...live])];
+  const body = urls
+    .map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${vandaag}</lastmod>\n  </url>`)
+    .join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schema/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
 /**
@@ -176,8 +281,13 @@ function buildToolsPage() {
 mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsPage());
+// Ook naar de repo-root schrijven, zodat de gegenereerde versie in git zichtbaar is.
+for (const [naam, inhoud] of [['llms.txt', buildLlmsTxt()], ['sitemap.xml', buildSitemap()]]) {
+  writeFileSync(join(ROOT, naam), inhoud);
+  writeFileSync(join(ROOT, 'dist', naam), inhoud);
+}
 for (const file of STATIC_FILES) {
   mkdirSync(dirname(join(ROOT, 'dist', file)), { recursive: true });
   copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
 }
-console.log('Wrote dist/index.html, dist/tools/index.html and static root files');
+console.log('Wrote dist/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
