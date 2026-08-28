@@ -18,6 +18,7 @@ eigen pagina staan onder Optional.
 
 ## Kennisbank, losse publicaties
 
+- [Passkeys invoeren](https://security-commons-nl.github.io/kennisbank/security/passkeys-invoeren/): handleiding om als publieke organisatie volledig over te stappen op phishing-resistente authenticatie (FIDO2), in negen stappen, met de keuzes die het verschil maken en wat er in de praktijk tegenzat. Met directiememo, FAQ, managersmail en herstelprocedure als sjablonen
 - [Risicoanalyse langs aanvalspaden](https://security-commons-nl.github.io/kennisbank/security/risicoanalyse-aanvalspaden/): methode om als CISO in één dag tot de grootste risico's te komen: tien kroonjuwelen tegen vijf generieke aanvalspaden, dekking gemeten op bewijs, de rode cellen zijn de risicolijst. Met de aanvalspaden voor lokale overheid als bijlage
 - [Stelselkaart security-gremia](https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/): open dataset van 83 partijen en 19 concrete diensten die de digitale weerbaarheid van de Nederlandse overheid organiseren, met vijf visualisaties van overlap en gaten. Peildatum 11 augustus 2026
 - [Een blue team opzetten](https://security-commons-nl.github.io/kennisbank/security/blue-team-opzetten/): handleiding in acht stappen om een tijdelijk, defensief interventieteam op te zetten naast de reguliere IV-lijn, met mandaatprotocol, memo's per gremium en een voorbeeldcasus
