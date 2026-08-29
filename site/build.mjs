@@ -14,7 +14,7 @@ const RAW_BASE = 'https://raw.githubusercontent.com/security-commons-nl/.github/
 const BLOB_BASE = 'https://github.com/security-commons-nl/.github/blob/main/profile/';
 // llms.txt en sitemap.xml worden gegenereerd uit de projectentabel (statuut B9),
 // niet gekopieerd.
-const STATIC_FILES = ['robots.txt', '.nojekyll', '.well-known/security.txt'];
+const STATIC_FILES = ['robots.txt', '.nojekyll', '.well-known/security.txt', 'favicon.svg', 'favicon.ico'];
 
 /**
  * Escapes HTML special characters in raw text.
@@ -244,6 +244,8 @@ function pageShell(page) {
 <title>${page.title}</title>
 <meta name="description" content="${page.description}">
 <link rel="canonical" href="${page.canonical}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="32x32">
 <style>
 ${css}
 </style>
@@ -292,6 +294,8 @@ function buildToolsRedirect() {
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="0; url=/">
 <link rel="canonical" href="https://security-commons-nl.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="32x32">
 <meta name="robots" content="noindex">
 <title>Verplaatst naar de hoofdpagina</title>
 </head>
