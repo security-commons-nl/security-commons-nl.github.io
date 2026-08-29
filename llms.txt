@@ -84,7 +84,7 @@ Draait echt en heeft groene tests of CI.
 Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.
 
 - [security-posture-tool](https://github.com/security-commons-nl/security-posture-tool): Evidence-based security posture langs Defense-in-Depth, diepte 2 (meting) van de aanvalspaden-keten.
-- [aanvalspaden](https://github.com/security-commons-nl/aanvalspaden): Eén instrument in drie diepten: zelfcheck (een uur, welke aanvalspaden staan open), risicoanalyse (met de lijn, kroonjuwelen en bewijs, risicolijst met eigenaar) en meting; één bron voor de aanvalspaden van de publieke sector.
+- [aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/): Eén instrument in drie diepten: zelfcheck (een uur, welke aanvalspaden staan open), risicoanalyse (met de lijn, kroonjuwelen en bewijs, risicolijst met eigenaar) en meting; één bron voor de aanvalspaden van de publieke sector. Broncode: https://github.com/security-commons-nl/aanvalspaden
 - [hosting-bouwblokken](https://github.com/security-commons-nl/hosting-bouwblokken): Referentiearchitecturen en IaC voor veilige AI/security-hosting.
 - [procescheck](https://github.com/security-commons-nl/procescheck): BIA- en procescontinuïteitstool voor informatiebeveiliging bij publieke organisaties.
 - [iamscan](https://github.com/security-commons-nl/iamscan): Read-only analyse van je Linux-servers: wie kan waar root worden, uit passwd, sudoers en SSH-sleutels. Deterministisch, elke bevinding met de configregel erbij.
