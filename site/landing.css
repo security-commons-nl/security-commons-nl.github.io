@@ -57,7 +57,7 @@ img { max-width: 100%; height: auto; }
 .toolbanner strong { color: #fff; }
 .toolbanner:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13, 43, 77, 0.25); }
 
-.backlink { margin: 1.5rem 0 0; font-size: 0.9rem; }
+.backlink { margin: 0 0 1.2rem; font-size: 0.9rem; color: var(--grijs); }
 .backlink a { text-decoration: none; color: var(--grijs); }
 .backlink a:hover { color: var(--oranje); }
 

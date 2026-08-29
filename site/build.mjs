@@ -290,7 +290,8 @@ function buildLandingPage() {
 function buildToolsPage() {
   const markdown = readFileSync(join(ROOT, 'tools.md'), 'utf8');
   const tokens = marked.lexer(markdown, { gfm: true });
-  const backlink = `<p class="backlink"><a href="/">← Security Commons NL</a></p>`;
+  // Kruimelpad (statuut B10): elke pagina wijst terug naar de hoofdpagina.
+  const backlink = `<nav class="backlink" aria-label="Kruimelpad"><a href="/">Security Commons NL</a> › <span>Tools</span></nav>`;
   return pageShell({
     title: 'Toolpagina — Security Commons NL',
     description: 'Gratis, onafhankelijke scan-tools voor de publieke sector: publicatiehygiëne, websitecompliance, digitale soevereiniteit, repo-veiligheid en OSINT.',
