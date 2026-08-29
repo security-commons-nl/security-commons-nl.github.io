@@ -12,7 +12,6 @@ eigen pagina staan onder Optional.
 
 ## Kennis en methoden
 
-- [Handelingsperspectief security posture](https://security-commons-nl.github.io/Handelingsperspectief/): evidence-based methode waarmee gemeenten hun security posture aantoonbaar verhogen, met de ClickFix-aanvalsvorm als casus. Tabbladen per hoofdstuk, inclusief herbruikbare KQL-query's
 - [AI-gebruik in beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO en FG samen): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's
 - [Kennisbank](https://security-commons-nl.github.io/kennisbank/): werkende kennis uit de publieke sector op security, privacy en continuïteit, geanonimiseerd gedeeld door professionals
 
@@ -26,6 +25,7 @@ eigen pagina staan onder Optional.
 - [Security Annex voor leveranciers](https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/): contractbijlage informatiebeveiliging in 20 artikelen, opgebouwd vanuit de risico's die gemeenten nu zien en verankerd in BIO2, met invulvelden
 - [Externe referenties: security-tooling en kennisbanken](https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/): open tools en kennisbanken van buiten de commons, per bron wat het is, wanneer je het inzet en welke wegingen erbij horen (LOLCreds, Threat Tiger, FinalRecon, SCOPTIX, darknetlist, ScanZeker)
 - [Learning digitale veiligheid voor managers](https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/): kant-en-klare awareness-sessie van veertig minuten voor leidinggevenden, met publiek bekende casussen en invulbare placeholders
+- [Meten voordat je ingrijpt](https://security-commons-nl.github.io/kennisbank/security/meten-voordat-je-ingrijpt/): security posture verhogen met data uit je eigen omgeving in plaats van met aannames; meet eerst wat er feitelijk draait (PowerShell, Win+R, mshta, firewallregels) en bepaal daarna wat je afdwingt. ClickFix als casus, met herbruikbare KQL-query's
 - [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle securitybijdragen in de kennisbank
 
 ## Voor wie geen publieke organisatie is
@@ -39,18 +39,6 @@ eigen pagina staan onder Optional.
 - [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders
 - [Security-shop](https://security-commons-nl.github.io/security-shop/): catalogus van security-patronen, per gap een shortlist van realistische oplossingsrichtingen met trade-offs en norm-mapping (BIO 2.0, NIS2, AVG)
 
-## Bronbestanden Handelingsperspectief (Markdown)
-
-- [Overzicht en leeswijzer](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/README.md)
-- [00 Managementsamenvatting](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/00-managementsamenvatting.md)
-- [01 De evidence-based methode](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/01-methode-evidence-based.md)
-- [02 Werkplekanalyse op het Microsoft-platform (E5)](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/02-werkplek-analyse-e5.md)
-- [03 Identiteit en e-mail](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/03-identiteit-en-email.md)
-- [04 Netwerk en firewall analyseren uit data](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/04-netwerk-firewall-config-analyse.md)
-- [05 Killchain en chokepoints](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/05-killchain-chokepoints.md)
-- [06 Regie en accountability](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/06-regie-en-accountability.md)
-- [07 Veilig faciliteren als strategie](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/07-veilig-faciliteren.md)
-
 ## Datasets (machineleesbaar)
 
 - [Partijen in het security-stelsel](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/stelselkaart-security-gremia/data/partijen.json): 83 partijen met bestuurslaag, mandaatsoort, functies en toegankelijkheid voor een gemeente. Het meta-blok bevat het volledige vocabulaire
@@ -58,12 +46,12 @@ eigen pagina staan onder Optional.
 
 ## KQL-query's (Microsoft Defender Advanced Hunting)
 
-- [clickfix-detectie.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/clickfix-detectie.kql)
-- [winr-runmru-top.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/winr-runmru-top.kql)
-- [winr-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/winr-categorisatie.kql)
-- [powershell-totaal-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/powershell-totaal-categorisatie.kql)
-- [powershell-interactief.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/powershell-interactief.kql)
-- [mshta-gebruik.kql](https://raw.githubusercontent.com/security-commons-nl/Handelingsperspectief/main/queries/mshta-gebruik.kql)
+- [clickfix-detectie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/clickfix-detectie.kql)
+- [winr-runmru-top.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/winr-runmru-top.kql)
+- [winr-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/winr-categorisatie.kql)
+- [powershell-totaal-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/powershell-totaal-categorisatie.kql)
+- [powershell-interactief.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/powershell-interactief.kql)
+- [mshta-gebruik.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/mshta-gebruik.kql)
 
 ## Alle projecten
 
@@ -81,7 +69,6 @@ Draait echt en heeft groene tests of CI.
 - [grc-platform](https://github.com/security-commons-nl/grc-platform): GRC-platform voor ISMS, PIMS en BCMS in één systeem.
 - [anonimizer-local](https://github.com/security-commons-nl/anonimizer-local): AI-tool om gevoelige gegevens uit documenten te verwijderen, CLI voor batchverwerking en hergebruik van memory.
 - [anonimizer-browser](https://security-commons-nl.github.io/anonimizer-browser/): Browser-versie van de anonimizer: geen installatie nodig, alles draait in je eigen browser. Broncode: https://github.com/security-commons-nl/anonimizer-browser
-- [Handelingsperspectief](https://security-commons-nl.github.io/Handelingsperspectief/): Evidence-based methode om de security posture van publieke organisaties aantoonbaar te verhogen, met de ClickFix-aanvalsvorm als casus, inclusief herbruikbare KQL-query's. Broncode: https://github.com/security-commons-nl/Handelingsperspectief
 - [ai-gebruik-in-beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): Draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO + FG): meetregimes, bronnen met bewijslast, run-log, plus 15 KQL-query's. Broncode: https://github.com/security-commons-nl/ai-gebruik-in-beeld
 - [publicatiescan](https://github.com/security-commons-nl/publicatiescan): Scant je eigen openbare publicaties (bekendmakingen inclusief bijlagen, raadsinformatie, terinzageleggingen, website) op onbedoeld gepubliceerde persoonsgegevens. Deterministische detectie via elfproef en mod-97; OCR optioneel en on-prem.
 

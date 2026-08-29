@@ -8,7 +8,7 @@ Status: infrastructuur. Draait in productie; geen los product, maar ondersteunen
 
 Root-site van Security Commons NL. Deze repo bestaat omdat crawlers `robots.txt`,
 `llms.txt` en `sitemap.xml` uitsluitend op de domeinroot lezen; projectsites
-(zoals [Handelingsperspectief](https://github.com/security-commons-nl/Handelingsperspectief))
+(zoals [ai-gebruik-in-beeld](https://github.com/security-commons-nl/ai-gebruik-in-beeld))
 leven op een subpad.
 
 | Bestand | Doel |
