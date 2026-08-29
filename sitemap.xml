@@ -9,10 +9,6 @@
     <lastmod>2026-06-06</lastmod>
   </url>
   <url>
-    <loc>https://security-commons-nl.github.io/tools/</loc>
-    <lastmod>2026-06-06</lastmod>
-  </url>
-  <url>
     <loc>https://security-commons-nl.github.io/ai-gebruik-in-beeld/</loc>
     <lastmod>2026-08-27</lastmod>
   </url>
@@ -66,6 +62,14 @@
   </url>
   <url>
     <loc>https://security-commons-nl.github.io/aanvalspaden/</loc>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/</loc>
+    <lastmod>2026-08-29</lastmod>
+  </url>
+  <url>
+    <loc>https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/</loc>
     <lastmod>2026-08-29</lastmod>
   </url>
 </urlset>

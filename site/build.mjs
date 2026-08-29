@@ -183,7 +183,6 @@ function updateSitemap() {
   }
   const kandidaten = [
     'https://security-commons-nl.github.io/',
-    'https://security-commons-nl.github.io/tools/',
     ...readProjects().map((pr) => pr.live).filter(Boolean),
   ];
   for (const loc of kandidaten) {
@@ -270,40 +269,44 @@ ${page.body}
 function buildLandingPage() {
   const markdown = readFileSync(PROFILE_README, 'utf8');
   const tokens = marked.lexer(markdown, { gfm: true });
-  const banner = [
-    `<a class="toolbanner" href="/tools/"><strong>Toolpagina</strong> — gratis scan-tools om je`,
-    ` organisatie van buitenaf te toetsen <span aria-hidden="true">→</span></a>`,
-  ].join('');
   return pageShell({
     title: 'Security Commons NL — open securitykennis voor de publieke sector',
     description: 'Publieke organisaties bouwen samen aan digitale weerbaarheid: kennis, tooling en aanpakken, open source onder EUPL-1.2.',
     canonical: 'https://security-commons-nl.github.io/',
-    body: banner + rewriteLinks(tokens.map(renderToken).join('')),
+    body: rewriteLinks(tokens.map(renderToken).join('')),
     generatedFrom: 'de organisatie-README',
   });
 }
 
 /**
- * Assembles the tools page from tools.md.
- * @returns {string} Full HTML document.
+ * De toolpagina is opgeheven (29-08-2026): de projectentabel op de landingspagina is de enige lijst
+ * van eigen tools (statuut B9), en tooling van anderen staat in de kennisbank. Deze pagina blijft
+ * bestaan als doorverwijzing, zodat een eerder gedeelde link niet doodloopt.
+ *
+ * @returns {string} Volledig HTML-document dat naar de landingspagina stuurt.
  */
-function buildToolsPage() {
-  const markdown = readFileSync(join(ROOT, 'tools.md'), 'utf8');
-  const tokens = marked.lexer(markdown, { gfm: true });
-  // Kruimelpad (statuut B10): elke pagina wijst terug naar de hoofdpagina.
-  const backlink = `<nav class="backlink" aria-label="Kruimelpad"><a href="/">Security Commons NL</a> › <span>Tools</span></nav>`;
-  return pageShell({
-    title: 'Toolpagina — Security Commons NL',
-    description: 'Gratis, onafhankelijke scan-tools voor de publieke sector: publicatiehygiëne, websitecompliance, digitale soevereiniteit, repo-veiligheid en OSINT.',
-    canonical: 'https://security-commons-nl.github.io/tools/',
-    body: backlink + tokens.map(renderToken).join(''),
-    generatedFrom: '<a href="https://github.com/security-commons-nl/security-commons-nl.github.io/blob/main/tools.md">tools.md</a>',
-  });
+function buildToolsRedirect() {
+  return `<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/">
+<link rel="canonical" href="https://security-commons-nl.github.io/">
+<meta name="robots" content="noindex">
+<title>Verplaatst naar de hoofdpagina</title>
+</head>
+<body>
+<p>De toolpagina is opgegaan in de <a href="/">hoofdpagina</a>: daar staat de projectentabel met alle
+tools. Tooling van anderen staat in de
+<a href="https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/">kennisbank</a>.</p>
+</body>
+</html>
+`;
 }
 
 mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
-writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsPage());
+writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsRedirect());
 // llms.txt en sitemap.xml worden bijgewerkt, niet overschreven: het projectenblok
 // is gegenereerd, de handgeschreven secties blijven staan (statuut B9).
 for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {

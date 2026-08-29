@@ -24,11 +24,12 @@ eigen pagina staan onder Optional.
 - [Een blue team opzetten](https://security-commons-nl.github.io/kennisbank/security/blue-team-opzetten/): handleiding in acht stappen om een tijdelijk, defensief interventieteam op te zetten naast de reguliere IV-lijn, met mandaatprotocol, memo's per gremium en een voorbeeldcasus
 - [AI-beleid van een regionale samenwerking](https://security-commons-nl.github.io/kennisbank/governance/ai-beleid/): compleet, geanonimiseerd AI-beleid van vier samenwerkende gemeenten (concept v1.0) met vertaalsleutel voor hergebruik; ook als markdown beschikbaar
 - [Security Annex voor leveranciers](https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/): contractbijlage informatiebeveiliging in 20 artikelen, opgebouwd vanuit de risico's die gemeenten nu zien en verankerd in BIO2, met invulvelden
+- [Externe referenties: security-tooling en kennisbanken](https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/): open tools en kennisbanken van buiten de commons, per bron wat het is, wanneer je het inzet en welke wegingen erbij horen (LOLCreds, Threat Tiger, FinalRecon, SCOPTIX, darknetlist, ScanZeker)
+- [Learning digitale veiligheid voor managers](https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/): kant-en-klare awareness-sessie van veertig minuten voor leidinggevenden, met publiek bekende casussen en invulbare placeholders
 - [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle securitybijdragen in de kennisbank
 
 ## Tools
 
-- [Toolpagina](https://security-commons-nl.github.io/tools/): gratis, regelgebaseerde scan-tools voor de publieke sector (websitecompliance, digitale soevereiniteit, code-repoveiligheid, OSINT)
 - [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
 - [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders
 - [Security-shop](https://security-commons-nl.github.io/security-shop/): catalogus van security-patronen, per gap een shortlist van realistische oplossingsrichtingen met trade-offs en norm-mapping (BIO 2.0, NIS2, AVG)
