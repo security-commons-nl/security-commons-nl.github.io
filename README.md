@@ -1,5 +1,9 @@
 # security-commons-nl.github.io
 
+De root-site van Security Commons NL: de voorpagina, llms.txt, robots.txt en de sitemap.
+
+Status: infrastructuur. Draait in productie; geen los product, maar ondersteunende infrastructuur.
+
 > **Live:** [security-commons-nl.github.io](https://security-commons-nl.github.io/)
 
 Root-site van Security Commons NL. Deze repo bestaat omdat crawlers `robots.txt`,
@@ -19,13 +23,18 @@ organisatie-README in de `.github`-repo kunnen deze repo niet rechtstreeks trigg
 dus die komen binnen een uur door. Direct nodig? Start de workflow handmatig
 (Actions → *Build and deploy Pages* → *Run workflow*).
 
+## Voor wie
+
+Beheerders van de commons; bezoekers zien alleen het resultaat.
+
+## Snel starten
+
+`npm ci` en daarna `node site/build.mjs`; de voorpagina komt uit het org-profiel.
+
+## Bijdragen
+
+Zie de [CONTRIBUTING](https://github.com/security-commons-nl/.github/blob/main/CONTRIBUTING.md) van de organisatie: daar staat per project een formulier, ook zonder Git-ervaring.
+
 ## Licentie
 
-[EUPL-1.2](LICENSE) (European Union Public Licence v1.2).
-
-### Gebruikte software en afhankelijkheden
-
-| Software / afhankelijkheid | Gebruik | Licentie |
-|---|---|---|
-| [marked](https://github.com/markedjs/marked) 18.0.5 | Markdown-naar-HTML-conversie in de sitebuild (alleen buildtijd) | MIT |
-| GitHub Actions (`actions/checkout`, `actions/setup-node`, `actions/upload-pages-artifact`, `actions/deploy-pages`) | Automatische build en publicatie naar GitHub Pages | MIT |
+EUPL-1.2, zie [LICENSE](LICENSE).
