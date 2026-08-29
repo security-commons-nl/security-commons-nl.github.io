@@ -149,3 +149,11 @@ footer {
 .badge-archief { background: #eef1f5; color: #5c6570; border-color: #dfe3e8; }
 .card-open { display: block; margin-top: .5rem; font-size: .8rem; font-weight: 600; color: var(--accent, #1f4e79); }
 .card-open::after { content: " \2192"; }
+
+/* De drie uitgelichte kaarten bovenaan de voorpagina (statuut B9). */
+.uitgelicht { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.2rem 0 2rem; }
+.kaart { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1.1rem; border: 1px solid #d7dee7; border-radius: 10px; background: #fff; text-decoration: none; color: inherit; }
+.kaart:hover { border-color: var(--blauw); }
+.kaart-naam { font-weight: 700; color: var(--blauw); font-size: 1.05rem; }
+.kaart-wat { font-size: .92rem; }
+.kaart-voor { font-size: .8rem; color: var(--grijs); }

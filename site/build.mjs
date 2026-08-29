@@ -268,11 +268,44 @@ ${page.body}
  * Assembles the landing page from the organisation profile README.
  * @returns {string} Full HTML document.
  */
+/**
+ * Een korte claim voor op een kaart. De kolom "Wat is het?" is een volledige omschrijving; hier past
+ * de eerste deelzin. Blijft die te lang, dan knippen we op de laatste komma die nog past.
+ */
+function kaartTekst(tekst) {
+  let kort = tekst.split(/[:;.]/)[0].trim();
+  if (kort.length < 15) kort = tekst.trim();
+  if (kort.length > 105) {
+    const komma = kort.lastIndexOf(',', 105);
+    kort = (komma > 40 ? kort.slice(0, komma) : kort.slice(0, 105)).trim();
+  }
+  return kort;
+}
+
+function uitgelicht() {
+  const rijen = readProjects().filter((pr) => pr.live).slice(0, 3);
+  if (rijen.length < 3) throw new Error(`Minder dan drie projecten met een live link (${rijen.length})`);
+  const kaarten = rijen.map((pr) => `
+    <a class="kaart" href="${escapeHtml(pr.live)}">
+      <span class="kaart-naam">${escapeHtml(pr.naam)}</span>
+      <span class="kaart-wat">${escapeHtml(kaartTekst(pr.wat))}</span>
+      <span class="kaart-voor">${escapeHtml(pr.doelgroep)}</span>
+    </a>`).join('');
+  return `<section class="uitgelicht" aria-label="Uitgelicht">${kaarten}</section>`;
+}
+
 function buildLandingPage() {
   const markdown = readFileSync(PROFILE_README, 'utf8');
   const tokens = marked.lexer(markdown, { gfm: true });
+  const i = tokens.findIndex((t) => t.type === 'heading' && t.text === 'Direct aan de slag');
+  if (i === -1) throw new Error('Kop "Direct aan de slag" ontbreekt in het profiel');
+  // Na de inleidende alinea onder de kop; marked zet space-tokens tussen de blokken.
+  let na = tokens.findIndex((t, n) => n > i && t.type === 'paragraph');
+  if (na === -1) throw new Error('Geen alinea onder "Direct aan de slag"');
+  const h = uitgelicht();
+  tokens.splice(na + 1, 0, { type: 'html', block: true, raw: h, text: h });
   return pageShell({
-    title: 'Security Commons NL — open securitykennis voor de publieke sector',
+    title: 'Security Commons NL: open securitykennis voor de publieke sector',
     description: 'Publieke organisaties bouwen samen aan digitale weerbaarheid: kennis, tooling en aanpakken, open source onder EUPL-1.2.',
     canonical: 'https://security-commons-nl.github.io/',
     body: rewriteLinks(tokens.map(renderToken).join('')),
