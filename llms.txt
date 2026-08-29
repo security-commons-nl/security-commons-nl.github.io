@@ -28,6 +28,11 @@ eigen pagina staan onder Optional.
 - [Learning digitale veiligheid voor managers](https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/): kant-en-klare awareness-sessie van veertig minuten voor leidinggevenden, met publiek bekende casussen en invulbare placeholders
 - [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle securitybijdragen in de kennisbank
 
+## Voor wie geen publieke organisatie is
+
+- Leveranciers: de Security Annex (hierboven, onder Kennisbank) is wat een publieke opdrachtgever van je vraagt; de zelfcheck aanvalspaden (hieronder, onder Prototype) laat zien welke aanvalspaden hij bij zichzelf toetst.
+- Journalisten en onderzoekers: alle code en tekst is open onder EUPL-1.2, de projectentabel op https://security-commons-nl.github.io/ is de volledige lijst, en https://github.com/security-commons-nl/.github/blob/main/BESLUITEN.md legt vast waarom dingen zijn zoals ze zijn.
+
 ## Tools
 
 - [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
