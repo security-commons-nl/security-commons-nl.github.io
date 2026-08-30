@@ -37,7 +37,7 @@ eigen pagina staan onder Optional.
 
 - [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
 - [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders
-- [Security-shop](https://security-commons-nl.github.io/security-shop/): catalogus van security-patronen, per gap een shortlist van realistische oplossingsrichtingen met trade-offs en norm-mapping (BIO 2.0, NIS2, AVG)
+- [Van aanvalspad naar norm](https://security-commons-nl.github.io/aanvalspaden/normen/): per barriere uit de zelfcheck welk bewijs iets aantoont in BIO 2.0, NIST CSF 2.0, het Wpg-toetsingskader en de AVG, en welke handleiding in de kennisbank uitlegt hoe je de maatregel inricht
 
 ## Datasets (machineleesbaar)
 
