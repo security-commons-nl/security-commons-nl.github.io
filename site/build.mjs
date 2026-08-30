@@ -252,11 +252,9 @@ ${css}
 </style>
 </head>
 <body>
-<header class="merkbalk inner">
-  <img class="merk" src="/logo.png" width="72" height="72"
-       alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">
-</header>
 <main class="inner">
+<img class="merk" src="/logo.png" width="88" height="88"
+     alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">
 ${page.body}
 </main>
 <footer class="inner">
