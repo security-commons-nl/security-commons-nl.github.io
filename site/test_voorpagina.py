@@ -23,6 +23,30 @@ def test_voorpagina():
     assert chr(8212) not in html, "em-dash op de voorpagina"
 
 
+def test_verwijzing_wijst_naar_github():
+    """Het blok bovenaan is in het profiel geschreven vanuit GitHub; hier hoort het andersom.
+
+    Zonder de wissel wees de voorpagina naar zichzelf en stond er "hier op GitHub" op een pagina die
+    niet op GitHub staat.
+    """
+    subprocess.run(["node", "site/build.mjs"], cwd=ROOT, check=True, capture_output=True)
+    html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
+    kop = html[: html.index("Direct aan de slag")]
+    assert 'href="https://github.com/security-commons-nl/"' in kop
+    assert "Hier op GitHub" not in html
+    assert "Je bent op de voorkant" in kop
+
+
+def test_logo_staat_op_de_pagina():
+    """Hetzelfde beeldmerk als op de organisatiepagina, anders zijn het twee verschillende plekken."""
+    subprocess.run(["node", "site/build.mjs"], cwd=ROOT, check=True, capture_output=True)
+    html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
+    assert 'src="/logo.png"' in html
+    assert (ROOT / "dist" / "logo.png").exists(), "logo niet meegekopieerd naar dist"
+
+
 if __name__ == "__main__":
     test_voorpagina()
+    test_verwijzing_wijst_naar_github()
+    test_logo_staat_op_de_pagina()
     print("voorpagina ok")

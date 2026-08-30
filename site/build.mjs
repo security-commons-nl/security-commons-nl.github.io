@@ -14,7 +14,8 @@ const RAW_BASE = 'https://raw.githubusercontent.com/security-commons-nl/.github/
 const BLOB_BASE = 'https://github.com/security-commons-nl/.github/blob/main/profile/';
 // llms.txt en sitemap.xml worden gegenereerd uit de projectentabel (statuut B9),
 // niet gekopieerd.
-const STATIC_FILES = ['robots.txt', '.nojekyll', '.well-known/security.txt', 'favicon.svg', 'favicon.ico'];
+const STATIC_FILES = ['robots.txt', '.nojekyll', '.well-known/security.txt', 'favicon.svg',
+  'favicon.ico', 'logo.png'];
 
 /**
  * Escapes HTML special characters in raw text.
@@ -251,6 +252,10 @@ ${css}
 </style>
 </head>
 <body>
+<header class="merkbalk inner">
+  <img class="merk" src="/logo.png" width="72" height="72"
+       alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">
+</header>
 <main class="inner">
 ${page.body}
 </main>
@@ -294,8 +299,26 @@ function uitgelicht() {
   return `<section class="uitgelicht" aria-label="Uitgelicht">${kaarten}</section>`;
 }
 
+// Het blok tussen <!-- kant --> in het profiel is geschreven vanuit GitHub en wijst naar de site.
+// Hier is het andersom: de lezer staat op de site, dus de verwijzing gaat naar de broncode.
+const KANT_SITE = `### \u279c [github.com/security-commons-nl](https://github.com/security-commons-nl/)
+
+Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen in je browser. De
+broncode staat op GitHub, voor wie wil meelezen of meebouwen.`;
+
+/**
+ * Wisselt het kant-blok om naar de site-variant.
+ * @param {string} markdown Het profiel zoals het op GitHub staat.
+ * @returns {string} Markdown voor de site.
+ */
+function wisselKant(markdown) {
+  const blok = /<!-- kant -->[\s\S]*?<!-- \/kant -->/;
+  if (!blok.test(markdown)) throw new Error('Blok <!-- kant --> ontbreekt in het profiel');
+  return markdown.replace(blok, KANT_SITE);
+}
+
 function buildLandingPage() {
-  const markdown = readFileSync(PROFILE_README, 'utf8');
+  const markdown = wisselKant(readFileSync(PROFILE_README, 'utf8'));
   const tokens = marked.lexer(markdown, { gfm: true });
   const i = tokens.findIndex((t) => t.type === 'heading' && t.text === 'Direct aan de slag');
   if (i === -1) throw new Error('Kop "Direct aan de slag" ontbreekt in het profiel');

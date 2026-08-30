@@ -157,3 +157,8 @@ footer {
 .kaart-naam { font-weight: 700; color: var(--blauw); font-size: 1.05rem; }
 .kaart-wat { font-size: .92rem; }
 .kaart-voor { font-size: .8rem; color: var(--grijs); }
+
+/* Het logo van de organisatie, hetzelfde beeld als op GitHub. */
+.merkbalk { padding-top: 26px; padding-bottom: 2px; }
+.merk { display: block; border-radius: 10px; }
+@media (max-width: 600px) { .merk { width: 56px; height: 56px; } }
