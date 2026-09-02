@@ -1,19 +1,32 @@
-// Build script: renders the organisation profile README
-// (security-commons-nl/.github -> profile/README.md, checked out by the
-// workflow into org-profile/) as the root landing page. Static root files
-// (robots.txt, llms.txt, sitemap.xml) are copied to dist/ unchanged.
-import { readFileSync, writeFileSync, copyFileSync, mkdirSync } from 'node:fs';
+// Build script: renders the root landing page from site/content.md and PROJECTEN.md.
+// Static root files (robots.txt, llms.txt, sitemap.xml) are copied to dist/.
+import { readFileSync, writeFileSync, copyFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { marked } from 'marked';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const PROFILE_README = join(ROOT, 'org-profile', 'profile', 'README.md');
-const RAW_BASE = 'https://raw.githubusercontent.com/security-commons-nl/.github/main/profile/';
-const BLOB_BASE = 'https://github.com/security-commons-nl/.github/blob/main/profile/';
-// llms.txt en sitemap.xml worden gegenereerd uit de projectentabel (statuut B9),
-// niet gekopieerd.
+const CONTENT_FILE = join(ROOT, 'site', 'content.md');
+
+// PROJECTEN.md is de enige bron (statuut B9).
+function vindProjectenBestand() {
+  const paden = [
+    join(ROOT, 'org-profile', 'PROJECTEN.md'),
+    join(ROOT, '..', '.github', 'PROJECTEN.md'),
+    join(ROOT, 'org-profile', 'profile', 'README.md'),
+    join(ROOT, '..', '.github', 'profile', 'README.md'),
+  ];
+  for (const pad of paden) {
+    if (existsSync(pad)) return pad;
+  }
+  throw new Error('PROJECTEN.md niet gevonden in org-profile/ of .github/');
+}
+
+const PROJECTEN_FILE = vindProjectenBestand();
+const RAW_BASE = 'https://raw.githubusercontent.com/security-commons-nl/.github/main/';
+const BLOB_BASE = 'https://github.com/security-commons-nl/.github/blob/main/';
+
 const STATIC_FILES = ['robots.txt', '.nojekyll', '.well-known/security.txt', 'favicon.svg',
   'favicon.ico', 'logo.png'];
 
@@ -32,7 +45,7 @@ function escapeHtml(text) {
 
 /**
  * Maps a project status to a badge CSS class.
- * @param {string} status Status text, e.g. "Actief".
+ * @param {string} status Status text, e.g. "in gebruik".
  * @returns {string} CSS class string.
  */
 function statusClass(status) {
@@ -54,65 +67,122 @@ function stripLinks(text) {
 }
 
 /**
- * Renders the projects table (Project|Status|Wat|Doelgroep) as a card grid.
- * @param {object} token Marked table token.
- * @returns {string} Card grid HTML.
- */
-function projectCards(token) {
-  const cards = token.rows.map((row, i) => {
-    const project = projectFromRow(row);
-    if (!project) return '';
-    // De kaart is zelf een anchor: nooit een tweede anchor erin nesten, dat breekt
-    // de kaart in tweeen. Een live-versie wordt daarom het doel van de kaart zelf,
-    // met een tekstlabel in plaats van een losse link.
-    const href = project.live || project.repo;
-    const opener = project.live ? `<span class="card-open">${escapeHtml(project.liveLabel)}</span>` : '';
-    return [
-      `<a class="card" href="${escapeHtml(href)}" style="--d:${i}">`,
-      `<span class="card-top"><span class="card-title">${escapeHtml(project.naam)}</span>`,
-      `<span class="${statusClass(project.status)}">${escapeHtml(project.status)}</span></span>`,
-      `<span class="card-desc">${marked.parseInline(stripLinks(project.wat))}</span>`,
-      `<span class="card-doelgroep">${marked.parseInline(stripLinks(project.doelgroep))}</span>`,
-      opener,
-      `</a>`,
-    ].join('');
-  });
-  return `<div class="cards">${cards.join('\n')}</div>`;
-}
-
-/**
  * Reads one row of the projects table into a project object.
- * Columns: Project | Status | Wat is het? | Direct openen | Doelgroep.
+ * Columns: Project | Status | Vorm | Wat is het? | Direct openen | Doelgroep
+ * (ook compatibel met oudere 5-koloms tabel zonder Vorm).
  * @param {object[]} row Marked table row.
  * @returns {?object} Project, or null when the row has no project link.
  */
 function projectFromRow(row) {
   const link = row[0].text.match(/\[(.+?)\]\((.+?)\)/);
   if (!link) return null;
-  const openCell = (row[3] ? row[3].text : '').trim();
+  const hasVorm = row.length >= 6;
+  const vorm = hasVorm ? row[2].text.trim().toLowerCase() : 'instrument';
+  const wat = hasVorm ? row[3].text : row[2].text;
+  const openCell = (hasVorm ? (row[4] ? row[4].text : '') : (row[3] ? row[3].text : '')).trim();
   const open = openCell.match(/\[(.+?)\]\((.+?)\)/);
+  const doelgroep = hasVorm ? (row[5] ? row[5].text : '') : (row[4] ? row[4].text : '');
   return {
     naam: link[1],
     repo: link[2],
     status: row[1].text.trim(),
-    wat: row[2].text,
+    vorm: vorm,
+    wat: wat,
     live: open ? open[2] : null,
     liveLabel: open ? open[1] : '',
-    doelgroep: row[4] ? row[4].text : '',
+    doelgroep: doelgroep,
   };
 }
 
 /**
- * Parses the projects table out of the organisation profile README.
+ * Parses the projects table out of PROJECTEN.md.
  * @returns {object[]} Projects.
  */
 function readProjects() {
-  const tokens = marked.lexer(readFileSync(PROFILE_README, 'utf8'), { gfm: true });
+  const tokens = marked.lexer(readFileSync(PROJECTEN_FILE, 'utf8'), { gfm: true });
   const table = tokens.find(
     (tok) => tok.type === 'table' && tok.header.some((h) => h.text.toLowerCase() === 'status'),
   );
-  if (!table) throw new Error('Projectentabel niet gevonden in profile/README.md');
+  if (!table) throw new Error('Projectentabel niet gevonden in ' + PROJECTEN_FILE);
   return table.rows.map(projectFromRow).filter(Boolean);
+}
+
+/**
+ * Renders a single project card.
+ * @param {object} project Project data.
+ * @param {number} i Card index for staggered animation.
+ * @returns {string} Card HTML.
+ */
+function renderCard(project, i) {
+  const href = project.live || project.repo;
+  const opener = project.live ? `<span class="card-open">${escapeHtml(project.liveLabel)}</span>` : '';
+  return [
+    `<a class="card" href="${escapeHtml(href)}" style="--d:${i}">`,
+    `<span class="card-top"><span class="card-title">${escapeHtml(project.naam)}</span>`,
+    `<span class="${statusClass(project.status)}">${escapeHtml(project.status)}</span></span>`,
+    `<span class="card-desc">${marked.parseInline(stripLinks(project.wat))}</span>`,
+    `<span class="card-doelgroep">${marked.parseInline(stripLinks(project.doelgroep))}</span>`,
+    opener,
+    `</a>`,
+  ].join('');
+}
+
+/**
+ * Renders project cards grouped by form (statuut B14).
+ * @returns {string} HTML for project groups.
+ */
+function projectGroepen() {
+  const projects = readProjects();
+  const groepen = [
+    {
+      id: 'instrument',
+      titel: 'Browser-instrumenten (Live tools)',
+      uitleg: 'Draaien 100% in je browser. Geen server, geen account, geen installatie; data verlaat je apparaat niet (statuut B14).',
+    },
+    {
+      id: 'kennis',
+      titel: 'Kennis & Handreikingen',
+      uitleg: 'Draaiboeken, handleidingen en methoden uit de praktijk van publieke organisaties.',
+    },
+    {
+      id: 'dataset',
+      titel: 'Normbronnen & Datasets',
+      uitleg: 'Normenkaders (BIO 2.0, NIST CSF 2.0, Wpg, AVG) als machineleesbare datasets met herkomst en vingerafdruk.',
+    },
+    {
+      id: 'script',
+      titel: 'Lokale scripts & Tools',
+      uitleg: 'Command-line tools die lokaal draaien op brondata die je al hebt.',
+    },
+  ];
+
+  let html = '';
+  let cardIdx = 0;
+  for (const g of groepen) {
+    const items = projects.filter((p) => p.vorm === g.id);
+    if (items.length === 0) continue;
+    html += `<h3>${escapeHtml(g.titel)}</h3>\n`;
+    html += `<p class="groep-uitleg">${escapeHtml(g.uitleg)}</p>\n`;
+    html += `<div class="cards">\n${items.map((p) => renderCard(p, cardIdx++)).join('\n')}\n</div>\n`;
+  }
+
+  const rest = projects.filter((p) => !groepen.some((g) => g.id === p.vorm));
+  if (rest.length > 0) {
+    html += `<h3>Overige projecten</h3>\n`;
+    html += `<div class="cards">\n${rest.map((p) => renderCard(p, cardIdx++)).join('\n')}\n</div>\n`;
+  }
+  return html;
+}
+
+/**
+ * Extracts the Gearchiveerd block from PROJECTEN.md.
+ * @returns {string} HTML for archived section.
+ */
+function gearchiveerdBlok() {
+  const raw = readFileSync(PROJECTEN_FILE, 'utf8');
+  const m = raw.match(/\*\*Gearchiveerd:\*\*[\s\S]*?(?=\n\n\*\*|\n## |$)/);
+  if (!m) return '';
+  return `<p>${marked.parseInline(m[0])}</p>`;
 }
 
 /**
@@ -143,8 +213,7 @@ function projectsBlock() {
 
 /**
  * Replaces the generated projects block inside llms.txt, leaving every
- * hand-written section untouched. The rest of llms.txt (source files, datasets,
- * KQL queries) is richer than the projects table and stays hand-written.
+ * hand-written section untouched.
  * @returns {string} Updated llms.txt content.
  */
 function updateLlmsTxt() {
@@ -158,7 +227,6 @@ function updateLlmsTxt() {
   if (i !== -1 && j > i) {
     return huidig.slice(0, i) + blok + huidig.slice(j + EIND.length);
   }
-  // Nog geen markers: het blok vlak voor de Optional-sectie invoegen.
   const optional = huidig.indexOf('## Optional');
   const sectie = `## Alle projecten\n\n${blok}\n\n`;
   if (optional === -1) return `${huidig.trimEnd()}\n\n${sectie}`;
@@ -205,8 +273,6 @@ function updateSitemap() {
  */
 function renderToken(token) {
   if (token.type === 'table') {
-    const isProjects = token.header.some((h) => h.text.toLowerCase() === 'status');
-    if (isProjects) return projectCards(token);
     return `<div class="tablewrap">${marked.parser([token])}</div>`;
   }
   if (token.type === 'blockquote') {
@@ -216,11 +282,14 @@ function renderToken(token) {
     const id = token.text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     return `<h2 id="${id}">${marked.parseInline(token.text)}</h2>`;
   }
+  if (token.type === 'html') {
+    return token.raw;
+  }
   return marked.parser([token]);
 }
 
 /**
- * Rewrites relative README links and images to absolute GitHub URLs.
+ * Rewrites relative links and images to absolute GitHub URLs.
  * @param {string} html Rendered HTML.
  * @returns {string} HTML with absolute URLs.
  */
@@ -267,14 +336,6 @@ ${page.body}
 `;
 }
 
-/**
- * Assembles the landing page from the organisation profile README.
- * @returns {string} Full HTML document.
- */
-/**
- * Een korte claim voor op een kaart. De kolom "Wat is het?" is een volledige omschrijving; hier past
- * de eerste deelzin. Blijft die te lang, dan knippen we op de laatste komma die nog past.
- */
 function kaartTekst(tekst) {
   let kort = tekst.split(/[:;.]/)[0].trim();
   if (kort.length < 15) kort = tekst.trim();
@@ -286,8 +347,11 @@ function kaartTekst(tekst) {
 }
 
 function uitgelicht() {
-  const rijen = readProjects().filter((pr) => pr.live).slice(0, 3);
-  if (rijen.length < 3) throw new Error(`Minder dan drie projecten met een live link (${rijen.length})`);
+  const projects = readProjects();
+  // De drie vaste uitgelichte startpunten (statuut B9)
+  const namen = ['kennisbank', 'aanvalspaden', 'weerbaarheid-game'];
+  const rijen = namen.map((naam) => projects.find((p) => p.naam === naam)).filter(Boolean);
+  if (rijen.length < 3) throw new Error(`Minder dan drie projecten gevonden voor uitgelicht (${rijen.length})`);
   const kaarten = rijen.map((pr) => `
     <a class="kaart" href="${escapeHtml(pr.live)}">
       <span class="kaart-naam">${escapeHtml(pr.naam)}</span>
@@ -297,50 +361,22 @@ function uitgelicht() {
   return `<section class="uitgelicht" aria-label="Uitgelicht">${kaarten}</section>`;
 }
 
-// Het blok tussen <!-- kant --> in het profiel is geschreven vanuit GitHub en wijst naar de site.
-// Hier is het andersom: de lezer staat op de site, dus de verwijzing gaat naar de broncode.
-const KANT_SITE = `### \u279c [github.com/security-commons-nl](https://github.com/security-commons-nl/)
-
-Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen in je browser. De
-broncode staat op GitHub, voor wie wil meelezen of meebouwen.`;
-
-/**
- * Wisselt het kant-blok om naar de site-variant.
- * @param {string} markdown Het profiel zoals het op GitHub staat.
- * @returns {string} Markdown voor de site.
- */
-function wisselKant(markdown) {
-  const blok = /<!-- kant -->[\s\S]*?<!-- \/kant -->/;
-  if (!blok.test(markdown)) throw new Error('Blok <!-- kant --> ontbreekt in het profiel');
-  return markdown.replace(blok, KANT_SITE);
-}
-
 function buildLandingPage() {
-  const markdown = wisselKant(readFileSync(PROFILE_README, 'utf8'));
-  const tokens = marked.lexer(markdown, { gfm: true });
-  const i = tokens.findIndex((t) => t.type === 'heading' && t.text === 'Direct aan de slag');
-  if (i === -1) throw new Error('Kop "Direct aan de slag" ontbreekt in het profiel');
-  // Na de inleidende alinea onder de kop; marked zet space-tokens tussen de blokken.
-  let na = tokens.findIndex((t, n) => n > i && t.type === 'paragraph');
-  if (na === -1) throw new Error('Geen alinea onder "Direct aan de slag"');
-  const h = uitgelicht();
-  tokens.splice(na + 1, 0, { type: 'html', block: true, raw: h, text: h });
+  let content = readFileSync(CONTENT_FILE, 'utf8');
+  content = content.replace('<!-- UITGELICHT -->', uitgelicht());
+  content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
+  content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
+
+  const tokens = marked.lexer(content, { gfm: true });
   return pageShell({
     title: 'Security Commons NL: open securitykennis voor de publieke sector',
     description: 'Publieke organisaties bouwen samen aan digitale weerbaarheid: kennis, tooling en aanpakken, open source onder EUPL-1.2.',
     canonical: 'https://security-commons-nl.github.io/',
     body: rewriteLinks(tokens.map(renderToken).join('')),
-    generatedFrom: 'de organisatie-README',
+    generatedFrom: 'PROJECTEN.md en de site-bronnen',
   });
 }
 
-/**
- * De toolpagina is opgeheven (29-08-2026): de projectentabel op de landingspagina is de enige lijst
- * van eigen tools (statuut B9), en tooling van anderen staat in de kennisbank. Deze pagina blijft
- * bestaan als doorverwijzing, zodat een eerder gedeelde link niet doodloopt.
- *
- * @returns {string} Volledig HTML-document dat naar de landingspagina stuurt.
- */
 function buildToolsRedirect() {
   return `<!DOCTYPE html>
 <html lang="nl">
@@ -365,8 +401,7 @@ tools. Tooling van anderen staat in de
 mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsRedirect());
-// llms.txt en sitemap.xml worden bijgewerkt, niet overschreven: het projectenblok
-// is gegenereerd, de handgeschreven secties blijven staan (statuut B9).
+
 for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {
   writeFileSync(join(ROOT, naam), inhoud);
   writeFileSync(join(ROOT, 'dist', naam), inhoud);

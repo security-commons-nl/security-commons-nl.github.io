@@ -45,8 +45,26 @@ def test_logo_staat_op_de_pagina():
     assert (ROOT / "dist" / "logo.png").exists(), "logo niet meegekopieerd naar dist"
 
 
+def test_categorieen_en_status():
+    """Controleert dat de kaarten netjes gecategoriseerd zijn en de status van 03-09 klopt."""
+    subprocess.run(["node", "site/build.mjs"], cwd=ROOT, check=True, capture_output=True)
+    html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
+    assert "Browser-instrumenten" in html
+    assert "Kennis &" in html or "Kennis &amp;" in html
+    assert "Normbronnen" in html
+    assert "Lokale scripts" in html
+    assert "csir-assessment-tool" in html
+    assert "normen" in html
+    # Gearchiveerde projecten mogen niet meer als actieve kaart gerenderd worden
+    assert '<span class="card-title">grc-platform</span>' not in html
+    assert '<span class="card-title">hosting-bouwblokken</span>' not in html
+    assert '<span class="card-title">blast-radius</span>' not in html
+
+
 if __name__ == "__main__":
     test_voorpagina()
     test_verwijzing_wijst_naar_github()
     test_logo_staat_op_de_pagina()
+    test_categorieen_en_status()
     print("voorpagina ok")
+

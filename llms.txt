@@ -69,31 +69,31 @@ redactiestatuut B8.
 
 Draait echt en heeft groene tests of CI.
 
-- [kennisbank](https://security-commons-nl.github.io/kennisbank/): Werkende kennis uit de publieke sector, security, privacy, continuïteit en alles wat er tussen zit. Broncode: https://github.com/security-commons-nl/kennisbank
+- [kennisbank](https://security-commons-nl.github.io/kennisbank/): Werkende kennis uit de publieke sector: security, privacy, continuïteit en governance. Broncode: https://github.com/security-commons-nl/kennisbank
 - [weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): Interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt. Broncode: https://github.com/security-commons-nl/weerbaarheid-game
-- [grc-platform](https://github.com/security-commons-nl/grc-platform): GRC-platform voor ISMS, PIMS en BCMS in één systeem.
-- [anonimizer-local](https://github.com/security-commons-nl/anonimizer-local): AI-tool om gevoelige gegevens uit documenten te verwijderen, CLI voor batchverwerking en hergebruik van memory.
-- [anonimizer-browser](https://security-commons-nl.github.io/anonimizer-browser/): Browser-versie van de anonimizer: geen installatie nodig, alles draait in je eigen browser. Broncode: https://github.com/security-commons-nl/anonimizer-browser
-- [ai-gebruik-in-beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): Draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO + FG): meetregimes, bronnen met bewijslast, run-log, plus 15 KQL-query's. Broncode: https://github.com/security-commons-nl/ai-gebruik-in-beeld
-- [publicatiescan](https://github.com/security-commons-nl/publicatiescan): Scant je eigen openbare publicaties (bekendmakingen inclusief bijlagen, raadsinformatie, terinzageleggingen, website) op onbedoeld gepubliceerde persoonsgegevens. Deterministische detectie via elfproef en mod-97; OCR optioneel en on-prem.
+- [normen](https://security-commons-nl.github.io/normen/): Normbronnen als herbruikbare dataset: BIO 2.0 (148 maatregelen), NIST CSF 2.0, Wpg en AVG, elk als JSON met herkomst en vingerafdruk. Broncode: https://github.com/security-commons-nl/normen
+- [anonimizer-browser](https://security-commons-nl.github.io/anonimizer-browser/): Browser-versie van de anonimizer: gevoelige gegevens uit documenten verwijderen, documenten verlaten de browser nooit. Broncode: https://github.com/security-commons-nl/anonimizer-browser
+- [ai-gebruik-in-beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): Draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO + FG): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's. Broncode: https://github.com/security-commons-nl/ai-gebruik-in-beeld
+- [publicatiescan](https://github.com/security-commons-nl/publicatiescan): Scant openbare publicaties (bekendmakingen, raadsinformatie, website) op onbedoeld gepubliceerde persoonsgegevens; deterministisch.
+- [anonimizer-local](https://github.com/security-commons-nl/anonimizer-local): AI-tool om gevoelige gegevens uit documenten te verwijderen, CLI voor batchverwerking.
 
 ### Prototype
 
 Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.
 
-- [aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/): Eén instrument rond vier vragen: zelfcheck (een uur, welke aanvalspaden staan open), risicoanalyse (met de lijn, kroonjuwelen en bewijs, risicolijst met eigenaar) en meting; één bron voor de aanvalspaden van de publieke sector. Met de normverankering en de handleidingen per barriere erbij: welke maatregel uit BIO 2.0, ISO 27001 en het Wpg-toetsingskader wordt aantoonbaar met dat bewijs, en waar de zelfcheck ophoudt. Broncode: https://github.com/security-commons-nl/aanvalspaden
+- [aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/): Eén instrument rond vier vragen: zelfcheck (18 paden, 3 acties voor morgen), risicoanalyse en meting; gekoppeld aan normverankering en handleidingen. Broncode: https://github.com/security-commons-nl/aanvalspaden
+- [csir-assessment-tool](https://security-commons-nl.github.io/csir-assessment-tool/): De Cybersecurity Implementatierichtlijn Objecten (CSIR): objectclassificatie langs 6 criteria, bepalen van 127 controls en 268 maatregelen, en uitwerken tot dossier. Broncode: https://github.com/security-commons-nl/csir-assessment-tool
+- [procescheck](https://security-commons-nl.github.io/procescheck/): BIA en BIV-classificatie per bedrijfsproces, met RTO en RPO, de businesscontext en de blast radius: wat valt om als een component uitvalt. Broncode: https://github.com/security-commons-nl/procescheck
 - [security-posture-tool](https://github.com/security-commons-nl/security-posture-tool): Evidence-based security posture langs Defense-in-Depth, diepte 2 (meting) van de aanvalspaden-keten.
-- [hosting-bouwblokken](https://github.com/security-commons-nl/hosting-bouwblokken): Referentiearchitecturen en IaC voor veilige AI/security-hosting.
-- [procescheck](https://github.com/security-commons-nl/procescheck): BIA- en procescontinuïteitstool voor informatiebeveiliging bij publieke organisaties.
-- [iamscan](https://github.com/security-commons-nl/iamscan): Read-only analyse van je Linux-servers: wie kan waar root worden, uit passwd, sudoers en SSH-sleutels. Deterministisch, elke bevinding met de configregel erbij.
-- [blast-radius](https://github.com/security-commons-nl/blast-radius): Wat valt om als een component uitvalt: leest een CI-landschapsexport en rekent de keten door naar applicaties en processen, met interactieve graaf.
+- [iamscan](https://github.com/security-commons-nl/iamscan): Read-only analyse van Linux-servers: wie kan waar root worden, uit passwd, sudoers en SSH-sleutels.
 
 ### Concept
 
 Ontwerp, plan of documentatie; nog geen werkende code.
 
-- [cisochat](https://github.com/security-commons-nl/cisochat): vCISO-dirigent: een AI die redeneert als een CISO (langs NIST CSF), adviseert en open-source security-tooling orkestreert, inclusief beleidsondersteuning, mens beslist.
-- [policy-as-code](https://github.com/security-commons-nl/policy-as-code): Beleid en normen (BIO 2.0, ISO 27001, AVG) als uitvoerbare, toetsbare regels in plaats van alleen tekst, automatisch controleren of de praktijk aan de norm voldoet.
+- [applicatiecheck](https://security-commons-nl.github.io/applicatiecheck/): Toont uit de applicatie zelf aan wat de BIO2 vraagt: configuratie-export en logsample deterministisch getoetst. Eerste toepassing: een zaaksysteem. Broncode: https://github.com/security-commons-nl/applicatiecheck
+- [policy-as-code](https://github.com/security-commons-nl/policy-as-code): Beleid en normen (BIO 2.0, ISO 27001, AVG) als uitvoerbare, toetsbare regels in plaats van alleen tekst.
+- [cisochat](https://github.com/security-commons-nl/cisochat): vCISO-dirigent: redeneert langs NIST CSF, adviseert en orkestreert open-source security-tooling; mens beslist.
 
 <!-- projecten:eind -->
 
