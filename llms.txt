@@ -25,7 +25,8 @@ eigen pagina staan onder Optional.
 - [Security Annex voor leveranciers](https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/): contractbijlage informatiebeveiliging in 20 artikelen, opgebouwd vanuit de risico's die gemeenten nu zien en verankerd in BIO2, met invulvelden
 - [Externe referenties: security-tooling en kennisbanken](https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/): open tools en kennisbanken van buiten de commons, per bron wat het is, wanneer je het inzet en welke wegingen erbij horen (LOLCreds, Threat Tiger, FinalRecon, SCOPTIX, darknetlist, ScanZeker)
 - [Learning digitale veiligheid voor managers](https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/): kant-en-klare awareness-sessie van veertig minuten voor leidinggevenden, met publiek bekende casussen en invulbare placeholders
-- [Meten voordat je ingrijpt](https://security-commons-nl.github.io/kennisbank/security/meten-voordat-je-ingrijpt/): security posture verhogen met data uit je eigen omgeving in plaats van met aannames; meet eerst wat er feitelijk draait (PowerShell, Win+R, mshta, firewallregels) en bepaal daarna wat je afdwingt. ClickFix als casus, met herbruikbare KQL-query's
+- [Meten voordat je ingrijpt](https://security-commons-nl.github.io/kennisbank/security/meten-voordat-je-ingrijpt/): security posture verhogen met data uit je eigen omgeving in plaats van met aannames; meet eerst wat er feitelijk draait (PowerShell, Win+R, mshta, firewallregels) en bepaal daarna wat je afdwingt. ClickFix als casus; de handleidingen eronder dragen de meetmethodes per platform
+- [Werkplekanalyse op het Microsoft-platform](https://security-commons-nl.github.io/kennisbank/security/werkplekanalyse-e5/): meet met Defender for Endpoint en Advanced Hunting wat er op werkplekken feitelijk draait en beperk daarna pas; zes KQL-query's voor PowerShell, Win+R, mshta en ClickFix, en het advies om PowerShell te beheersen met Constrained Language Mode in plaats van te blokkeren
 - [Val ik onder de Cbw?](https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/): klikbare toets waarmee een gemeenschappelijke regeling of zbo zelf vaststelt of zij als overheidsinstantie onder de Cyberbeveiligingswet valt; vier cumulatieve criteria, per antwoord het bewijsstuk, uitkomst is een dossier met open punten en geen oordeel. Rekent in de browser
 - [Een digitaal calamiteitenteam opzetten](https://security-commons-nl.github.io/kennisbank/bcm/calamiteitenteam-digitaal-opzetten/): startpakket voor de organisatie die nog geen team heeft dat een digitale calamiteit bestrijdt: rolverdeling, logboek, sleutelbesluiten en evaluatie, met invulformulieren, te beleggen binnen de eigen bedrijfsvoering
 - [Kritieke processen en herstelprioriteiten vaststellen](https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/): hoe je samen met de lijn vaststelt welke processen niet mogen uitvallen, welke continuiteitseisen daarbij horen en in welke volgorde je herstelt, met vuistregels per proces en hoe je die keuze houdbaar houdt als de organisatie verandert
@@ -50,12 +51,12 @@ eigen pagina staan onder Optional.
 
 ## KQL-query's (Microsoft Defender Advanced Hunting)
 
-- [clickfix-detectie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/clickfix-detectie.kql)
-- [winr-runmru-top.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/winr-runmru-top.kql)
-- [winr-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/winr-categorisatie.kql)
-- [powershell-totaal-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/powershell-totaal-categorisatie.kql)
-- [powershell-interactief.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/powershell-interactief.kql)
-- [mshta-gebruik.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/meten-voordat-je-ingrijpt/data/mshta-gebruik.kql)
+- [clickfix-detectie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/clickfix-detectie.kql)
+- [winr-runmru-top.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/winr-runmru-top.kql)
+- [winr-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/winr-categorisatie.kql)
+- [powershell-totaal-categorisatie.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/powershell-totaal-categorisatie.kql)
+- [powershell-interactief.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/powershell-interactief.kql)
+- [mshta-gebruik.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/mshta-gebruik.kql)
 
 ## Alle projecten
 
