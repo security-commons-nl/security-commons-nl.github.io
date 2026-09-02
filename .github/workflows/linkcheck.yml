@@ -26,7 +26,7 @@ jobs:
   linkcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Verzamel URL's uit llms.txt en sitemap.xml
         id: verzamel
