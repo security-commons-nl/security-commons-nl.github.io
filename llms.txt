@@ -26,6 +26,9 @@ eigen pagina staan onder Optional.
 - [Externe referenties: security-tooling en kennisbanken](https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/): open tools en kennisbanken van buiten de commons, per bron wat het is, wanneer je het inzet en welke wegingen erbij horen (LOLCreds, Threat Tiger, FinalRecon, SCOPTIX, darknetlist, ScanZeker)
 - [Learning digitale veiligheid voor managers](https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/): kant-en-klare awareness-sessie van veertig minuten voor leidinggevenden, met publiek bekende casussen en invulbare placeholders
 - [Meten voordat je ingrijpt](https://security-commons-nl.github.io/kennisbank/security/meten-voordat-je-ingrijpt/): security posture verhogen met data uit je eigen omgeving in plaats van met aannames; meet eerst wat er feitelijk draait (PowerShell, Win+R, mshta, firewallregels) en bepaal daarna wat je afdwingt. ClickFix als casus, met herbruikbare KQL-query's
+- [Val ik onder de Cbw?](https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/): klikbare toets waarmee een gemeenschappelijke regeling of zbo zelf vaststelt of zij als overheidsinstantie onder de Cyberbeveiligingswet valt; vier cumulatieve criteria, per antwoord het bewijsstuk, uitkomst is een dossier met open punten en geen oordeel. Rekent in de browser
+- [Een digitaal calamiteitenteam opzetten](https://security-commons-nl.github.io/kennisbank/bcm/calamiteitenteam-digitaal-opzetten/): startpakket voor de organisatie die nog geen team heeft dat een digitale calamiteit bestrijdt: rolverdeling, logboek, sleutelbesluiten en evaluatie, met invulformulieren, te beleggen binnen de eigen bedrijfsvoering
+- [Kritieke processen en herstelprioriteiten vaststellen](https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/): hoe je samen met de lijn vaststelt welke processen niet mogen uitvallen, welke continuiteitseisen daarbij horen en in welke volgorde je herstelt, met vuistregels per proces en hoe je die keuze houdbaar houdt als de organisatie verandert
 - [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle securitybijdragen in de kennisbank
 
 ## Voor wie geen publieke organisatie is
@@ -38,6 +41,7 @@ eigen pagina staan onder Optional.
 - [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
 - [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders
 - [Van aanvalspad naar norm](https://security-commons-nl.github.io/aanvalspaden/normen/): per barriere uit de zelfcheck welk bewijs iets aantoont in BIO 2.0, NIST CSF 2.0, het Wpg-toetsingskader en de AVG, en welke handleiding in de kennisbank uitlegt hoe je de maatregel inricht
+- [Val ik onder de Cbw?](https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/): toets in de browser of een gemeenschappelijke regeling of zbo onder de Cyberbeveiligingswet valt; levert een dossier met bewijsstukken en open punten voor het juridisch advies
 
 ## Datasets (machineleesbaar)
 
