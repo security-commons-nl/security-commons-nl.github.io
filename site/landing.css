@@ -95,6 +95,9 @@ img { max-width: 100%; height: auto; }
 }
 
 .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+/* De vorm (browser, script, dataset) stond in de sectiekop; nu staat hij als label op de kaart. */
+.card-labels { display: inline-flex; gap: .3rem; align-items: baseline; flex-shrink: 0; }
+.badge-vorm { background: var(--vlak); color: var(--grijs); border: 1px solid var(--lijn); font-weight: 600; }
 .card-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--blauw-donker); }
 .card-desc { font-size: 0.9rem; flex-grow: 1; }
 .card-doelgroep { font-size: 0.8rem; color: var(--grijs); border-top: 1px solid var(--lijn); padding-top: 0.45rem; }
@@ -154,6 +157,8 @@ footer {
 .uitgelicht { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.2rem 0 2rem; }
 .kaart { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1.1rem; border: 1px solid #d7dee7; border-radius: 10px; background: #fff; text-decoration: none; color: inherit; }
 .kaart:hover { border-color: var(--blauw); }
+/* De vraag boven de naam: de bezoeker herkent zijn vraag eerder dan de projectnaam. */
+.kaart-vraag { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--oranje); font-weight: 700; }
 .kaart-naam { font-weight: 700; color: var(--blauw); font-size: 1.05rem; }
 .kaart-wat { font-size: .92rem; }
 .kaart-voor { font-size: .8rem; color: var(--grijs); }

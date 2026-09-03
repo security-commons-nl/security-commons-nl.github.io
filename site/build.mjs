@@ -91,6 +91,7 @@ function projectFromRow(row) {
     live: open ? open[2] : null,
     liveLabel: open ? open[1] : '',
     doelgroep: doelgroep,
+    waarvoor: (hasVorm && row[6] ? row[6].text : '').trim().toLowerCase(),
   };
 }
 
@@ -113,13 +114,25 @@ function readProjects() {
  * @param {number} i Card index for staggered animation.
  * @returns {string} Card HTML.
  */
+// De vorm zegt wat je krijgt als je klikt. Hij was de indeling van de pagina en is nu een label:
+// de indeling volgt de vraag, de vorm blijft de belofte (statuut B14).
+const VORM_LABEL = {
+  instrument: 'in je browser',
+  kennis: 'leeswerk',
+  dataset: 'dataset',
+  script: 'lokaal script',
+};
+
 function renderCard(project, i) {
   const href = project.live || project.repo;
   const opener = project.live ? `<span class="card-open">${escapeHtml(project.liveLabel)}</span>` : '';
+  const vorm = VORM_LABEL[project.vorm]
+    ? `<span class="badge badge-vorm">${escapeHtml(VORM_LABEL[project.vorm])}</span>` : '';
   return [
     `<a class="card" href="${escapeHtml(href)}" style="--d:${i}">`,
     `<span class="card-top"><span class="card-title">${escapeHtml(project.naam)}</span>`,
-    `<span class="${statusClass(project.status)}">${escapeHtml(project.status)}</span></span>`,
+    `<span class="card-labels">${vorm}`,
+    `<span class="${statusClass(project.status)}">${escapeHtml(project.status)}</span></span></span>`,
     `<span class="card-desc">${marked.parseInline(stripLinks(project.wat))}</span>`,
     `<span class="card-doelgroep">${marked.parseInline(stripLinks(project.doelgroep))}</span>`,
     opener,
@@ -133,40 +146,42 @@ function renderCard(project, i) {
  */
 function projectGroepen() {
   const projects = readProjects();
+  // Ingedeeld naar de vraag waarmee iemand binnenkomt, niet naar de technische vorm: die staat als
+  // label op de kaart. De sleutel is de kolom Waarvoor in PROJECTEN.md (statuut B9).
   const groepen = [
     {
-      id: 'instrument',
-      titel: 'Browser-instrumenten (Live tools)',
-      uitleg: 'Draaien 100% in je browser. Geen server, geen account, geen installatie; data verlaat je apparaat niet (statuut B14).',
+      id: 'vaststellen',
+      titel: 'Vaststellen hoe je ervoor staat',
+      uitleg: 'Zelfcheck, meting en toetsing: van een uur alleen aan tafel tot bewijs uit je eigen exports.',
     },
     {
-      id: 'kennis',
-      titel: 'Kennis & Handreikingen',
-      uitleg: 'Draaiboeken, handleidingen en methoden uit de praktijk van publieke organisaties.',
+      id: 'aanpakken',
+      titel: 'Aanpakken en inrichten',
+      uitleg: 'Werkende kennis en draaiboeken uit de praktijk van publieke organisaties, met de keuzes die het verschil maken.',
     },
     {
-      id: 'dataset',
-      titel: 'Normbronnen & Datasets',
-      uitleg: 'Normenkaders (BIO 2.0, NIST CSF 2.0, Wpg, AVG) als machineleesbare datasets met herkomst en vingerafdruk.',
+      id: 'aantonen',
+      titel: 'Aantonen en overtuigen',
+      uitleg: 'Wat je met een maatregel aantoont in BIO 2.0, NIST CSF, Wpg en AVG, en hoe je het gesprek met bestuurders voert.',
     },
     {
-      id: 'script',
-      titel: 'Lokale scripts & Tools',
-      uitleg: 'Command-line tools die lokaal draaien op brondata die je al hebt.',
+      id: 'delen',
+      titel: 'Veilig delen en publiceren',
+      uitleg: 'Documenten anonimiseren en publicaties nalopen voordat ze de deur uit gaan.',
     },
   ];
 
   let html = '';
   let cardIdx = 0;
   for (const g of groepen) {
-    const items = projects.filter((p) => p.vorm === g.id);
+    const items = projects.filter((p) => p.waarvoor === g.id);
     if (items.length === 0) continue;
     html += `<h3>${escapeHtml(g.titel)}</h3>\n`;
     html += `<p class="groep-uitleg">${escapeHtml(g.uitleg)}</p>\n`;
     html += `<div class="cards">\n${items.map((p) => renderCard(p, cardIdx++)).join('\n')}\n</div>\n`;
   }
 
-  const rest = projects.filter((p) => !groepen.some((g) => g.id === p.vorm));
+  const rest = projects.filter((p) => !groepen.some((g) => g.id === p.waarvoor));
   if (rest.length > 0) {
     html += `<h3>Overige projecten</h3>\n`;
     html += `<div class="cards">\n${rest.map((p) => renderCard(p, cardIdx++)).join('\n')}\n</div>\n`;
@@ -347,14 +362,19 @@ function kaartTekst(tekst) {
   return kort;
 }
 
-function uitgelicht() {
-  const projects = readProjects();
-  // De drie vaste uitgelichte startpunten (statuut B9)
-  const namen = ['kennisbank', 'aanvalspaden', 'weerbaarheid-game'];
-  const rijen = namen.map((naam) => projects.find((p) => p.naam === naam)).filter(Boolean);
-  if (rijen.length < 3) throw new Error(`Minder dan drie projecten gevonden voor uitgelicht (${rijen.length})`);
-  const kaarten = rijen.map((pr) => `
+/**
+ * The three highlighted cards. Statuut B9: the first three rows with a live link, so the editorial
+ * order of PROJECTEN.md decides what is on top. The questions above the names are editorial text and
+ * come from the placeholder in content.md, not from this file.
+ * @param {string[]} vragen One question per card, in the same order.
+ * @returns {string} HTML for the highlight section.
+ */
+function uitgelicht(vragen) {
+  const rijen = readProjects().filter((p) => p.live).slice(0, 3);
+  if (rijen.length < 3) throw new Error(`Minder dan drie projecten met een live link (${rijen.length})`);
+  const kaarten = rijen.map((pr, i) => `
     <a class="kaart" href="${escapeHtml(pr.live)}">
+      ${vragen[i] ? `<span class="kaart-vraag">${escapeHtml(vragen[i])}</span>` : ''}
       <span class="kaart-naam">${escapeHtml(pr.naam)}</span>
       <span class="kaart-wat">${escapeHtml(kaartTekst(pr.wat))}</span>
       <span class="kaart-voor">${escapeHtml(pr.doelgroep)}</span>
@@ -364,7 +384,11 @@ function uitgelicht() {
 
 function buildLandingPage() {
   let content = readFileSync(CONTENT_FILE, 'utf8');
-  content = content.replace('<!-- UITGELICHT -->', uitgelicht());
+  // De vragen boven de drie kaarten staan bij de placeholder in content.md; redactionele tekst hoort
+  // niet in deze build. Zonder vragen blijven het gewone kaarten.
+  const merk = content.match(/<!-- UITGELICHT(?::([^>]*))? -->/);
+  const vragen = merk && merk[1] ? merk[1].split('|').map((v) => v.trim()) : [];
+  content = content.replace(merk ? merk[0] : '<!-- UITGELICHT -->', uitgelicht(vragen));
   content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
   content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
 

@@ -10,14 +10,14 @@ Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen i
 
 Voor CISO's, ISO's en bestuurders bij gemeenten, provincies, waterschappen en uitvoeringsorganisaties. Alles hieronder werkt vandaag, in je browser, zonder account en zonder factuur. De kern is een keten van vier vragen rond de achttien aanvalspaden van de publieke sector:
 
-<!-- UITGELICHT -->
+<!-- UITGELICHT: Waar sta ik? | Hoe pak ik het aan? | Wat toon ik aan? -->
 
 1. **Hoe sta ik ervoor?** De [zelfcheck](https://security-commons-nl.github.io/aanvalspaden/): een uur, alleen te doen, achttien paden en drie acties voor morgen.
 2. **Hoe pak ik het aan?** Per barriere een [handleiding in de kennisbank](https://security-commons-nl.github.io/kennisbank/security/#handleidingen), met de alternatieven ernaast, en een uitnodiging waar er nog geen is.
 3. **Wat toon ik hiermee aan?** De [normverankering](https://security-commons-nl.github.io/normen/): BIO 2.0, ISO 27001, NIST CSF 2.0, het Wpg-kader en de AVG, en waar de zelfcheck ophoudt.
 4. **Wat zegt mijn eigen data?** De [meting](https://security-commons-nl.github.io/aanvalspaden/meting/): 41 meetregels op exports die je al hebt, van firewallconfig tot een Linux-dump, met per aanvalspad het bewijs en de witte vlekken hardop.
 
-Begin bij de [kennisbank](https://security-commons-nl.github.io/kennisbank/) als je iets zoekt om te lezen of te hergebruiken, en bij de [weerbaarheidsgame](https://security-commons-nl.github.io/weerbaarheid-game/) als je het gesprek met bestuurders voert.
+Zoek je iets om te lezen of te hergebruiken, begin dan bij de [kennisbank](https://security-commons-nl.github.io/kennisbank/); die is ingedeeld op vakgebied, met de telling per vakgebied bovenaan.
 
 Sommige instrumenten hebben een opt-in AI-hulp die het invoerwerk overneemt, met je eigen sleutel bij je eigen leverancier. Wat dat inhoudt, wat er wel en niet naar buiten gaat en hoe je zelf bepaalt hoe groot het risico is, staat op [AI-hulp met je eigen sleutel](/ai-hulp/).
 

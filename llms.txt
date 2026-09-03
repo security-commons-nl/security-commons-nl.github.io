@@ -71,20 +71,20 @@ redactiestatuut B8.
 Draait echt en heeft groene tests of CI.
 
 - [kennisbank](https://security-commons-nl.github.io/kennisbank/): Werkende kennis uit de publieke sector: security, privacy, continuïteit en governance. Broncode: https://github.com/security-commons-nl/kennisbank
-- [weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): Interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt. Broncode: https://github.com/security-commons-nl/weerbaarheid-game
 - [normen](https://security-commons-nl.github.io/normen/): Normbronnen als herbruikbare dataset: BIO 2.0 (148 maatregelen), NIST CSF 2.0, Wpg en AVG, elk als JSON met herkomst en vingerafdruk. Broncode: https://github.com/security-commons-nl/normen
-- [anonimizer-browser](https://security-commons-nl.github.io/anonimizer-browser/): Browser-versie van de anonimizer: gevoelige gegevens uit documenten verwijderen, documenten verlaten de browser nooit. Broncode: https://github.com/security-commons-nl/anonimizer-browser
 - [ai-gebruik-in-beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): Draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO + FG): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's. Broncode: https://github.com/security-commons-nl/ai-gebruik-in-beeld
-- [publicatiescan](https://github.com/security-commons-nl/publicatiescan): Scant openbare publicaties (bekendmakingen, raadsinformatie, website) op onbedoeld gepubliceerde persoonsgegevens; deterministisch.
+- [weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): Interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt. Broncode: https://github.com/security-commons-nl/weerbaarheid-game
+- [anonimizer-browser](https://security-commons-nl.github.io/anonimizer-browser/): Browser-versie van de anonimizer: gevoelige gegevens uit documenten verwijderen, documenten verlaten de browser nooit. Broncode: https://github.com/security-commons-nl/anonimizer-browser
 - [anonimizer-local](https://github.com/security-commons-nl/anonimizer-local): AI-tool om gevoelige gegevens uit documenten te verwijderen, CLI voor batchverwerking.
+- [publicatiescan](https://github.com/security-commons-nl/publicatiescan): Scant openbare publicaties (bekendmakingen, raadsinformatie, website) op onbedoeld gepubliceerde persoonsgegevens; deterministisch.
 
 ### Prototype
 
 Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.
 
 - [aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/): Eén instrument rond vier vragen: zelfcheck (18 paden, 3 acties voor morgen), risicoanalyse en meting (41 items uit exports en hostdumps, bewijs per barriere); gekoppeld aan normverankering en handleidingen. Broncode: https://github.com/security-commons-nl/aanvalspaden
-- [csir-assessment-tool](https://security-commons-nl.github.io/csir-assessment-tool/): De Cybersecurity Implementatierichtlijn Objecten (CSIR): objectclassificatie langs 6 criteria, bepalen van 127 controls en 268 maatregelen, en uitwerken tot dossier. Broncode: https://github.com/security-commons-nl/csir-assessment-tool
 - [procescheck](https://security-commons-nl.github.io/procescheck/): BIA en BIV-classificatie per bedrijfsproces, met RTO en RPO, de businesscontext en de blast radius: wat valt om als een component uitvalt. Broncode: https://github.com/security-commons-nl/procescheck
+- [csir-assessment-tool](https://security-commons-nl.github.io/csir-assessment-tool/): De Cybersecurity Implementatierichtlijn Objecten (CSIR): objectclassificatie langs 6 criteria, bepalen van 127 controls en 268 maatregelen, en uitwerken tot dossier. Broncode: https://github.com/security-commons-nl/csir-assessment-tool
 
 ### Concept
 

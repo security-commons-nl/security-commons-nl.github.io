@@ -11,13 +11,23 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
 def test_voorpagina():
+    """De drie kaarten volgen de tabel, niet een lijst in de code.
+
+    Statuut B9: de eerste drie rijen met een live link zijn de uitgelichte kaarten. build.mjs had die
+    drie bij naam in de code staan, waardoor de redactionele volgorde van PROJECTEN.md de voorpagina
+    niet kon sturen (gevonden 03-09-2026, toen de weerbaarheidsgame prominent bleef staan terwijl de
+    tabel iets anders zei).
+    """
     subprocess.run(["node", "site/build.mjs"], cwd=ROOT, check=True, capture_output=True)
     html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
     kaarten = re.findall(r'<a class="kaart" href="([^"]+)"', html)
     assert len(kaarten) == 3, kaarten
-    assert kaarten[0].rstrip("/").endswith("/kennisbank")
-    assert kaarten[1].rstrip("/").endswith("/aanvalspaden")
-    assert kaarten[2].rstrip("/").endswith("/weerbaarheid-game")
+    assert kaarten[0].rstrip("/").endswith("/aanvalspaden")
+    assert kaarten[1].rstrip("/").endswith("/kennisbank")
+    assert kaarten[2].rstrip("/").endswith("/normen")
+    # De vraag boven de naam komt uit content.md, want het is redactionele tekst.
+    vragen = re.findall(r'<span class="kaart-vraag">([^<]+)</span>', html)
+    assert vragen == ["Waar sta ik?", "Hoe pak ik het aan?", "Wat toon ik aan?"], vragen
     # Uitgelicht staat vóór de kaartengrid, en de grid vóór "Waarom dit bestaat".
     assert html.index('class="uitgelicht"') < html.index('class="cards"') < html.index("Waarom dit bestaat")
     assert chr(8212) not in html, "em-dash op de voorpagina"
@@ -45,14 +55,22 @@ def test_logo_staat_op_de_pagina():
     assert (ROOT / "dist" / "logo.png").exists(), "logo niet meegekopieerd naar dist"
 
 
-def test_categorieen_en_status():
-    """Controleert dat de kaarten netjes gecategoriseerd zijn en de status van 03-09 klopt."""
+def test_groepen_volgen_de_vraag():
+    """De projecten staan onder de vraag waarmee iemand binnenkomt, niet onder hun technische vorm.
+
+    De vorm zegt nog steeds wat je krijgt als je klikt, maar staat nu als label op de kaart. Wie op
+    vorm indeelt, vraagt van een CISO dat hij eerst bedenkt of hij een browser-instrument of een
+    script zoekt; die vraag heeft hij niet.
+    """
     subprocess.run(["node", "site/build.mjs"], cwd=ROOT, check=True, capture_output=True)
     html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
-    assert "Browser-instrumenten" in html
-    assert "Kennis &" in html or "Kennis &amp;" in html
-    assert "Normbronnen" in html
-    assert "Lokale scripts" in html
+    koppen = re.findall(r"<h3>([^<]+)</h3>", html)
+    assert koppen == ["Vaststellen hoe je ervoor staat", "Aanpakken en inrichten",
+                      "Aantonen en overtuigen", "Veilig delen en publiceren"], koppen
+    assert "Overige projecten" not in koppen, "een project zonder kolom Waarvoor in PROJECTEN.md"
+    assert "Browser-instrumenten" not in html
+    for label in ("in je browser", "leeswerk", "dataset", "lokaal script"):
+        assert f'badge-vorm">{label}<' in html, label
     assert "csir-assessment-tool" in html
     assert "normen" in html
     # Gearchiveerde projecten mogen niet meer als actieve kaart gerenderd worden
