@@ -39,6 +39,7 @@ eigen pagina staan onder Optional.
 
 ## Tools
 
+- [AI-hulp met je eigen sleutel](https://security-commons-nl.github.io/ai-hulp/): wat de opt-in AI-hulp in de instrumenten doet en niet doet, wat er naar de leverancier gaat en wat op je apparaat blijft, drie gebruiksvormen van lokaal model tot gedeelde proxy met de verwerkersrol erbij, en waarom een voorstel altijd een voorstel blijft
 - [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
 - [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders
 - [Van aanvalspad naar norm](https://security-commons-nl.github.io/aanvalspaden/normen/): per barriere uit de zelfcheck welk bewijs iets aantoont in BIO 2.0, NIST CSF 2.0, het Wpg-toetsingskader en de AVG, en welke handleiding in de kennisbank uitlegt hoe je de maatregel inricht
@@ -81,11 +82,9 @@ Draait echt en heeft groene tests of CI.
 
 Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.
 
-- [aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/): Eén instrument rond vier vragen: zelfcheck (18 paden, 3 acties voor morgen), risicoanalyse en meting; gekoppeld aan normverankering en handleidingen. Broncode: https://github.com/security-commons-nl/aanvalspaden
+- [aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/): Eén instrument rond vier vragen: zelfcheck (18 paden, 3 acties voor morgen), risicoanalyse en meting (41 items uit exports en hostdumps, bewijs per barriere); gekoppeld aan normverankering en handleidingen. Broncode: https://github.com/security-commons-nl/aanvalspaden
 - [csir-assessment-tool](https://security-commons-nl.github.io/csir-assessment-tool/): De Cybersecurity Implementatierichtlijn Objecten (CSIR): objectclassificatie langs 6 criteria, bepalen van 127 controls en 268 maatregelen, en uitwerken tot dossier. Broncode: https://github.com/security-commons-nl/csir-assessment-tool
 - [procescheck](https://security-commons-nl.github.io/procescheck/): BIA en BIV-classificatie per bedrijfsproces, met RTO en RPO, de businesscontext en de blast radius: wat valt om als een component uitvalt. Broncode: https://github.com/security-commons-nl/procescheck
-- [security-posture-tool](https://github.com/security-commons-nl/security-posture-tool): Evidence-based security posture langs Defense-in-Depth, diepte 2 (meting) van de aanvalspaden-keten.
-- [iamscan](https://github.com/security-commons-nl/iamscan): Read-only analyse van Linux-servers: wie kan waar root worden, uit passwd, sudoers en SSH-sleutels.
 
 ### Concept
 
@@ -93,7 +92,6 @@ Ontwerp, plan of documentatie; nog geen werkende code.
 
 - [applicatiecheck](https://security-commons-nl.github.io/applicatiecheck/): Toont uit de applicatie zelf aan wat de BIO2 vraagt: configuratie-export en logsample deterministisch getoetst. Eerste toepassing: een zaaksysteem. Broncode: https://github.com/security-commons-nl/applicatiecheck
 - [policy-as-code](https://github.com/security-commons-nl/policy-as-code): Beleid en normen (BIO 2.0, ISO 27001, AVG) als uitvoerbare, toetsbare regels in plaats van alleen tekst.
-- [cisochat](https://github.com/security-commons-nl/cisochat): vCISO-dirigent: redeneert langs NIST CSF, adviseert en orkestreert open-source security-tooling; mens beslist.
 
 <!-- projecten:eind -->
 

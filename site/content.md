@@ -15,9 +15,11 @@ Voor CISO's, ISO's en bestuurders bij gemeenten, provincies, waterschappen en ui
 1. **Hoe sta ik ervoor?** De [zelfcheck](https://security-commons-nl.github.io/aanvalspaden/): een uur, alleen te doen, achttien paden en drie acties voor morgen.
 2. **Hoe pak ik het aan?** Per barriere een [handleiding in de kennisbank](https://security-commons-nl.github.io/kennisbank/security/#handleidingen), met de alternatieven ernaast, en een uitnodiging waar er nog geen is.
 3. **Wat toon ik hiermee aan?** De [normverankering](https://security-commons-nl.github.io/normen/): BIO 2.0, ISO 27001, NIST CSF 2.0, het Wpg-kader en de AVG, en waar de zelfcheck ophoudt.
-4. **Wat zegt mijn eigen data?** De meting, in ontwikkeling in `security-posture-tool`.
+4. **Wat zegt mijn eigen data?** De [meting](https://security-commons-nl.github.io/aanvalspaden/meting/): 41 meetregels op exports die je al hebt, van firewallconfig tot een Linux-dump, met per aanvalspad het bewijs en de witte vlekken hardop.
 
 Begin bij de [kennisbank](https://security-commons-nl.github.io/kennisbank/) als je iets zoekt om te lezen of te hergebruiken, en bij de [weerbaarheidsgame](https://security-commons-nl.github.io/weerbaarheid-game/) als je het gesprek met bestuurders voert.
+
+Sommige instrumenten hebben een opt-in AI-hulp die het invoerwerk overneemt, met je eigen sleutel bij je eigen leverancier. Wat dat inhoudt, wat er wel en niet naar buiten gaat en hoe je zelf bepaalt hoe groot het risico is, staat op [AI-hulp met je eigen sleutel](/ai-hulp/).
 
 ## Alle projecten
 
@@ -45,7 +47,7 @@ Eén repo bevat geen op zichzelf staand product, maar maakt een ander wel mogeli
 
 ## Over dit platform
 
-Hoe het geheel in elkaar zit, welke repositories er zijn en hoe ze samenhangen, staat in [ARCHITECTUUR.md](https://github.com/security-commons-nl/.github/blob/main/ARCHITECTUUR.md).
+Hoe het geheel in elkaar zit, welke repositories er zijn en hoe ze samenhangen, staat in [ARCHITECTUUR.md](https://github.com/security-commons-nl/.github/blob/main/ARCHITECTUUR.md). De opt-in AI-hulp in de instrumenten staat uitgelegd op [AI-hulp met je eigen sleutel](/ai-hulp/): eigen sleutel, eigen leverancier, een voorstel in plaats van een wijziging.
 
 Deze community staat momenteel op GitHub. Op termijn zullen we overstappen naar een EU-gebaseerd alternatief (zoals [Codeberg](https://codeberg.org)), in lijn met onze principes van digitale soevereiniteit.
 

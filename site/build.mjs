@@ -252,6 +252,7 @@ function updateSitemap() {
   }
   const kandidaten = [
     'https://security-commons-nl.github.io/',
+    'https://security-commons-nl.github.io/ai-hulp/',
     ...readProjects().map((pr) => pr.live).filter(Boolean),
   ];
   for (const loc of kandidaten) {
@@ -377,6 +378,20 @@ function buildLandingPage() {
   });
 }
 
+// De uitleg over de AI-hulp met eigen sleutel. Eigen pagina, want het geldt voor alle
+// instrumenten met een AI-hulp en niet voor een van de tools in het bijzonder.
+function buildAiHulpPage() {
+  const content = readFileSync(join(ROOT, 'site', 'ai-hulp.md'), 'utf8');
+  const tokens = marked.lexer(content, { gfm: true });
+  return pageShell({
+    title: 'AI-hulp met je eigen sleutel: Security Commons NL',
+    description: 'Wat de opt-in AI-hulp in onze instrumenten doet, wat er wel en niet naar buiten gaat, en hoe je zelf bepaalt hoe groot het risico is.',
+    canonical: 'https://security-commons-nl.github.io/ai-hulp/',
+    body: rewriteLinks(tokens.map(renderToken).join('')),
+    generatedFrom: 'site/ai-hulp.md',
+  });
+}
+
 function buildToolsRedirect() {
   return `<!DOCTYPE html>
 <html lang="nl">
@@ -399,8 +414,10 @@ tools. Tooling van anderen staat in de
 }
 
 mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
+mkdirSync(join(ROOT, 'dist', 'ai-hulp'), { recursive: true });
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsRedirect());
+writeFileSync(join(ROOT, 'dist', 'ai-hulp', 'index.html'), buildAiHulpPage());
 
 for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {
   writeFileSync(join(ROOT, naam), inhoud);
@@ -410,4 +427,4 @@ for (const file of STATIC_FILES) {
   mkdirSync(dirname(join(ROOT, 'dist', file)), { recursive: true });
   copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
 }
-console.log('Wrote dist/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
+console.log('Wrote dist/index.html, dist/ai-hulp/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
