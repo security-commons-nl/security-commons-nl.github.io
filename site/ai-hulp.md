@@ -94,9 +94,11 @@ niet automatiseerbaar hoort te zijn.
 
 ## Waar het nu zit
 
-De AI-hulp staat bij [procescheck](https://security-commons-nl.github.io/procescheck/ai/). Hij wordt
-uitgebreid naar de [meting van aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/meting/),
-de [zelfcheck](https://security-commons-nl.github.io/aanvalspaden/) en de
+De AI-hulp staat bij [procescheck](https://security-commons-nl.github.io/procescheck/ai/) (een
+procesdocument of een CMDB-export omzetten naar het datamodel) en bij de
+[meting van aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/meting/ai/) (een export uit
+je beheersysteem omzetten naar het kolomcontract van een meetregel). Hij wordt nog uitgebreid naar de
+[zelfcheck](https://security-commons-nl.github.io/aanvalspaden/) en de
 [CSIR Assessment Tool](https://security-commons-nl.github.io/csir-assessment-tool/), in die volgorde.
 
 Alle instrumenten werken volledig zonder AI. De hulp is opt-in en blijft dat: hij scheelt typewerk, en
