@@ -129,7 +129,7 @@ if __name__ == "__main__":
     test_voorpagina()
     test_verwijzing_wijst_naar_github()
     test_logo_staat_op_de_pagina()
-    test_categorieen_en_status()
+    test_groepen_volgen_de_vraag()
     test_ai_hulp_pagina()
     test_geen_sleutel_in_de_uitleg()
     test_meting_staat_als_live_op_de_voorpagina()
