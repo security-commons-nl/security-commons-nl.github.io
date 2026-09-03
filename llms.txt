@@ -75,8 +75,8 @@ Draait echt en heeft groene tests of CI.
 - [ai-gebruik-in-beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): Draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO + FG): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's. Broncode: https://github.com/security-commons-nl/ai-gebruik-in-beeld
 - [weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): Interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt. Broncode: https://github.com/security-commons-nl/weerbaarheid-game
 - [anonimizer-browser](https://security-commons-nl.github.io/anonimizer-browser/): Browser-versie van de anonimizer: gevoelige gegevens uit documenten verwijderen, documenten verlaten de browser nooit. Broncode: https://github.com/security-commons-nl/anonimizer-browser
-- [anonimizer-local](https://github.com/security-commons-nl/anonimizer-local): AI-tool om gevoelige gegevens uit documenten te verwijderen, CLI voor batchverwerking.
-- [publicatiescan](https://github.com/security-commons-nl/publicatiescan): Scant openbare publicaties (bekendmakingen, raadsinformatie, website) op onbedoeld gepubliceerde persoonsgegevens; deterministisch.
+- [anonimizer-local](https://security-commons-nl.github.io/anonimizer-local/): AI-tool om gevoelige gegevens uit documenten te verwijderen, CLI voor batchverwerking. Broncode: https://github.com/security-commons-nl/anonimizer-local
+- [publicatiescan](https://security-commons-nl.github.io/publicatiescan/): Scant openbare publicaties (bekendmakingen, raadsinformatie, website) op onbedoeld gepubliceerde persoonsgegevens; deterministisch. Broncode: https://github.com/security-commons-nl/publicatiescan
 
 ### Prototype
 
@@ -91,7 +91,7 @@ Werkt en is te draaien, zonder belofte over volledigheid of onderhoud.
 Ontwerp, plan of documentatie; nog geen werkende code.
 
 - [applicatiecheck](https://security-commons-nl.github.io/applicatiecheck/): Toont uit de applicatie zelf aan wat de BIO2 vraagt: configuratie-export en logsample deterministisch getoetst. Eerste toepassing: een zaaksysteem. Broncode: https://github.com/security-commons-nl/applicatiecheck
-- [policy-as-code](https://github.com/security-commons-nl/policy-as-code): Beleid en normen (BIO 2.0, ISO 27001, AVG) als uitvoerbare, toetsbare regels in plaats van alleen tekst.
+- [policy-as-code](https://security-commons-nl.github.io/policy-as-code/): Beleid en normen (BIO 2.0, ISO 27001, AVG) als uitvoerbare, toetsbare regels in plaats van alleen tekst. Broncode: https://github.com/security-commons-nl/policy-as-code
 
 <!-- projecten:eind -->
 
