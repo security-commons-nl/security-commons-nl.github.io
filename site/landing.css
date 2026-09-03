@@ -94,11 +94,15 @@ img { max-width: 100%; height: auto; }
   border-top-color: var(--oranje);
 }
 
-.card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
-/* De vorm (browser, script, dataset) stond in de sectiekop; nu staat hij als label op de kaart. */
-.card-labels { display: inline-flex; gap: .3rem; align-items: baseline; flex-shrink: 0; }
+/* Titel en labels op een rij, maar de titel wint. Met twee labels erbij (vorm en status) werd de
+   titel anders zo smal dat een naam als csir-assessment-tool op de streepjes brak en het tweede
+   label buiten de kaart viel. De rij mag daarom afbreken: dan zakken de labels onder de titel. */
+.card-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 0.3rem 0.5rem; }
+.card-labels { display: inline-flex; gap: .3rem; align-items: baseline; flex-wrap: wrap; }
 .badge-vorm { background: var(--vlak); color: var(--grijs); border: 1px solid var(--lijn); font-weight: 600; }
-.card-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--blauw-donker); }
+.card-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--blauw-donker);
+  flex: 1 1 62%; min-width: 0; overflow-wrap: break-word; }
 .card-desc { font-size: 0.9rem; flex-grow: 1; }
 .card-doelgroep { font-size: 0.8rem; color: var(--grijs); border-top: 1px solid var(--lijn); padding-top: 0.45rem; }
 
