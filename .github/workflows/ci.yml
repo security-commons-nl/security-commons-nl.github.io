@@ -27,3 +27,4 @@ jobs:
           python-version: "3.12"
       - run: npm ci
       - run: python site/test_voorpagina.py
+      - run: python site/test_backlog.py

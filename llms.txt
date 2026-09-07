@@ -13,24 +13,16 @@ eigen pagina staan onder Optional.
 ## Kennis en methoden
 
 - [AI-gebruik in beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO en FG samen): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's
-- [Kennisbank](https://security-commons-nl.github.io/kennisbank/): werkende kennis uit de publieke sector op security, privacy en continuïteit, geanonimiseerd gedeeld door professionals
+- [Kennisbank](https://security-commons-nl.github.io/kennisbank/): werkende kennis uit de publieke sector op security, privacy en continuïteit, geanonimiseerd gedeeld door professionals; 52 stukken over vier vakgebieden, doorzoekbaar op onderwerp, barriere uit de zelfcheck en norm (BIO2, NIS2, Cbw, AVG, ISO 27001, AI Act)
 
 ## Kennisbank, losse publicaties
 
-- [Passkeys invoeren](https://security-commons-nl.github.io/kennisbank/security/passkeys-invoeren/): handleiding om als publieke organisatie volledig over te stappen op phishing-resistente authenticatie (FIDO2), in negen stappen, met de keuzes die het verschil maken en wat er in de praktijk tegenzat. Met directiememo, FAQ, managersmail en herstelprocedure als sjablonen
-- [Risicoanalyse langs aanvalspaden](https://security-commons-nl.github.io/kennisbank/security/risicoanalyse-aanvalspaden/): methode om als CISO in één dag tot de grootste risico's te komen: tien kroonjuwelen tegen vijf generieke aanvalspaden, dekking gemeten op bewijs, de rode cellen zijn de risicolijst. Met de aanvalspaden voor lokale overheid als bijlage
-- [Stelselkaart security-gremia](https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/): open dataset van 83 partijen en 19 concrete diensten die de digitale weerbaarheid van de Nederlandse overheid organiseren, met vijf visualisaties van overlap en gaten. Peildatum 11 augustus 2026
-- [Een blue team opzetten](https://security-commons-nl.github.io/kennisbank/security/blue-team-opzetten/): handleiding in acht stappen om een tijdelijk, defensief interventieteam op te zetten naast de reguliere IV-lijn, met mandaatprotocol, memo's per gremium en een voorbeeldcasus
-- [AI-beleid van een regionale samenwerking](https://security-commons-nl.github.io/kennisbank/governance/ai-beleid/): compleet, geanonimiseerd AI-beleid van vier samenwerkende gemeenten (concept v1.0) met vertaalsleutel voor hergebruik; ook als markdown beschikbaar
-- [Security Annex voor leveranciers](https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/): contractbijlage informatiebeveiliging in 20 artikelen, opgebouwd vanuit de risico's die gemeenten nu zien en verankerd in BIO2, met invulvelden
-- [Externe referenties: security-tooling en kennisbanken](https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/): open tools en kennisbanken van buiten de commons, per bron wat het is, wanneer je het inzet en welke wegingen erbij horen (LOLCreds, Threat Tiger, FinalRecon, SCOPTIX, darknetlist, ScanZeker)
-- [Learning digitale veiligheid voor managers](https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/): kant-en-klare awareness-sessie van veertig minuten voor leidinggevenden, met publiek bekende casussen en invulbare placeholders
-- [Meten voordat je ingrijpt](https://security-commons-nl.github.io/kennisbank/security/meten-voordat-je-ingrijpt/): security posture verhogen met data uit je eigen omgeving in plaats van met aannames; meet eerst wat er feitelijk draait (PowerShell, Win+R, mshta, firewallregels) en bepaal daarna wat je afdwingt. ClickFix als casus; de handleidingen eronder dragen de meetmethodes per platform
-- [Werkplekanalyse op het Microsoft-platform](https://security-commons-nl.github.io/kennisbank/security/werkplekanalyse-e5/): meet met Defender for Endpoint en Advanced Hunting wat er op werkplekken feitelijk draait en beperk daarna pas; zes KQL-query's voor PowerShell, Win+R, mshta en ClickFix, en het advies om PowerShell te beheersen met Constrained Language Mode in plaats van te blokkeren
-- [Val ik onder de Cbw?](https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/): klikbare toets waarmee een gemeenschappelijke regeling of zbo zelf vaststelt of zij als overheidsinstantie onder de Cyberbeveiligingswet valt; vier cumulatieve criteria, per antwoord het bewijsstuk, uitkomst is een dossier met open punten en geen oordeel. Rekent in de browser
-- [Een digitaal calamiteitenteam opzetten](https://security-commons-nl.github.io/kennisbank/bcm/calamiteitenteam-digitaal-opzetten/): startpakket voor de organisatie die nog geen team heeft dat een digitale calamiteit bestrijdt: rolverdeling, logboek, sleutelbesluiten en evaluatie, met invulformulieren, te beleggen binnen de eigen bedrijfsvoering
-- [Kritieke processen en herstelprioriteiten vaststellen](https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/): hoe je samen met de lijn vaststelt welke processen niet mogen uitvallen, welke continuiteitseisen daarbij horen en in welke volgorde je herstelt, met vuistregels per proces en hoe je die keuze houdbaar houdt als de organisatie verandert
-- [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle securitybijdragen in de kennisbank
+Alle stukken van de kennisbank staan, met samenvatting en normen per stuk, in een eigen lijst die bij
+elke build uit de frontmatter wordt gegenereerd:
+https://security-commons-nl.github.io/kennisbank/llms.txt
+
+- [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle
+  securitystukken, met de handleidingen per barriere uit de zelfcheck
 
 ## Voor wie geen publieke organisatie is
 
@@ -97,7 +89,8 @@ Ontwerp, plan of documentatie; nog geen werkende code.
 
 ## Optional
 
-- [Alle repositories](https://github.com/security-commons-nl): ook de projecten zonder eigen pagina, zoals grc-platform, anonimizer-local, publicatiescan, iamscan, blast-radius, procescheck en security-posture-tool
+- [Alle repositories](https://github.com/security-commons-nl): ook de projecten zonder eigen pagina, zoals anonimizer-local, publicatiescan en policy-as-code; gearchiveerde repo's staan onderaan de projectentabel op de voorpagina
 - [Architectuur- en communityprincipes](https://github.com/security-commons-nl/.github/blob/main/PRINCIPLES.md): EU-soevereiniteit, AI altijd adviserend, auditbaarheid by design, least privilege, open source als standaard
+- [Backlog](https://security-commons-nl.github.io/backlog/): wat er open staat over alle repositories heen, gegenereerd uit de open issues (plan, schrijfopdracht, idee), de pull requests en de barrieres zonder handleiding; bovenaan waar we nu aan werken
 - [Licentie EUPL-1.2](https://github.com/security-commons-nl/kennisbank/blob/main/LICENSE)
 - [Meedoen](https://github.com/security-commons-nl/kennisbank/issues/new/choose): bijdragen kan met één gecorrigeerde regel, een GitHub-account is genoeg

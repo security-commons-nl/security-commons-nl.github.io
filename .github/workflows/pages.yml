@@ -32,7 +32,11 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # De backlogpagina haalt de open issues van de org op; met het token van de workflow telt
+      # dat niet mee in de anonieme limiet van zestig aanroepen per uur per adres.
       - run: node site/build.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       # Tar zelf met hidden files, zodat .well-known/ (security.txt) meekomt;
       # upload-pages-artifact sluit dot-mappen anders uit.
       - name: Archive artifact

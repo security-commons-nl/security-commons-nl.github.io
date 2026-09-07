@@ -1,0 +1,17 @@
+{
+  "versie": "2026-08",
+  "toelichting": "Testfixture: twee barrieres zonder handleiding.",
+  "gevraagd": [
+    {
+      "barriere": "browser",
+      "cluster": "de-werkplek-dichtzetten",
+      "zou_moeten_dekken": "Hoe je een browserbaseline uitrolt met een extensie-allowlist."
+    },
+    {
+      "barriere": "soc",
+      "cluster": "opvolging-en-detectie",
+      "zou_moeten_dekken": "Hoe je opvolging inricht: wie kijkt, binnen hoeveel tijd, met welk mandaat."
+    }
+  ],
+  "geen_handleiding_nodig": []
+}

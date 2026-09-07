@@ -171,3 +171,13 @@ footer {
    zodat het geen eigen regel kost. */
 .merk { float: right; width: 88px; height: 88px; margin: 2px 0 10px 24px; }
 @media (max-width: 620px) { .merk { width: 56px; height: 56px; margin-left: 14px; } }
+
+/* De backlog: lijsten met een repo#nummer als handvat, en een telling achter elke kop. */
+ul.backlog { list-style: none; padding: 0; margin: 0 0 1.6rem; }
+ul.backlog li { padding: .45rem 0; border-bottom: 1px solid var(--line, #dfe3e8); }
+ul.backlog li:last-child { border-bottom: 0; }
+ul.backlog code { font-size: .85em; white-space: nowrap; }
+.telling { display: inline-block; font-size: .7em; font-weight: 600; vertical-align: middle;
+  background: #eef1f5; color: #5c6570; border-radius: 999px; padding: .1em .6em; margin-left: .4em; }
+.cluster { font-size: .85em; color: #5c6570; }
+.leeg { color: #5c6570; font-style: italic; }

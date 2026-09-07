@@ -268,6 +268,7 @@ function updateSitemap() {
   const kandidaten = [
     'https://security-commons-nl.github.io/',
     'https://security-commons-nl.github.io/ai-hulp/',
+    'https://security-commons-nl.github.io/backlog/',
     ...readProjects().map((pr) => pr.live).filter(Boolean),
   ];
   for (const loc of kandidaten) {
@@ -416,6 +417,132 @@ function buildAiHulpPage() {
   });
 }
 
+// ── De backlog ────────────────────────────────────────────────────────────────────────────────
+// Issues voor wat mensen bedenken, een gegenereerde pagina voor wat het systeem zelf ziet (besluit
+// 30-08-2026). Deze pagina haalt bij elke build de open issues en pull requests van de org op, plus
+// de barrieres zonder handleiding uit de aanvalspaden. Alleen "Nu aan de beurt" in backlog.md is
+// handwerk. Valt de API uit, dan bouwt de site gewoon door en zegt de pagina dat de lijst ontbreekt.
+
+const ORG = 'security-commons-nl';
+const ISSUES_URL = `https://api.github.com/search/issues?q=org:${ORG}+is:open+archived:false&per_page=100`;
+const GEVRAAGD_URL = `https://raw.githubusercontent.com/${ORG}/aanvalspaden/main/mappingen/gevraagd.json`;
+const NORMEN_URL = 'https://security-commons-nl.github.io/aanvalspaden/normen/';
+
+/**
+ * Fetches JSON, or reads a local file when an override is set (tests, offline builds).
+ * @param {string} url
+ * @param {string|undefined} bestand Path from the environment that replaces the fetch.
+ */
+async function haalJson(url, bestand) {
+  if (bestand) return JSON.parse(readFileSync(bestand, 'utf8'));
+  const headers = { Accept: 'application/vnd.github+json', 'User-Agent': 'security-commons-nl-site' };
+  if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  const r = await fetch(url, { headers, signal: AbortSignal.timeout(15000) });
+  if (!r.ok) throw new Error(`HTTP ${r.status} bij ${url}`);
+  return r.json();
+}
+
+/** Groups open items by kind: plan, schrijfopdracht, idee, pull request, or without a label. */
+function groepeerBacklog(items) {
+  const groepen = { plan: [], schrijfopdracht: [], idee: [], pr: [], overig: [] };
+  for (const it of items) {
+    const labels = (it.labels || []).map((l) => (typeof l === 'string' ? l : l.name));
+    const item = {
+      repo: it.repository_url.split('/').pop(),
+      nummer: it.number,
+      titel: it.title,
+      url: it.html_url,
+      labels,
+    };
+    if (it.pull_request) groepen.pr.push(item);
+    else if (labels.includes('plan')) groepen.plan.push(item);
+    else if (labels.includes('schrijfopdracht')) groepen.schrijfopdracht.push(item);
+    else if (labels.includes('idee')) groepen.idee.push(item);
+    else groepen.overig.push(item);
+  }
+  for (const lijst of Object.values(groepen)) {
+    lijst.sort((a, b) => a.repo.localeCompare(b.repo) || a.nummer - b.nummer);
+  }
+  return groepen;
+}
+
+function backlogLijst(items) {
+  if (items.length === 0) return '<p class="leeg">Niets open.</p>';
+  const regels = items.map((it) =>
+    `<li><a href="${escapeHtml(it.url)}"><code>${escapeHtml(it.repo)}#${it.nummer}</code></a> ${escapeHtml(it.titel)}</li>`);
+  return `<ul class="backlog">\n${regels.join('\n')}\n</ul>`;
+}
+
+function backlogGroep(kop, uitleg, items) {
+  return `<h2 id="${kop.toLowerCase().replace(/[^a-z0-9]+/g, '-')}">${escapeHtml(kop)} <span class="telling">${items.length}</span></h2>\n` +
+    `<p>${uitleg}</p>\n${backlogLijst(items)}\n`;
+}
+
+function gatenBlok(gevraagd) {
+  const rijen = (gevraagd.gevraagd || []).map((g) =>
+    `<li><code>${escapeHtml(g.barriere)}</code> <span class="cluster">${escapeHtml(g.cluster)}</span>: ${escapeHtml(g.zou_moeten_dekken)}</li>`);
+  return `<h2 id="gaten-uit-de-data">Gaten uit de data <span class="telling">${rijen.length}</span></h2>\n` +
+    `<p>Barrieres uit de zelfcheck waar nog geen handleiding bij ligt. Dit is geen issue: de lijst komt uit ` +
+    `<code>mappingen/gevraagd.json</code> in de aanvalspaden en verdwijnt zodra de kennisbank het stuk heeft. ` +
+    `Op <a href="${NORMEN_URL}">Van aanvalspad naar norm</a> staat per barriere een knop om mee te schrijven.</p>\n` +
+    (rijen.length ? `<ul class="backlog">\n${rijen.join('\n')}\n</ul>\n` : '<p class="leeg">Elke barriere heeft een handleiding.</p>\n');
+}
+
+/**
+ * Renders the generated part of the backlog page.
+ * @param {{issues: object|null, gevraagd: object|null, fout: string|null}} bron
+ */
+function backlogBlok(bron) {
+  let html = '';
+  if (bron.issues) {
+    const g = groepeerBacklog(bron.issues.items || []);
+    html += backlogGroep('Open plannen', 'Bouwwerk met een uitgeschreven plan erachter, in de repo waar het landt. Het planbestand is het waarom, het issue is de stand.', g.plan);
+    html += backlogGroep('Schrijfopdrachten', 'Stukken die de kennisbank nog mist. Wie het weet, schrijft het; het issue zegt wat het moet dekken.', g.schrijfopdracht);
+    html += backlogGroep('Ideeen', 'Sprongen: iets dat er nog helemaal niet is en waar nog geen plan voor ligt.', g.idee);
+    if (g.overig.length) html += backlogGroep('Zonder label', 'Open issues die nog geen van de drie labels dragen.', g.overig);
+    html += backlogGroep('Onderhoud', 'Open pull requests, meestal van de robot die afhankelijkheden bijhoudt.', g.pr);
+  } else {
+    html += `<div class="callout"><p><strong>De issues konden bij deze build niet worden opgehaald</strong> (${escapeHtml(bron.fout || 'onbekende reden')}). ` +
+      `Kijk rechtstreeks op <a href="https://github.com/issues?q=org%3A${ORG}+is%3Aopen">github.com</a>; bij de volgende build staat de lijst er weer.</p></div>\n`;
+  }
+  if (bron.gevraagd) {
+    html += gatenBlok(bron.gevraagd);
+  } else {
+    html += `<div class="callout"><p><strong>De gaten uit de aanvalspaden konden niet worden opgehaald</strong> (${escapeHtml(bron.gevraagdFout || 'onbekende reden')}).</p></div>\n`;
+  }
+  return html;
+}
+
+async function haalBacklogBron() {
+  const bron = { issues: null, gevraagd: null, fout: null, gevraagdFout: null };
+  try {
+    bron.issues = await haalJson(ISSUES_URL, process.env.BACKLOG_ISSUES_FILE);
+  } catch (e) {
+    bron.fout = e.message;
+    console.warn(`backlog: issues niet opgehaald: ${e.message}`);
+  }
+  try {
+    bron.gevraagd = await haalJson(GEVRAAGD_URL, process.env.BACKLOG_GEVRAAGD_FILE);
+  } catch (e) {
+    bron.gevraagdFout = e.message;
+    console.warn(`backlog: gevraagd.json niet opgehaald: ${e.message}`);
+  }
+  return bron;
+}
+
+async function buildBacklogPage() {
+  const bron = await haalBacklogBron();
+  const content = readFileSync(join(ROOT, 'site', 'backlog.md'), 'utf8').replace('<!-- BACKLOG -->', backlogBlok(bron));
+  const tokens = marked.lexer(content, { gfm: true });
+  return pageShell({
+    title: 'Backlog: Security Commons NL',
+    description: 'Wat er open staat in de commons, over alle repositories heen: open plannen, schrijfopdrachten, ideeen, onderhoud en de gaten die uit de data volgen.',
+    canonical: 'https://security-commons-nl.github.io/backlog/',
+    body: rewriteLinks(tokens.map(renderToken).join('')),
+    generatedFrom: 'de open issues op GitHub, mappingen/gevraagd.json van de aanvalspaden en site/backlog.md',
+  });
+}
+
 function buildToolsRedirect() {
   return `<!DOCTYPE html>
 <html lang="nl">
@@ -437,11 +564,13 @@ tools. Tooling van anderen staat in de
 `;
 }
 
-mkdirSync(join(ROOT, 'dist', 'tools'), { recursive: true });
-mkdirSync(join(ROOT, 'dist', 'ai-hulp'), { recursive: true });
+for (const map of ['tools', 'ai-hulp', 'backlog']) {
+  mkdirSync(join(ROOT, 'dist', map), { recursive: true });
+}
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsRedirect());
 writeFileSync(join(ROOT, 'dist', 'ai-hulp', 'index.html'), buildAiHulpPage());
+writeFileSync(join(ROOT, 'dist', 'backlog', 'index.html'), await buildBacklogPage());
 
 for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {
   writeFileSync(join(ROOT, naam), inhoud);
@@ -451,4 +580,4 @@ for (const file of STATIC_FILES) {
   mkdirSync(dirname(join(ROOT, 'dist', file)), { recursive: true });
   copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
 }
-console.log('Wrote dist/index.html, dist/ai-hulp/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
+console.log('Wrote dist/index.html, dist/ai-hulp/index.html, dist/backlog/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
