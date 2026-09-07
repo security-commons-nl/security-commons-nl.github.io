@@ -481,10 +481,12 @@ function backlogGroep(kop, uitleg, items) {
 function gatenBlok(gevraagd) {
   const rijen = (gevraagd.gevraagd || []).map((g) =>
     `<li><code>${escapeHtml(g.barriere)}</code> <span class="cluster">${escapeHtml(g.cluster)}</span>: ${escapeHtml(g.zou_moeten_dekken)}</li>`);
-  return `<h2 id="gaten-uit-de-data">Gaten uit de data <span class="telling">${rijen.length}</span></h2>\n` +
-    `<p>Barrieres uit de zelfcheck waar nog geen handleiding bij ligt. Dit is geen issue: de lijst komt uit ` +
-    `<code>mappingen/gevraagd.json</code> in de aanvalspaden en verdwijnt zodra de kennisbank het stuk heeft. ` +
-    `Op <a href="${NORMEN_URL}">Van aanvalspad naar norm</a> staat per barriere een knop om mee te schrijven.</p>\n` +
+  return `<h2 id="gaten-uit-de-zelfcheck">Gaten uit de zelfcheck <span class="telling">${rijen.length}</span></h2>\n` +
+    `<p>Hier stuurt de zelfcheck iemand naartoe en staat nog niets: barrieres zonder handleiding. Dit is ` +
+    `de vraagkant, en daarom staat het bovenaan. De lijst is geen issue maar volgt uit ` +
+    `<code>mappingen/gevraagd.json</code> in de aanvalspaden, en verdwijnt vanzelf zodra de kennisbank het ` +
+    `stuk heeft. Op <a href="${NORMEN_URL}">Van aanvalspad naar norm</a> staat per barriere een knop om mee ` +
+    `te schrijven.</p>\n` +
     (rijen.length ? `<ul class="backlog">\n${rijen.join('\n')}\n</ul>\n` : '<p class="leeg">Elke barriere heeft een handleiding.</p>\n');
 }
 
@@ -497,14 +499,21 @@ function backlogBlok(bron) {
   if (bron.issues) {
     const g = groepeerBacklog(bron.issues.items || []);
     html += backlogGroep('Open plannen', 'Bouwwerk met een uitgeschreven plan erachter, in de repo waar het landt. Het planbestand is het waarom, het issue is de stand.', g.plan);
-    html += backlogGroep('Schrijfopdrachten', 'Stukken die de kennisbank nog mist. Wie het weet, schrijft het; het issue zegt wat het moet dekken.', g.schrijfopdracht);
+    // De gaten staan boven de schrijfopdrachten: de zelfcheck stuurt mensen naar een lege plek, terwijl
+    // de catalogus-onderwerpen restanten zijn die niemand heeft gevraagd. Vraag gaat voor aanbod.
+    if (bron.gevraagd) {
+      html += gatenBlok(bron.gevraagd);
+    } else {
+      html += `<div class="callout"><p><strong>De gaten uit de aanvalspaden konden niet worden opgehaald</strong> (${escapeHtml(bron.gevraagdFout || 'onbekende reden')}).</p></div>\n`;
+    }
+    html += backlogGroep('Schrijfopdrachten', 'Onderwerpen die de kennisbank nog mist en die aan geen barriere hangen: grotendeels restanten uit de catalogus van de oude security-shop. Het issue draagt de catalogustekst al, dus dit is eerder cureren en plaatsen dan schrijven vanaf nul.', g.schrijfopdracht);
     html += backlogGroep('Ideeen', 'Sprongen: iets dat er nog helemaal niet is en waar nog geen plan voor ligt.', g.idee);
     if (g.overig.length) html += backlogGroep('Zonder label', 'Open issues die nog geen van de drie labels dragen.', g.overig);
     html += backlogGroep('Onderhoud', 'Open pull requests, meestal van de robot die afhankelijkheden bijhoudt.', g.pr);
-  } else {
-    html += `<div class="callout"><p><strong>De issues konden bij deze build niet worden opgehaald</strong> (${escapeHtml(bron.fout || 'onbekende reden')}). ` +
-      `Kijk rechtstreeks op <a href="https://github.com/issues?q=org%3A${ORG}+is%3Aopen">github.com</a>; bij de volgende build staat de lijst er weer.</p></div>\n`;
+    return html;
   }
+  html += `<div class="callout"><p><strong>De issues konden bij deze build niet worden opgehaald</strong> (${escapeHtml(bron.fout || 'onbekende reden')}). ` +
+    `Kijk rechtstreeks op <a href="https://github.com/issues?q=org%3A${ORG}+is%3Aopen">github.com</a>; bij de volgende build staat de lijst er weer.</p></div>\n`;
   if (bron.gevraagd) {
     html += gatenBlok(bron.gevraagd);
   } else {

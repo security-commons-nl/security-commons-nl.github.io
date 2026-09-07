@@ -39,10 +39,33 @@ def test_de_groepen_volgen_de_labels():
     assert "anonimizer-proxy#21" not in plannen
 
 
+def test_de_gaten_staan_boven_de_schrijfopdrachten():
+    """Vraag gaat voor aanbod (besluit 07-09-2026).
+
+    De zes gaten komen uit de zelfcheck: daar stuurt de tool iemand naartoe en staat niets. De
+    schrijfopdrachten zijn grotendeels restanten uit de catalogus van de oude security-shop, die
+    niemand heeft gevraagd. Ze stonden andersom, en dat leest als een verkeerde rangorde.
+    """
+    html = bouw(BACKLOG_ISSUES_FILE=str(FIXTURES / "backlog-issues.json"),
+                BACKLOG_GEVRAAGD_FILE=str(FIXTURES / "backlog-gevraagd.json"))
+    assert html.index('id="gaten-uit-de-zelfcheck"') < html.index('id="schrijfopdrachten"')
+    # En de plannen blijven bovenaan: dat is waar nu aan gewerkt wordt.
+    assert html.index('id="open-plannen"') < html.index('id="gaten-uit-de-zelfcheck"')
+
+
+def test_het_handblok_noemt_wie_de_pen_heeft():
+    """Twee bouwregels en een schrijfregel: zonder die derde meet het lijstje maar de helft."""
+    html = bouw(BACKLOG_ISSUES_FILE=str(FIXTURES / "backlog-issues.json"),
+                BACKLOG_GEVRAAGD_FILE=str(FIXTURES / "backlog-gevraagd.json"))
+    blok = html[html.index("Nu aan de beurt"):html.index('id="open-plannen"')]
+    assert blok.count("Bouwwerk") == 2, blok.count("Bouwwerk")
+    assert "Schrijfwerk" in blok
+
+
 def test_gaten_uit_de_data_en_het_handblok():
     html = bouw(BACKLOG_ISSUES_FILE=str(FIXTURES / "backlog-issues.json"),
                 BACKLOG_GEVRAAGD_FILE=str(FIXTURES / "backlog-gevraagd.json"))
-    gaten = html[html.index('id="gaten-uit-de-data"'):]
+    gaten = html[html.index('id="gaten-uit-de-zelfcheck"'):]
     assert "<code>browser</code>" in gaten and "<code>soc</code>" in gaten
     assert '<span class="telling">2</span>' in gaten
     # Het handblok staat boven de gegenereerde lijsten, want de keuze gaat voor de telling.
