@@ -91,11 +91,15 @@
   var formulier = document.getElementById('commons-zoekvak');
   if (!vak || !uit || !formulier) return;
 
-  var instrumenten = [].slice.call(document.querySelectorAll('a.card')).map(function (a) {
-    var titel = a.querySelector('.card-title');
-    var desc = a.querySelector('.card-desc');
-    return { t: titel ? titel.textContent : a.textContent, u: a.getAttribute('href'), z: desc ? desc.textContent : '' };
-  });
+  // De kaarten staan onder het zoekvak, dus pas bij het zoeken lezen: bij het laden van dit script
+  // bestaan ze nog niet.
+  function instrumenten() {
+    return [].slice.call(document.querySelectorAll('a.card')).map(function (a) {
+      var titel = a.querySelector('.card-title');
+      var desc = a.querySelector('.card-desc');
+      return { t: titel ? titel.textContent : a.textContent, u: a.getAttribute('href'), z: desc ? desc.textContent : '' };
+    });
+  }
   var zoeker = null, laden = null, wacht = null;
 
   function haal() {
@@ -104,7 +108,7 @@
         if (!r.ok) throw new Error('status ' + r.status);
         return r.json();
       }).then(function (index) {
-        zoeker = maakZoeker(index, instrumenten);
+        zoeker = maakZoeker(index, instrumenten());
       });
       laden.catch(function () { laden = null; });
     }
@@ -193,5 +197,9 @@
   });
   // Een zoekvraag in het adres (?q=dpia) is deelbaar.
   var q = new URLSearchParams(location.search).get('q');
-  if (q) { vak.value = q; toon(); }
+  if (q) {
+    vak.value = q;
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', toon);
+    else toon();
+  }
 })(typeof window !== 'undefined' ? window : globalThis);

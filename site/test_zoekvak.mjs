@@ -49,6 +49,50 @@ r = zoek('ai');
 check('ai vindt iets', r.kennisbank.length + r.anderen.length > 0);
 check('kort woord alleen aan het begin van een woord', [...r.kennisbank, ...r.anderen].every((s) => s._zoek.includes(' ai')));
 
+// In de pagina staat het zoekvak boven de projectkaarten: het script draait voordat die bestaan. Live
+// vond "zelfcheck" daardoor geen instrument (28-09-2026). Nep-DOM: de kaart komt pas na het script.
+function nepElement(tag) {
+  return {
+    tag, children: [], hidden: false, className: '', href: '', type: '', _t: '',
+    get textContent() { return this._t + this.children.map((c) => c.textContent).join(''); },
+    set textContent(v) { this._t = v; this.children = []; },
+    appendChild(c) { this.children.push(c); return c; },
+    addEventListener(soort, fn) { (this.luister ||= {})[soort] = fn; },
+    querySelector(sel) { return sel === '.card-title' ? this.titel : sel === '.card-desc' ? this.desc : null; },
+    getAttribute(naam) { return naam === 'href' ? this.href : null; },
+    remove() {},
+  };
+}
+const vakEl = nepElement('input');
+vakEl.value = '';
+const uitEl = nepElement('div');
+const formEl = nepElement('form');
+const kaarten = [];
+const pagina = {
+  document: {
+    readyState: 'complete',
+    getElementById: (id) => ({ 'commons-zoek': vakEl, 'commons-zoek-uit': uitEl, 'commons-zoekvak': formEl })[id],
+    querySelectorAll: (sel) => (sel === 'a.card' ? kaarten : []),
+    createElement: nepElement,
+    addEventListener() {},
+  },
+  location: { search: '' },
+  URLSearchParams,
+  fetch: async () => ({ ok: true, json: async () => index }),
+  setTimeout, clearTimeout,
+};
+pagina.window = pagina;
+vm.runInNewContext(readFileSync(join(HIER, 'zoekvak.js'), 'utf8'), pagina);
+const kaart = nepElement('a');
+kaart.href = '/aanvalspaden/';
+kaart.titel = nepElement('span'); kaart.titel.textContent = 'aanvalspaden';
+kaart.desc = nepElement('span'); kaart.desc.textContent = 'Een instrument rond vier vragen: zelfcheck en meting';
+kaarten.push(kaart);
+vakEl.value = 'zelfcheck';
+formEl.luister.submit({ preventDefault() {} });
+await new Promise((r) => setTimeout(r, 50));
+check('een kaart die na het script verschijnt, wordt gevonden', uitEl.textContent.includes('Instrumenten (1)'));
+
 if (fout) {
   console.error(`${fout} controle(s) mislukt`);
   process.exit(1);
