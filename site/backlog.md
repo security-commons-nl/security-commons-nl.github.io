@@ -14,9 +14,9 @@ De lijsten eronder staan op volgorde van hoe hard iemand ze mist, niet van hoe l
 
 ## Nu aan de beurt
 
-1. **applicatiecheck afmaken** (F1: regels als data, `toets.py`, de generieke parser). De enige tool die live staat zonder te werken. *Bouwwerk.*
-2. **AI-hulp voor de zelfcheck** (stap 2 van het plan). De kern staat er al en het importformaat bestaat, dus dit is klein. *Bouwwerk.*
-3. **Een handleiding over browsers dichtzetten** (barriere `browser`). Van de zes barrieres zonder handleiding staat deze op drie van de achttien aanvalspaden, meer dan alle andere. *Schrijfwerk: dit vraagt iemand die het gedaan heeft, geen bouwer.*
+1. **Privacy vullen** (stap 2 van het [plan ingang en vulling](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-09-28-ingang-en-vulling.md)). De privacy officer staat niet in de doelgroep en het vakgebied privacy telt twee stukken, allebei over de DPIA. Wegwijzers voor het verwerkingsregister, datalekken, verwerkersovereenkomsten en de rechten van betrokkenen, naar wat de IBD en anderen al hebben. *Schrijfwerk: dit vraagt iemand die het gedaan heeft, geen bouwer.*
+2. **De normwijzer op de voorpagina** (stap 3). De kaart "Wat toon ik aan?" wijst nog naar de normbronnen als dataset; de normwijzer is voor de gebruiker. *Bouwwerk.*
+3. **Een voordeur per rol** (stap 4). CISO, ISO, privacy officer en bestuurder: per rol drie stukken om mee te beginnen. *Bouwwerk.*
 
 Twee van de drie zijn bouwwerk en één is schrijfwerk, en dat is met opzet. Een commons komt niet
 vooruit op code alleen: de zelfcheck wijst mensen naar plekken waar nog niets staat, en dat dicht je
