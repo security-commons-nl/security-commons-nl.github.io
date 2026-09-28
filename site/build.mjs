@@ -383,6 +383,23 @@ function uitgelicht(vragen) {
   return `<section class="uitgelicht" aria-label="Uitgelicht">${kaarten}</section>`;
 }
 
+// Het zoekvak: een vak voor de hele commons, want wie binnenkomt heeft een vraag en geen projectnaam.
+// Zonder JavaScript stuurt het formulier door naar de kennisbank. Het script staat in site/zoekvak.js.
+function zoekvak() {
+  const script = readFileSync(join(ROOT, 'site', 'zoekvak.js'), 'utf8').replace(/<\//g, '<\\/');
+  return `<form class="zoekvak" id="commons-zoekvak" role="search" action="/kennisbank/">
+<label for="commons-zoek" class="zoekvak-kop">Zoek in de hele commons</label>
+<input id="commons-zoek" name="q" type="search" autocomplete="off"
+       placeholder="Bijvoorbeeld: wachtwoord, DPIA, VNG beleid of BIO 8.5">
+<p class="zoekvak-uitleg">Doorzoekt de instrumenten, de kennisbank, de normwijzer (BIO 2.0, NIST CSF, AVG en Wpg) en honderden stukken van de IBD, het CIP en het Rijk.</p>
+<div id="commons-zoek-uit" aria-live="polite"></div>
+</form>
+
+<script>
+${script}</script>
+`;
+}
+
 function buildLandingPage() {
   let content = readFileSync(CONTENT_FILE, 'utf8');
   // De vragen boven de drie kaarten staan bij de placeholder in content.md; redactionele tekst hoort
@@ -390,6 +407,7 @@ function buildLandingPage() {
   const merk = content.match(/<!-- UITGELICHT(?::([^>]*))? -->/);
   const vragen = merk && merk[1] ? merk[1].split('|').map((v) => v.trim()) : [];
   content = content.replace(merk ? merk[0] : '<!-- UITGELICHT -->', uitgelicht(vragen));
+  content = content.replace('<!-- ZOEKVAK -->', zoekvak());
   content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
   content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
 

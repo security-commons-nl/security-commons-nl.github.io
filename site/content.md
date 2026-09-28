@@ -6,6 +6,8 @@
 
 Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen in je browser. De broncode staat op GitHub, voor wie wil meelezen of meebouwen.
 
+<!-- ZOEKVAK -->
+
 ## Direct aan de slag
 
 Voor CISO's, ISO's en bestuurders bij gemeenten, provincies, waterschappen en uitvoeringsorganisaties. Alles hieronder werkt vandaag, in je browser, zonder account en zonder factuur. De kern is een keten van vier vragen rond de achttien aanvalspaden van de publieke sector:

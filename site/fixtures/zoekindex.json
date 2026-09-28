@@ -1,0 +1,422 @@
+{
+ "kaders": {
+  "bio2": "BIO 2.0",
+  "nist-csf": "NIST CSF 2.0",
+  "avg": "AVG",
+  "wpg": "Wpg"
+ },
+ "synoniemen": [
+  [
+   "cbw",
+   "cyberbeveiligingswet"
+  ],
+  [
+   "mfa",
+   "2fa",
+   "tweefactor",
+   "multifactor"
+  ],
+  [
+   "bcm",
+   "bedrijfscontinuiteit",
+   "business continuity",
+   "continuiteit"
+  ],
+  [
+   "awareness",
+   "bewustwording"
+  ],
+  [
+   "verwerkingsregister",
+   "register van verwerkingen"
+  ],
+  [
+   "dpia",
+   "gegevensbeschermingseffectbeoordeling"
+  ],
+  [
+   "avg",
+   "gdpr",
+   "gegevensbescherming"
+  ],
+  [
+   "bia",
+   "bedrijfsimpactanalyse",
+   "impactanalyse"
+  ],
+  [
+   "thuiswerken",
+   "telewerk"
+  ],
+  [
+   "pentest",
+   "penetratietest"
+  ],
+  [
+   "siem",
+   "security information"
+  ],
+  [
+   "kwetsbaarheid",
+   "kwetsbaarheden"
+  ]
+ ],
+ "stukken": [
+  {
+   "t": "Kritieke processen en herstelprioriteiten vaststellen",
+   "u": "https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/",
+   "w": "kennisbank",
+   "z": "bcm Hoe je samen met de lijn vaststelt welke processen echt niet mogen uitvallen, welke continuiteitseisen daarbij horen en in welke volgorde je herstelt. Met de vuistregels per proces als checklist, en het deel dat meestal ontbreekt, namelijk hoe je die keuze houdbaar houdt als de organisatie verandert."
+  },
+  {
+   "t": "Ben ik aanbieder onder de AI Act?",
+   "u": "https://security-commons-nl.github.io/kennisbank/governance/aanbieder-onder-de-ai-act/",
+   "w": "kennisbank",
+   "z": "governance Klikbare toets waarmee een gemeente per AI-toepassing vastlegt of zij aanbieder of gebruiksverantwoordelijke is, en of de toepassing hoog risico is. Wie zelf een toepassing samenstelt, ook op een ingekocht platform en ook voor intern gebruik, is aanbieder. Bij hoog risico is dat het verschil tussen een gebruikersplicht en een conformiteitsbeoordeling met CE-markering. Levert een classificatiebesluit met onderbouwing. Rekent in de browser."
+  },
+  {
+   "t": "AI-beleid van een regionale samenwerking",
+   "u": "https://security-commons-nl.github.io/kennisbank/governance/ai-beleid/",
+   "w": "kennisbank",
+   "z": "governance Compleet AI-beleid van vier samenwerkende gemeenten, geanonimiseerd met vertaalsleutel. Waarden met een beslismoment, governance en rollen, drielagenmodel voor tools, AI-geletterdheid. Acht hoofdstukken plus twee bijlagen, ook als markdown om aan te passen of te diffen."
+  },
+  {
+   "t": "Een DPIA in vijf stappen, met sjablonen",
+   "u": "https://security-commons-nl.github.io/kennisbank/privacy/dpia-in-vijf-stappen/",
+   "w": "kennisbank",
+   "z": "privacy Een lichte DPIA-werkwijze voor gemeenten. De kennishouder beschrijft het proces zelf, privacy officer en security officer schuiven aan in drie overleggen, en de proceseigenaar beslist over de maatregelen. Met een compact sjabloon van tien hoofdstukken, voorgevulde teksten voor camera's op grond van gerechtvaardigd belang, een vragenlijst en een security-assessment van de leverancier."
+  },
+  {
+   "t": "Een DPIA uitvoeren: wat er al ligt",
+   "u": "https://security-commons-nl.github.io/kennisbank/privacy/dpia-uitvoeren/",
+   "w": "kennisbank",
+   "z": "privacy Voor een DPIA hoef je niets zelf te bouwen. Het Rijk heeft een invulhulp die de plichttoets uitrekent en het Rijksmodel invult, de Informatiebeveiligingsdienst heeft een handreiking met sjablonen en een bibliotheek met 27 uitgevoerde gemeentelijke DPIA's om van te lenen. Deze wegwijzer zet ze in de volgorde waarin je ze gebruikt."
+  },
+  {
+   "t": "Wiens bevoegdheid gebruikt een AI-agent?",
+   "u": "https://security-commons-nl.github.io/kennisbank/security/agent-bevoegdheid/",
+   "w": "kennisbank",
+   "z": "security Een AI-agent die een API aanroept werkt niet op de bevoegdheid van de medewerker en niet op een eigen staande bevoegdheid, maar op een gedelegeerde taakbevoegdheid met zes velden, een goedkeuringsstap voor gevoelige acties en een audit die vijf vragen beantwoordt. Vertaald naar Entra, Copilot-agents en MCP-koppelingen op gemeentelijke systemen, met de vragen aan de leverancier en het bewijs dat je moet kunnen laten zien."
+  },
+  {
+   "t": "Wanneer meld je een AI-incident?",
+   "u": "https://security-commons-nl.github.io/kennisbank/security/ai-incident-melden/",
+   "w": "kennisbank",
+   "z": "security Bij een incident met een AI-toepassing kunnen drie meldplichten gelden: Cbw, AVG en AI Act, elk met een eigen drempel en termijn. Voor gemeenten telt onder de Cbw vooral uitval van dienstverlening van vier uur of meer; een lek via een AI-assistent haalt die drempel meestal niet, maar is vaak wel een datalek. Vijf scenario's uitgewerkt, met wat je vooraf regelt."
+  },
+  {
+   "t": "Open-source AI binnenhalen onder de Cbw",
+   "u": "https://security-commons-nl.github.io/kennisbank/security/open-source-ai-binnenhalen/",
+   "w": "kennisbank",
+   "z": "security Wie een eigen AI-voorziening bouwt uit open-source onderdelen (chatomgeving, gateway, vectordatabase, open modellen) valt met die keten onder de zorgplicht van de Cyberbeveiligingswet. Zes maatregelen die dat aantoonbaar maken, van componentenlijst en versie-pinning tot een wachttijd voor nieuwe versies, met de LiteLLM-compromittering van maart 2026 als casus."
+  },
+  {
+   "t": "Security Annex voor leveranciers",
+   "u": "https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/",
+   "w": "kennisbank",
+   "z": "security Contractbijlage informatiebeveiliging, 20 artikelen. Van cloudsoevereiniteit en assurance tot FIDO2, just-in-time beheer, SSDLC en AI. Opgebouwd vanuit de risico's die gemeenten nu zien (identity, werkplek, kwetsbaarheden), verankerd in BIO2. Sjabloon met invulvelden, plakbaar in Word."
+  },
+  {
+   "t": "Invulhulpen voor pre-scan, DPIA en IAMA (Rijksmodel DPIA 3.0)",
+   "u": "https://invulhulpen.rijksapp.nl/",
+   "w": "BZK",
+   "z": "Binnenlandse Zaken Rijksoverheid"
+  },
+  {
+   "t": "Broncode en vragenlijsten van de Invulhulpen (MinBZK/par-dpia-form, EUPL-1.2)",
+   "u": "https://github.com/MinBZK/par-dpia-form",
+   "w": "BZK",
+   "z": "Binnenlandse Zaken Rijksoverheid"
+  },
+  {
+   "t": "DPIA-handreiking Samen naar een kwalitatief goede DPIA, met sjablonen en checklists",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/dpia-handreiking-samen-naar-een-kwalitatief-goede-dpia/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Collectieve DPIA's: bibliotheek van uitgevoerde gemeentelijke DPIA's",
+   "u": "https://www.informatiebeveiligingsdienst.nl/collectieve-dpias/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "AI-specifieke toelichting voor DPIA's (versie 1.0, augustus 2026)",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ai-specifieke-toelichting-voor-dpias/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD-notitie DPIA Microsoft Copilot",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-notitie-dpia-microsoft-copilot/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Handreiking privacy-risicomanagement: risico's uit DPIA's opvolgen, met risicoregister",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/handreiking-privacy-risicomanagement/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "FG-gesprekskaart AI en algoritmen",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/fg-gesprekskaart-ai-en-algoritmen/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Stappenplan voor AI-incidenten",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/stappenplan-voor-ai-incidenten/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Handelingskader voor generatieve AI",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/handelingskader-voor-generatieve-ai/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Factsheet Adviezen aan CISO’s met betrekking tot de Gemeenteraadsverkiezingen 18 maart 2026",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/factsheet-adviezen-aan-cisos-met-betrekking-tot-de-gemeenteraadsverkiezingen-18-maart-2026/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Factsheet Uitleg verschillende analysemethodieken",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-factsheet-uitleg-verschillende-analysemethodieken/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Factsheet Informatiebeveiliging en de lijnmanager",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-factsheet-informatiebeveiliging-en-de-lijnmanager/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD Jaaroverzicht 2025: digitale veiligheid vraagt om samenwerking",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-jaaroverzicht-2025-digitale-veiligheid-vraagt-om-samenwerking/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Handreiking Realistische Implementatie Aanpak (BRIA)",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-handreiking-realistische-implementatie-aanpak-bria/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 RASCI Tabel Controls Informatieveiligheid en Privacy",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-rasci-tabel-controls-informatieveiligheid-en-privacy/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Template Strategisch Informatiebeveiligings- en Privacybeleid",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-template-strategisch-informatiebeveiligings-en-privacybeleid/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Handreiking Strategisch Informatiebeveiligings- en Privacybeleid",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-handreiking-strategisch-informatiebeveiligings-en-privacybeleid/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Risicoregister (inclusief risicobehandelplan en dashboards)",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/risicoregister-inclusief-risicobehandelplan-en-dashboards/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "AVG Borgingsproduct 3.1 Documentatie",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/avg-borgingsproduct-3-1-documentatie/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "AVG Borgingsproduct 3.1 Handreiking",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/avg-borgingsproduct-3-1-handreiking/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "AVG Borgingsproduct 3.1 Toetsingskader",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/avg-borgingsproduct-3-1-toetsingskader/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO 2 Template Risicoanalyse tabel",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio-2-template-risicoanalyse-tabel/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Business Model Canvas uitwerkingen",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-business-model-canvas-uitwerkingen/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Lijst met Borgingsproduct-criteria ten behoeve van het inkoopproces",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/lijst-met-borgingsproduct-criteria-ten-behoeve-van-het-inkoopproces/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD Notitie Toegang tot Suwinet door externe medewerkers en commerciële dienstverleners",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-notitie-toegang-tot-suwinet-door-externe-medewerkers-en-commerciele-dienstverleners/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD Handreiking Register van Verwerkingen",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-handreiking-register-van-verwerkingen/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD Factsheet Geautomatiseerde individuele besluitvorming",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-factsheet-geautomatiseerde-individuele-besluitvorming/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD Factsheet Verstrekken persoonsgegevens",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-factsheet-verstrekken-persoonsgegevens/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Handreiking risicomanagement voor gemeenten",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio-handreiking-risicomanagement-voor-gemeenten/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Dreigingsbeeld informatiebeveiliging Nederlandse gemeenten 2025/2026",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/dreigingsbeeld-informatiebeveiliging-nederlandse-gemeenten-2025-2026/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Standpuntbepaling en stappenplan Operationele Technologie (OT)",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/standpuntbepaling-en-stappenplan-ot/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "FG Jaarrapportage 2024",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/fg-jaarrapportage-2024/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Handreiking ISMS Proces implementatie",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-handreiking-isms-proces-implementatie/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "IBD Jaaroverzicht 2024",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/ibd-jaaroverzicht-2024/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Infographic – Wat is een ISMS",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-infographic-wat-is-een-isms/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Handreiking Voorbereiden op digitale crisis",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/handreiking-voorbereiden-op-digitale-crisis/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Beschrijving ISMS verantwoordelijkheden binnen de gemeente",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-beschrijving-isms-verantwoordelijkheden-binnen-de-gemeente/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Format Projectplan implementatie NIS2",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/format-projectplan-implementatie-nis2/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Gap-analyse",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-gap-analyse/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Template Strategisch Informatiebeveiligings- en Privacybeleid",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-template-strategisch-informatiebeveiligings-en-privacybeleid/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "BIO2 Handreiking Strategisch Informatiebeveiligings- en Privacybeleid",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/bio2-handreiking-strategisch-informatiebeveiligings-en-privacybeleid/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Voorbeeld Privacybeleid",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/voorbeeld-privacybeleid/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Voorbeeld IB&P beleid",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/voorbeeld-ibp-beleid/",
+   "w": "IBD",
+   "z": "VNG"
+  },
+  {
+   "t": "Beleid Wet politiegegevens",
+   "u": "https://www.informatiebeveiligingsdienst.nl/product/beleid-wet-politiegegevens/",
+   "w": "IBD",
+   "z": "VNG"
+  }
+ ],
+ "normen": [
+  {
+   "k": "bio2",
+   "id": "5.1",
+   "t": "Informatiebeveiligingsbeleid",
+   "z": "IV-beleid informatiebeveiligingsbeleid ib&p-beleid strategisch informatiebeveiligings"
+  },
+  {
+   "k": "bio2",
+   "id": "5.8",
+   "t": "Informatiebeveiliging in projectmanagement",
+   "z": "Informatiebeveiliging binnen projecten projectmanagement security by design privacy by design"
+  },
+  {
+   "k": "bio2",
+   "id": "8.5",
+   "t": "Beveiligde authenticatie",
+   "z": "Logische toegangsbeveiliging authenticatie 2fa mfa tweefactor passkey fido2 inloggen"
+  },
+  {
+   "k": "avg",
+   "id": "A30",
+   "t": "Register van verwerkingsactiviteiten",
+   "z": "AVG art. 30 Verantwoording en toezicht verwerkingsregister register van verwerkingen register van verwerkingsactiviteiten"
+  },
+  {
+   "k": "avg",
+   "id": "A35",
+   "t": "Gegevensbeschermingseffectbeoordeling (DPIA)",
+   "z": "AVG art. 35 Verantwoording en toezicht dpia gegevensbeschermingseffectbeoordeling pre-scan iama"
+  }
+ ]
+}
