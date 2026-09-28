@@ -8,15 +8,21 @@ Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen i
 
 <!-- ZOEKVAK -->
 
+## Begin bij je rol
+
+Geen tijd om rond te kijken? Per rol drie stukken om mee te beginnen.
+
+<!-- ROLLEN -->
+
 ## Direct aan de slag
 
-Voor CISO's, ISO's en bestuurders bij gemeenten, provincies, waterschappen en uitvoeringsorganisaties. Alles hieronder werkt vandaag, in je browser, zonder account en zonder factuur. De kern is een keten van vier vragen rond de achttien aanvalspaden van de publieke sector:
+Voor CISO's, ISO's, privacy officers en bestuurders bij gemeenten, provincies, waterschappen en uitvoeringsorganisaties. Alles hieronder werkt vandaag, in je browser, zonder account en zonder factuur. De kern is een keten van vier vragen rond de achttien aanvalspaden van de publieke sector:
 
 <!-- UITGELICHT: Waar sta ik? | Hoe pak ik het aan? | Wat toon ik aan? -->
 
 1. **Hoe sta ik ervoor?** De [zelfcheck](https://security-commons-nl.github.io/aanvalspaden/): een uur, alleen te doen, achttien paden en drie acties voor morgen.
 2. **Hoe pak ik het aan?** Per barriere een [handleiding in de kennisbank](https://security-commons-nl.github.io/kennisbank/security/#handleidingen), met de alternatieven ernaast, en een uitnodiging waar er nog geen is.
-3. **Wat toon ik hiermee aan?** De [normverankering](https://security-commons-nl.github.io/normen/): BIO 2.0, ISO 27001, NIST CSF 2.0, het Wpg-kader en de AVG, en waar de zelfcheck ophoudt.
+3. **Wat toon ik hiermee aan?** De [normwijzer](https://security-commons-nl.github.io/normen/normwijzer.html): per maatregel uit BIO 2.0 (en daarmee ISO 27001), NIST CSF 2.0, de AVG en het Wpg-kader wat de norm vraagt, wat je eraan kunt doen en welk bewijs je dan hebt. Ook andersom: typ wat je doet en zie welke norm dat raakt.
 4. **Wat zegt mijn eigen data?** De [meting](https://security-commons-nl.github.io/aanvalspaden/meting/): 41 meetregels op exports die je al hebt, van firewallconfig tot een Linux-dump, met per aanvalspad het bewijs en de witte vlekken hardop.
 
 Zoek je iets om te lezen of te hergebruiken, begin dan bij de [kennisbank](https://security-commons-nl.github.io/kennisbank/); die is ingedeeld op vakgebied, met de telling per vakgebied bovenaan, en doorzoekbaar op onderwerp, op barriere uit de zelfcheck en op norm (zoek op NIS2 of Cbw en je krijgt precies de stukken die daaraan hangen).

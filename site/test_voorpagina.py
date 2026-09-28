@@ -3,6 +3,7 @@
 Draait node site/build.mjs; dat herschrijft ook llms.txt en sitemap.xml (datum van vandaag). Dat is
 verwacht: die twee horen in dezelfde commit.
 """
+import json
 import pathlib
 import re
 import subprocess
@@ -24,7 +25,11 @@ def test_voorpagina():
     assert len(kaarten) == 3, kaarten
     assert kaarten[0].rstrip("/").endswith("/aanvalspaden")
     assert kaarten[1].rstrip("/").endswith("/kennisbank")
-    assert kaarten[2].rstrip("/").endswith("/normen")
+    # De derde kaart opent de normwijzer, niet de dataset: de gebruiker wil weten wat hij moet doen.
+    assert kaarten[2].endswith("/normen/normwijzer.html"), kaarten[2]
+    # De kaarttekst breekt af op de eerste punt of dubbele punt: een versienummer als "2.0" knipt de zin.
+    wat = re.findall(r'<span class="kaart-wat">([^<]+)</span>', html)
+    assert len(wat) == 3 and all(not w.rstrip()[-1].isdigit() for w in wat), wat
     # De vraag boven de naam komt uit content.md, want het is redactionele tekst.
     vragen = re.findall(r'<span class="kaart-vraag">([^<]+)</span>', html)
     assert vragen == ["Waar sta ik?", "Hoe pak ik het aan?", "Wat toon ik aan?"], vragen
@@ -64,7 +69,9 @@ def test_groepen_volgen_de_vraag():
     """
     subprocess.run(["node", "site/build.mjs"], cwd=ROOT, check=True, capture_output=True)
     html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
-    koppen = re.findall(r"<h3>([^<]+)</h3>", html)
+    # Alleen de projectgroepen: de voordeur per rol heeft eigen koppen, boven "Alle projecten".
+    projecten = html[html.index('id="alle-projecten"'):]
+    koppen = re.findall(r"<h3>([^<]+)</h3>", projecten)
     assert koppen == ["Vaststellen hoe je ervoor staat", "Aanpakken en inrichten",
                       "Aantonen en overtuigen", "Veilig delen en publiceren"], koppen
     assert "Overige projecten" not in koppen, "een project zonder kolom Waarvoor in PROJECTEN.md"
@@ -141,9 +148,49 @@ def test_zoekvak_bovenaan():
     assert "<p>" not in script and "<em>" not in script
 
 
+def test_voordeur_per_rol():
+    """Vier rollen met elk drie stukken, onder het zoekvak en boven de keten.
+
+    De keuze staat in site/rollen.json en is redactioneel; deze test bewaakt alleen de vorm. Alleen adressen
+    van de commons zelf: een voordeur die naar buiten wijst, is geen voordeur.
+    """
+    data = json.loads((ROOT / "site" / "rollen.json").read_text(encoding="utf-8"))
+    rollen = [r["rol"] for r in data["rollen"]]
+    assert rollen == ["CISO", "ISO", "Privacy officer", "Bestuurder"], rollen
+    for r in data["rollen"]:
+        assert r["vraag"].endswith("?"), r["rol"]
+        assert len(r["stukken"]) == 3, r["rol"]
+        for s in r["stukken"]:
+            assert s["url"].startswith("https://security-commons-nl.github.io/"), s["url"]
+            assert s["titel"].strip(), r["rol"]
+        assert len({s["url"] for s in r["stukken"]}) == 3, f"dubbel stuk bij {r['rol']}"
+    html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
+    blok = html[html.index('class="rollen"'):]
+    blok = blok[:blok.index("</section>")]
+    assert blok.count('<div class="rol">') == 4
+    assert blok.count("<li>") == 12
+    for r in data["rollen"]:
+        for s in r["stukken"]:
+            assert f'href="{s["url"]}"' in blok, s["url"]
+    assert html.index('id="commons-zoekvak"') < html.index('class="rollen"') < html.index('id="direct-aan-de-slag"')
+    # De privacy officer staat ook in de doelgroepregel.
+    assert "privacy officers" in html[html.index('id="direct-aan-de-slag"'):][:600]
+
+
+def test_vraag_3_wijst_naar_de_normwijzer():
+    """Vraag 3 van de keten ("Wat toon ik hiermee aan?") opent de normwijzer."""
+    html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
+    vraag = html[html.index("Wat toon ik hiermee aan?"):]
+    vraag = vraag[:vraag.index("</li>")]
+    assert 'href="https://security-commons-nl.github.io/normen/normwijzer.html"' in vraag
+    assert "normverankering" not in vraag
+
+
 if __name__ == "__main__":
     test_voorpagina()
     test_zoekvak_bovenaan()
+    test_voordeur_per_rol()
+    test_vraag_3_wijst_naar_de_normwijzer()
     test_verwijzing_wijst_naar_github()
     test_logo_staat_op_de_pagina()
     test_groepen_volgen_de_vraag()

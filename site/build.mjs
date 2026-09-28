@@ -400,6 +400,19 @@ ${script}</script>
 `;
 }
 
+// De voordeur per rol: per rol drie stukken om mee te beginnen. De keuze is redactioneel en staat in
+// site/rollen.json, niet in deze build.
+function rollen() {
+  const data = JSON.parse(readFileSync(join(ROOT, 'site', 'rollen.json'), 'utf8'));
+  const blokken = data.rollen.map((r) => `
+  <div class="rol">
+    <h3>${escapeHtml(r.rol)}</h3>
+    <p class="rol-vraag">${escapeHtml(r.vraag)}</p>
+    <ol>${r.stukken.map((s) => `<li><a href="${escapeHtml(s.url)}">${escapeHtml(s.titel)}</a></li>`).join('')}</ol>
+  </div>`).join('');
+  return `<section class="rollen" aria-labelledby="begin-bij-je-rol">${blokken}\n</section>\n`;
+}
+
 function buildLandingPage() {
   let content = readFileSync(CONTENT_FILE, 'utf8');
   // De vragen boven de drie kaarten staan bij de placeholder in content.md; redactionele tekst hoort
@@ -408,6 +421,7 @@ function buildLandingPage() {
   const vragen = merk && merk[1] ? merk[1].split('|').map((v) => v.trim()) : [];
   content = content.replace(merk ? merk[0] : '<!-- UITGELICHT -->', uitgelicht(vragen));
   content = content.replace('<!-- ZOEKVAK -->', zoekvak());
+  content = content.replace('<!-- ROLLEN -->', rollen());
   content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
   content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
 

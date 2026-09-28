@@ -199,3 +199,11 @@ ul.backlog code { font-size: .85em; white-space: nowrap; }
 .zoek-meer { margin-top: 0.3rem; font: inherit; font-size: 0.9rem; color: var(--blauw); background: none; border: 1px solid var(--blauw); border-radius: 5px; padding: 0.2rem 0.7rem; cursor: pointer; }
 .zoek-meer:hover { color: var(--oranje); border-color: var(--oranje); }
 .zoek-melding { margin: 0.8rem 0 0; color: var(--grijs); }
+
+/* De voordeur per rol: vier blokken, op een telefoon onder elkaar. */
+.rollen { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 0.9rem; margin: 0.8rem 0 0.5rem; }
+.rol { border: 1px solid var(--lijn); border-top: 4px solid var(--blauw); border-radius: 8px; padding: 0.7rem 0.9rem 0.6rem; background: #fff; }
+.rol h3 { margin: 0 0 0.15rem; font-size: 1.1rem; }
+.rol-vraag { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--grijs); }
+.rol ol { margin: 0; padding-left: 1.2rem; font-size: 0.95rem; }
+.rol li { margin: 0.25rem 0; }
