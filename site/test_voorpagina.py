@@ -125,8 +125,25 @@ def test_meting_staat_als_live_op_de_voorpagina():
     assert '<span class="card-title">iamscan</span>' not in html
 
 
+def test_zoekvak_bovenaan():
+    """Wie binnenkomt heeft een vraag, geen projectnaam: het zoekvak staat boven de kaarten.
+
+    Het script haalt de index op bij de normen-repo; staat die URL niet in de pagina, dan zoekt het vak niets.
+    """
+    html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
+    assert html.count('id="commons-zoek"') == 1
+    assert html.index('id="commons-zoekvak"') < html.index('id="direct-aan-de-slag"')
+    assert "/normen/zoekindex.json" in html
+    assert "maakZoeker" in html
+    # Het script moet heel blijven: marked mag er geen alinea's van maken.
+    script = html[html.index("<script>", html.index('id="commons-zoekvak"')):]
+    script = script[:script.index("</script>")]
+    assert "<p>" not in script and "<em>" not in script
+
+
 if __name__ == "__main__":
     test_voorpagina()
+    test_zoekvak_bovenaan()
     test_verwijzing_wijst_naar_github()
     test_logo_staat_op_de_pagina()
     test_groepen_volgen_de_vraag()

@@ -62,7 +62,7 @@ redactiestatuut B8.
 
 Draait echt en heeft groene tests of CI.
 
-- [kennisbank](https://security-commons-nl.github.io/kennisbank/): Werkende kennis uit de publieke sector: security, privacy, continuïteit en governance. Broncode: https://github.com/security-commons-nl/kennisbank
+- [kennisbank](https://security-commons-nl.github.io/kennisbank/): Werkende kennis uit de publieke sector, en de weg naar honderden stukken van de IBD, CIP en het Rijk: security, privacy, continuïteit en governance. Broncode: https://github.com/security-commons-nl/kennisbank
 - [normen](https://security-commons-nl.github.io/normen/): Normbronnen als herbruikbare dataset: BIO 2.0 (148 maatregelen), NIST CSF 2.0, Wpg en AVG, elk als JSON met herkomst en vingerafdruk. Broncode: https://github.com/security-commons-nl/normen
 - [ai-gebruik-in-beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): Draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO + FG): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's. Broncode: https://github.com/security-commons-nl/ai-gebruik-in-beeld
 - [weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): Gespreksinstrument voor college en directie: het maakt zichtbaar wat er stukgaat als een schakel uitvalt, en welke noodoplossing er dan wel of niet is. Broncode: https://github.com/security-commons-nl/weerbaarheid-game
