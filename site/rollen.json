@@ -1,0 +1,41 @@
+{
+  "toelichting": "De voordeur per rol op de voorpagina: per rol drie stukken om mee te beginnen. Redactionele keuze, voorlopig (28-09-2026); wijzigen is een regel hier. Alleen adressen van de commons zelf; de linkcheck controleert of ze bestaan.",
+  "rollen": [
+    {
+      "rol": "CISO",
+      "vraag": "Waar staan we, en wat moet ik regelen?",
+      "stukken": [
+        {"titel": "De zelfcheck langs achttien aanvalspaden", "url": "https://security-commons-nl.github.io/aanvalspaden/"},
+        {"titel": "Val ik onder de Cbw?", "url": "https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/"},
+        {"titel": "Wie doet wat: de stelselkaart security-gremia", "url": "https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/"}
+      ]
+    },
+    {
+      "rol": "ISO",
+      "vraag": "Wat moet ik doen, en hoe toon ik het aan?",
+      "stukken": [
+        {"titel": "De normwijzer: per maatregel wat je kunt doen", "url": "https://security-commons-nl.github.io/normen/normwijzer.html"},
+        {"titel": "De meting op exports die je al hebt", "url": "https://security-commons-nl.github.io/aanvalspaden/meting/"},
+        {"titel": "Security Annex voor leveranciers", "url": "https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/"}
+      ]
+    },
+    {
+      "rol": "Privacy officer",
+      "vraag": "Hoe regel ik de privacykant?",
+      "stukken": [
+        {"titel": "Een DPIA in vijf stappen, met sjablonen", "url": "https://security-commons-nl.github.io/kennisbank/privacy/dpia-in-vijf-stappen/"},
+        {"titel": "De AVG in de normwijzer", "url": "https://security-commons-nl.github.io/normen/normwijzer.html#avg"},
+        {"titel": "Publicatiescan: persoonsgegevens in openbare stukken", "url": "https://security-commons-nl.github.io/publicatiescan/"}
+      ]
+    },
+    {
+      "rol": "Bestuurder",
+      "vraag": "Hoe stuur ik op weerbaarheid?",
+      "stukken": [
+        {"titel": "Sturen op weerbaarheid in plaats van op maatregelen", "url": "https://security-commons-nl.github.io/kennisbank/security/sturen-op-weerbaarheid/"},
+        {"titel": "De weerbaarheidsgame voor college en directie", "url": "https://security-commons-nl.github.io/weerbaarheid-game/"},
+        {"titel": "Learning digitale veiligheid voor managers", "url": "https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/"}
+      ]
+    }
+  ]
+}
