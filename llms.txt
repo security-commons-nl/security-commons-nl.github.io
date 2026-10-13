@@ -28,6 +28,8 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
   overheidsmaatregelen, met sjablonen voor de lege domeinen
 - [Strategisch informatiebeveiligingsbeleid](https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/strategisch-ib-beleid.html):
   het strategische stuk uit die set, naast het model van de IBD te gebruiken
+- [BIO 2.0 invoeren, plan van aanpak](https://security-commons-nl.github.io/kennisbank/governance/bio2-implementeren/):
+  deel 1 en deel 2 met urenraming per rol, volgorde en eigenaar per thema, en een sjabloon
 - [Privacybeleid en privacyhandboek](https://security-commons-nl.github.io/kennisbank/privacy/privacybeleid-en-handboek/):
   strategisch privacybeleid, privacybeleid en handboek van dezelfde samenwerking
 
