@@ -23,6 +23,13 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
 
 - [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle
   securitystukken, met de handleidingen per barriere uit de zelfcheck
+- [Beleidsset informatiebeveiliging](https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/):
+  beleid van een samenwerking van gemeenten naar de 21 BIO 2.0-domeinen, getoetst op de 117
+  overheidsmaatregelen, met sjablonen voor de lege domeinen
+- [Strategisch informatiebeveiligingsbeleid](https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/strategisch-ib-beleid.html):
+  het strategische stuk uit die set, naast het model van de IBD te gebruiken
+- [Privacybeleid en privacyhandboek](https://security-commons-nl.github.io/kennisbank/privacy/privacybeleid-en-handboek/):
+  strategisch privacybeleid, privacybeleid en handboek van dezelfde samenwerking
 
 ## Voor wie geen publieke organisatie is
 
