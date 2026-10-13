@@ -14,7 +14,7 @@ De lijsten eronder staan op volgorde van hoe hard iemand ze mist, niet van hoe l
 
 ## Nu aan de beurt
 
-1. **dpiacheck fase O** (issue [.github#20](https://github.com/security-commons-nl/.github/issues/20)). Uitgevoerde camera-DPIA's verwerken tot een maatregelencatalogus met herkomst. Tijdgebonden: de bron is bereikbaar tot en met 12-11-2026; zonder trekker voor die datum sluit fase O met de stopregel. *Redactie- en bouwwerk, alleen te doen met toegang tot de bronorganisatie.*
+1. **dpiacheck fase O** (issue [.github#20](https://github.com/security-commons-nl/.github/issues/20)). Uitgevoerde camera-DPIA's verwerken tot een maatregelencatalogus met herkomst. Tijdgebonden: de bron is bereikbaar tot en met 12-11-2026; zonder trekker voor die datum sluit fase O met de stopregel. *Bouwwerk en redactie, alleen te doen met toegang tot de bronorganisatie.*
 2. **De beleidsset op maat** (issue [kennisbank#62](https://github.com/security-commons-nl/kennisbank/issues/62), stap 3 en 4 van het [plan](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-12-beleidsset-op-maat.md)). Toets, sjablonen en profielschema staan; nu per stuk een maatwerkblok met invulvelden en vervolgvragen voor een AI-agent, en de eerste variant uniform naar het format van fysieke toegang. *Schrijfwerk: dit vraagt iemand die beleid heeft vastgesteld, geen bouwer.*
 3. **applicatiecheck afmaken** (F1: regels als data, `toets.py`, de generieke parser). De enige tool die live staat zonder te werken. *Bouwwerk.*
 
