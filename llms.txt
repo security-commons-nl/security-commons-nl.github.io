@@ -13,7 +13,7 @@ eigen pagina staan onder Optional.
 ## Kennis en methoden
 
 - [AI-gebruik in beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/): draaiboek om AI-gebruik in de organisatie feitelijk te meten (CISO en FG samen): meetregimes, bronnen met bewijslast, run-log en 15 KQL-query's
-- [Kennisbank](https://security-commons-nl.github.io/kennisbank/): werkende kennis uit de publieke sector op security, privacy en continuïteit, geanonimiseerd gedeeld door professionals; 66 stukken over vier vakgebieden, met een beleidsset informatiebeveiliging naar de 21 BIO 2.0-domeinen, doorzoekbaar op onderwerp, barriere uit de zelfcheck en norm (BIO2, NIS2, Cbw, AVG, ISO 27001, AI Act)
+- [Kennisbank](https://security-commons-nl.github.io/kennisbank/): werkende kennis uit de publieke sector op security, privacy en continuïteit, geanonimiseerd gedeeld door professionals; vier vakgebieden, met een beleidsset informatiebeveiliging naar de 21 BIO 2.0-domeinen, doorzoekbaar op onderwerp, barriere uit de zelfcheck en norm (BIO2, NIS2, Cbw, AVG, ISO 27001, AI Act)
 
 ## Kennisbank, losse publicaties
 

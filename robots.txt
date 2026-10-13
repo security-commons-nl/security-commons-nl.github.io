@@ -12,3 +12,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://security-commons-nl.github.io/sitemap.xml
+Sitemap: https://security-commons-nl.github.io/kennisbank/sitemap.xml
