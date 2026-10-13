@@ -14,11 +14,14 @@ De lijsten eronder staan op volgorde van hoe hard iemand ze mist, niet van hoe l
 
 ## Nu aan de beurt
 
-1. **Privacy vullen** (stap 2 van het [plan ingang en vulling](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-09-28-ingang-en-vulling.md)). De privacy officer staat niet in de doelgroep en het vakgebied privacy telt twee stukken, allebei over de DPIA. Wegwijzers voor het verwerkingsregister, datalekken, verwerkersovereenkomsten en de rechten van betrokkenen, naar wat de IBD en anderen al hebben. *Schrijfwerk: dit vraagt iemand die het gedaan heeft, geen bouwer.*
-2. **dpiacheck fase O** (issue [.github#20](https://github.com/security-commons-nl/.github/issues/20)). Uitgevoerde camera-DPIA's verwerken tot een maatregelencatalogus met herkomst. Tijdgebonden: de bron is tot half november bereikbaar. *Bouwwerk.*
+1. **dpiacheck fase O** (issue [.github#20](https://github.com/security-commons-nl/.github/issues/20)). Uitgevoerde camera-DPIA's verwerken tot een maatregelencatalogus met herkomst. Tijdgebonden: de bron is bereikbaar tot en met 12-11-2026; zonder trekker voor die datum sluit fase O met de stopregel. *Redactie- en bouwwerk, alleen te doen met toegang tot de bronorganisatie.*
+2. **De beleidsset op maat** (issue [kennisbank#62](https://github.com/security-commons-nl/kennisbank/issues/62), stap 3 en 4 van het [plan](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-12-beleidsset-op-maat.md)). Toets, sjablonen en profielschema staan; nu per stuk een maatwerkblok met invulvelden en vervolgvragen voor een AI-agent, en de eerste variant uniform naar het format van fysieke toegang. *Schrijfwerk: dit vraagt iemand die beleid heeft vastgesteld, geen bouwer.*
 3. **applicatiecheck afmaken** (F1: regels als data, `toets.py`, de generieke parser). De enige tool die live staat zonder te werken. *Bouwwerk.*
 
-Twee van de drie zijn bouwwerk en één is schrijfwerk, en dat is met opzet. Een commons komt niet
+Privacy vullen, tot 12 oktober het eerste punt hier, is gedaan: het vakgebied telt negen stukken, van
+datalekken en het verwerkingsregister tot de rechten van betrokkenen en de Wpg.
+
+Er staat schrijfwerk naast bouwwerk, en dat is met opzet. Een commons komt niet
 vooruit op code alleen: de zelfcheck wijst mensen naar plekken waar nog niets staat, en dat dicht je
 met kennis uit de praktijk. Zolang dit lijstje alleen bouwklussen bevat, meet het maar de helft.
 
