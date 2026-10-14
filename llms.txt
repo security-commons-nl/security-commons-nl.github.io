@@ -23,6 +23,9 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
 
 - [Sectie security](https://security-commons-nl.github.io/kennisbank/security/): overzicht van alle
   securitystukken, met de handleidingen per barriere uit de zelfcheck
+- [Beleidsset informatiebeveiliging op BIO 2.0](https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/):
+  21 beleidsstukken naar de BIO 2.0-domeinen, op maat gemaakt met contextvragen; generator in de browser,
+  bouwstenen en profiel als data (`beleidsset.json`, `profiel.json`) voor een eigen agent
 - [BIO 2.0 invoeren, plan van aanpak](https://security-commons-nl.github.io/kennisbank/governance/bio2-implementeren/):
   deel 1 en deel 2 met urenraming per rol, volgorde en eigenaar per thema, en een sjabloon
 - [Privacybeleid en privacyhandboek](https://security-commons-nl.github.io/kennisbank/privacy/privacybeleid-en-handboek/):
