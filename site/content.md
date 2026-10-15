@@ -1,10 +1,18 @@
-# security-commons-nl
+<!-- HERO -->
 
-> Open kennis en tooling voor digitale weerbaarheid, gemaakt door en voor publieke organisaties. Gratis, open source, van ons allemaal.
+<span class="hero-badge">Open source · zonder account · gratis</span>
 
-### ➜ [github.com/security-commons-nl](https://github.com/security-commons-nl/)
+# Praktische kennis en tools voor security, privacy en continuïteit
 
-Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen in je browser. De broncode staat op GitHub, voor wie wil meelezen of meebouwen.
+Gemaakt door en voor publieke organisaties: gemeenten, provincies, waterschappen en uitvoeringsorganisaties. Alles werkt vandaag in je browser. Van ons allemaal.
+
+<p class="knoppen"><a class="knop" href="/aanvalspaden/">Doe de zelfcheck</a> <a class="knop knop-tweede" href="/kennisbank/">Open de kennisbank</a></p>
+
+<!-- BEWIJS -->
+
+<!-- /HERO -->
+
+Je bent op de voorkant: alle kennis en tools staan hieronder, direct te openen in je browser. De broncode staat op [github.com/security-commons-nl](https://github.com/security-commons-nl/), voor wie wil meelezen of meebouwen.
 
 <!-- ZOEKVAK -->
 

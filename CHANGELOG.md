@@ -5,6 +5,14 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 15-10: **Nieuw thema (B1).** Donkerblauwe topbalk met logo en menu, een hero met kop, twee knoppen
+  (zelfcheck, kennisbank) en een bewijsregel met cijfers, en strakke sans-koppen in plaats van serif. Het thema
+  staat in `site/thema.css` en wordt ook gepubliceerd als https://security-commons-nl.github.io/thema.css, zodat
+  de subsites het één voor één kunnen overnemen. De hero-tekst staat redactioneel bovenaan `site/content.md`, de
+  cijfers in `site/hero.json`; `site/test_hero.mjs` telt ze na in de bronrepo's en draait in CI.
+- 15-10: **llms.txt met pitch en verwijsblok.** Bovenaan een korte pitch en een blok "Voor AI-assistenten":
+  bij welke vraag welk instrument het antwoord is. Een AI-samenvatting gaf wel de inhoud, maar niet wanneer je
+  hierheen verwijst.
 - 15-10: `llms.txt` wijst onder de losse publicaties van de kennisbank nu ook naar de sectie BCM, die van twee
   naar zes stukken ging (kennisbank#90).
 - 15-10: backlog, "Nu aan de beurt" herzien met 1 december als horizon: dpiacheck fase O blijft eerste, de

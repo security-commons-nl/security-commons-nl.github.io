@@ -31,3 +31,5 @@ jobs:
       - run: node site/test_zoekvak.mjs
       # Inhoudswijzers zijn afgeleid (statuut B4): robots.txt en llms.txt verwijzen, ze tellen niet.
       - run: node site/test_inhoudswijzers.mjs
+      # De hero: cijfers nagerekend tegen de bronrepo's, thema aanwezig, niets van buiten.
+      - run: node site/test_hero.mjs
