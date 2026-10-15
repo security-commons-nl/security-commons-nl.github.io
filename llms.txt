@@ -28,6 +28,9 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
   bouwstenen en profiel als data (`beleidsset.json`, `profiel.json`); de generatorpagina heeft een blok met instructies voor een AI-assistent die de set met de gebruiker op maat maakt
 - [BIO 2.0 invoeren, plan van aanpak](https://security-commons-nl.github.io/kennisbank/governance/bio2-implementeren/):
   deel 1 en deel 2 met urenraming per rol, volgorde en eigenaar per thema, en een sjabloon
+- [Sectie BCM](https://security-commons-nl.github.io/kennisbank/bcm/): bedrijfscontinuïteit, van kritieke
+  processen en een BIA- en risicoanalysesjabloon per dienst tot uitwijk (met de uitwijkkaart, ook voor clouddiensten),
+  een compact bedrijfscontinuïteitsplan en een twee-pager voor de bestuurder
 - [Privacybeleid en privacyhandboek](https://security-commons-nl.github.io/kennisbank/privacy/privacybeleid-en-handboek/):
   strategisch privacybeleid, privacybeleid en handboek van dezelfde samenwerking
 

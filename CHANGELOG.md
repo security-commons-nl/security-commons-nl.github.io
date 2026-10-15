@@ -5,6 +5,8 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 15-10: `llms.txt` wijst onder de losse publicaties van de kennisbank nu ook naar de sectie BCM, die van twee
+  naar zes stukken ging (kennisbank#90).
 - 15-10: backlog, "Nu aan de beurt" herzien met 1 december als horizon: dpiacheck fase O blijft eerste, de
   AI-securitylijn (kennisbank#83) komt op twee, de beleidsset op drie; de applicatiecheck staat nu in de open
   plannen. De backlogtest eist niet langer precies twee bouwregels, wel bouw- en schrijfwerk naast elkaar.
