@@ -15,11 +15,13 @@ De lijsten eronder staan op volgorde van hoe hard iemand ze mist, niet van hoe l
 ## Nu aan de beurt
 
 1. **dpiacheck fase O** (issue [.github#20](https://github.com/security-commons-nl/.github/issues/20)). Uitgevoerde camera-DPIA's verwerken tot een maatregelencatalogus met herkomst. Tijdgebonden: de bron is bereikbaar tot en met 12-11-2026; zonder trekker voor die datum sluit fase O met de stopregel. *Bouwwerk en redactie, alleen te doen met toegang tot de bronorganisatie.*
-2. **De beleidsset verder op maat** (issue [kennisbank#62](https://github.com/security-commons-nl/kennisbank/issues/62), [plan](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-12-beleidsset-op-maat.md)). De set staat sinds 14-10 weer online, herschreven op BIO 2.0 versie 1.3, met een generator die uit contextvragen per organisatie een eigen set maakt. Open: stukken van andere organisaties en IBD-materiaal verwerken als regel of blok per domein, en AI-hulp bij het invullen met een eigen sleutel. *Schrijfwerk: dit vraagt iemand die beleid heeft vastgesteld, geen bouwer.*
-3. **applicatiecheck afmaken** (F1: regels als data, `toets.py`, de generieke parser). De enige tool die live staat zonder te werken. *Bouwwerk.*
+2. **De AI-securitylijn, fase 0 en 1** (issue [kennisbank#83](https://github.com/security-commons-nl/kennisbank/issues/83), [plan](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-15-ai-securitylijn.md)). Na het VNG-webinar over de beveiliging van AI: bij de vijf AI-stukken verwijzen naar wat VNG, IBD, TNO en CPB al hebben; in de security-annex een lid "geen AI zonder toestemming"; en een stuk over de configuratiekeuzes bij Copilot en vergelijkbare assistenten, de vraag uit de chat waar niemand een antwoord op had. *Schrijfwerk, vóór 1 december.*
+3. **De beleidsset verder op maat** (issue [kennisbank#62](https://github.com/security-commons-nl/kennisbank/issues/62), [plan](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-12-beleidsset-op-maat.md)). De set staat sinds 14-10 weer online, herschreven op BIO 2.0 versie 1.3, met een generator die uit contextvragen per organisatie een eigen set maakt, en sinds 15-10 met AI-hulp met een eigen sleutel. Open: stukken van andere organisaties en IBD-materiaal verwerken als regel of blok per domein. *Schrijfwerk: dit vraagt iemand die beleid heeft vastgesteld, geen bouwer.*
 
 Privacy vullen, tot 12 oktober het eerste punt hier, is gedaan: het vakgebied telt negen stukken, van
-datalekken en het verwerkingsregister tot de rechten van betrokkenen en de Wpg.
+datalekken en het verwerkingsregister tot de rechten van betrokkenen en de Wpg. De applicatiecheck stond
+tot 15 oktober op drie en staat nu in de open plannen eronder: bouwwerk dat ook na 1 december kan, terwijl
+de AI-securitylijn hangt aan een gesprek dat nu loopt.
 
 Er staat schrijfwerk naast bouwwerk, en dat is met opzet. Een commons komt niet
 vooruit op code alleen: de zelfcheck wijst mensen naar plekken waar nog niets staat, en dat dicht je

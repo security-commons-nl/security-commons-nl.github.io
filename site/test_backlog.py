@@ -54,11 +54,15 @@ def test_de_gaten_staan_boven_de_schrijfopdrachten():
 
 
 def test_het_handblok_noemt_wie_de_pen_heeft():
-    """Twee bouwregels en een schrijfregel: zonder die derde meet het lijstje maar de helft."""
+    """Bouwwerk naast schrijfwerk: zonder beide meet het lijstje maar de helft.
+
+    Tot 15-10-2026 eiste deze test precies twee bouwregels en een schrijfregel. Die verhouding is een keuze per
+    moment, geen regel; de regel is dat beide soorten erin staan.
+    """
     html = bouw(BACKLOG_ISSUES_FILE=str(FIXTURES / "backlog-issues.json"),
                 BACKLOG_GEVRAAGD_FILE=str(FIXTURES / "backlog-gevraagd.json"))
     blok = html[html.index("Nu aan de beurt"):html.index('id="open-plannen"')]
-    assert blok.count("Bouwwerk") == 2, blok.count("Bouwwerk")
+    assert "Bouwwerk" in blok
     assert "Schrijfwerk" in blok
 
 
