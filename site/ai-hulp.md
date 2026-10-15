@@ -97,7 +97,10 @@ niet automatiseerbaar hoort te zijn.
 De AI-hulp staat bij [procescheck](https://security-commons-nl.github.io/procescheck/ai/) (een
 procesdocument of een CMDB-export omzetten naar het datamodel) en bij de
 [meting van aanvalspaden](https://security-commons-nl.github.io/aanvalspaden/meting/ai/) (een export uit
-je beheersysteem omzetten naar het kolomcontract van een meetregel). Hij wordt nog uitgebreid naar de
+je beheersysteem omzetten naar het kolomcontract van een meetregel) en bij de
+[beleidsset informatiebeveiliging](https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/beleidsset-ai.html)
+(de contextvragen beantwoorden en de invulvelden invullen uit je eigen documenten; het model schrijft geen
+beleid). Hij wordt nog uitgebreid naar de
 [zelfcheck](https://security-commons-nl.github.io/aanvalspaden/) en de
 [CSIR Assessment Tool](https://security-commons-nl.github.io/csir-assessment-tool/), in die volgorde.
 
