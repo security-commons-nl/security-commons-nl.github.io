@@ -316,13 +316,35 @@ function rewriteLinks(html) {
     .replace(/href="(?!https?:|#|\/|mailto:)([^"]+)"/g, `href="${BLOB_BASE}$1"`);
 }
 
+// De topbalk: merk links, navigatie rechts. Zelfde op elke pagina van de root-site.
+function topbalk() {
+  return `<header class="topbalk"><div class="inner">
+<a class="topbalk-merk" href="/"><img src="/logo.png" width="36" height="36"
+   alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">Security Commons NL</a>
+<nav aria-label="Hoofdmenu"><a href="/#alle-projecten">Tools</a><a href="/kennisbank/">Kennisbank</a><a href="/normen/normwijzer.html">Normwijzer</a><a href="/#meedoen">Meedoen</a></nav>
+</div></header>`;
+}
+
+// De bewijsregel in de hero. De cijfers staan in site/hero.json en worden door test_hero.mjs nageteld.
+function bewijs() {
+  const data = JSON.parse(readFileSync(join(ROOT, 'site', 'hero.json'), 'utf8'));
+  const items = data.bewijs.map((b) => `<li><b>${b.cijfer}</b>${escapeHtml(b.label)}</li>`).join('');
+  return `<ul class="bewijs" aria-label="De commons in cijfers">${items}</ul>`;
+}
+
 /**
  * Wraps rendered body content in the shared page shell.
  * @param {{title: string, description: string, canonical: string, body: string, generatedFrom: string}} page Page data.
  * @returns {string} Full HTML document.
  */
 function pageShell(page) {
+  // landing.css is de basis, thema.css (B1, 15-10-2026) staat erna en wint. Beide inline: geen extra request.
   const css = readFileSync(join(ROOT, 'site', 'landing.css'), 'utf8');
+  const thema = readFileSync(join(ROOT, 'site', 'thema.css'), 'utf8');
+  const hero = page.hero ? `<section class="hero"><div class="inner">
+${page.hero}
+</div></section>
+` : '';
   return `<!doctype html>
 <html lang="nl">
 <head>
@@ -335,12 +357,12 @@ function pageShell(page) {
 <link rel="alternate icon" href="/favicon.ico" sizes="32x32">
 <style>
 ${css}
+${thema}
 </style>
 </head>
-<body>
-<main class="inner">
-<img class="merk" src="/logo.png" width="88" height="88"
-     alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">
+<body class="thema">
+${topbalk()}
+${hero}<main class="inner">
 ${page.body}
 </main>
 <footer class="inner">
@@ -425,10 +447,18 @@ function buildLandingPage() {
   content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
   content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
 
+  // De hero staat redactioneel bovenaan content.md, tussen <!-- HERO --> en <!-- /HERO -->.
+  const heroMatch = content.match(/<!-- HERO -->([\s\S]*?)<!-- \/HERO -->/);
+  if (!heroMatch) throw new Error('content.md mist het blok <!-- HERO --> ... <!-- /HERO -->');
+  content = content.replace(heroMatch[0], '');
+  const heroMd = heroMatch[1].replace('<!-- BEWIJS -->', bewijs());
+  const hero = marked.lexer(heroMd, { gfm: true }).map(renderToken).join('');
+
   const tokens = marked.lexer(content, { gfm: true });
   return pageShell({
-    title: 'Security Commons NL: open securitykennis voor de publieke sector',
-    description: 'Publieke organisaties bouwen samen aan digitale weerbaarheid: kennis, tooling en aanpakken, open source onder EUPL-1.2.',
+    title: 'Security Commons NL: praktische kennis en tools voor security, privacy en continuïteit',
+    description: 'Praktische kennis en tools voor security, privacy en continuïteit, gemaakt door en voor publieke organisaties. Werkt in je browser, zonder account. Open source onder EUPL-1.2.',
+    hero: rewriteLinks(hero),
     canonical: 'https://security-commons-nl.github.io/',
     body: rewriteLinks(tokens.map(renderToken).join('')),
     generatedFrom: 'PROJECTEN.md en de site-bronnen',
@@ -621,4 +651,6 @@ for (const file of STATIC_FILES) {
   mkdirSync(dirname(join(ROOT, 'dist', file)), { recursive: true });
   copyFileSync(join(ROOT, file), join(ROOT, 'dist', file));
 }
+// Het thema als los bestand, zodat subsites het kunnen laden: https://security-commons-nl.github.io/thema.css
+copyFileSync(join(ROOT, 'site', 'thema.css'), join(ROOT, 'dist', 'thema.css'));
 console.log('Wrote dist/index.html, dist/ai-hulp/index.html, dist/backlog/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');

@@ -13,7 +13,9 @@ leven op een subpad.
 
 | Bestand | Doel |
 |---|---|
-| `site/build.mjs` | Genereert de landingspagina uit de [organisatie-README](https://github.com/security-commons-nl/.github/blob/main/profile/README.md) |
+| `site/build.mjs` | Genereert de landingspagina uit `site/content.md` en PROJECTEN.md in de `.github`-repo |
+| `site/thema.css` | Het thema van de commons (rijksblauw, sans-koppen, topbalk en hero); ook live op `/thema.css` voor de subsites |
+| `site/hero.json` | De cijfers in de hero, met bron per cijfer; `site/test_hero.mjs` telt ze na |
 | `robots.txt` | Alle crawlers en AI-systemen expliciet en vendor-neutraal toegestaan |
 | `llms.txt` | Inhoudswijzer voor LLM's/agents ([llmstxt.org](https://llmstxt.org)) |
 | `sitemap.xml` | Sitemap voor zoekmachines |
@@ -29,7 +31,7 @@ Beheerders van de commons; bezoekers zien alleen het resultaat.
 
 ## Snel starten
 
-`npm ci` en daarna `node site/build.mjs`; de voorpagina komt uit het org-profiel.
+`npm ci` en daarna `node site/build.mjs`; de voorpagina komt uit `site/content.md` en PROJECTEN.md. Testen: `python -m pytest site` en de `node site/test_*.mjs`-bestanden.
 
 ## Bijdragen
 

@@ -1,0 +1,29 @@
+{
+  "toelichting": "De bewijsregel in de hero van de voorpagina. Elk cijfer met bron wordt door site/test_hero.mjs nageteld in de bronrepo; wie de bron wijzigt, ziet de test rood en past dit bestand aan.",
+  "bewijs": [
+    {
+      "cijfer": 18,
+      "label": "aanvalspaden in de zelfcheck",
+      "bron": "https://raw.githubusercontent.com/security-commons-nl/aanvalspaden/main/paden.json",
+      "veld": "bladeren"
+    },
+    {
+      "cijfer": 21,
+      "label": "beleidsstukken op BIO 2.0",
+      "bron": "https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/governance/beleidsset-informatiebeveiliging/beleidsset.json",
+      "veld": "bouwstenen"
+    },
+    {
+      "cijfer": 41,
+      "label": "meetregels op exports die je al hebt",
+      "bron": "https://raw.githubusercontent.com/security-commons-nl/aanvalspaden/main/meting/regels.json",
+      "veld": "items"
+    },
+    {
+      "cijfer": 0,
+      "label": "accounts, installaties of facturen nodig",
+      "bron": null,
+      "veld": null
+    }
+  ]
+}

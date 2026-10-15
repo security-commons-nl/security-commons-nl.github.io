@@ -1,0 +1,83 @@
+/* Thema B1 (15-10-2026): rijksblauw en oranje, strakke sans-koppen, donkere topbalk en hero.
+   Eén bestand voor de hele commons. De voorpagina zet het inline (na landing.css, dus het wint);
+   subsites kunnen het laden via https://security-commons-nl.github.io/thema.css en zetten dan
+   class="thema" op <body>. Geen externe fonts of scripts: alleen systeemfonts. */
+:root {
+  --blauw: #154273;
+  --blauw-donker: #0d2b4d;
+  --blauw-licht: #e8f0f7;
+  --oranje: #e17000;
+  --oranje-licht: #ffd3ad;
+  --hero-tekst: #c9d6e4;
+  --inkt: #14202b;
+  --grijs: #4b5563;
+  --lijn: #dde3ea;
+  --vlak: #f4f6f9;
+  --sans: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: var(--sans);
+}
+
+body.thema { color: var(--inkt); font-family: var(--sans); }
+body.thema::before { display: none; }
+
+.thema h1, .thema h2, .thema h3 { font-family: var(--sans); letter-spacing: -0.02em; }
+.thema h1 { font-weight: 800; }
+.thema h2 { font-size: 1.85rem; font-weight: 800; color: var(--blauw-donker); margin-top: 2.75rem; }
+.thema h3 { font-weight: 700; }
+
+/* Topbalk: merk links, navigatie rechts. Loopt over in de hero (zelfde kleur). */
+.topbalk { background: var(--blauw-donker); color: #fff; }
+.topbalk .inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  flex-wrap: wrap; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.topbalk-merk { display: inline-flex; align-items: center; gap: 0.6rem; color: #fff; text-decoration: none;
+  font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+.topbalk-merk img { width: 36px; height: 36px; border-radius: 6px; background: #fff; }
+.topbalk nav { display: flex; gap: 1.4rem; flex-wrap: wrap; font-size: 0.95rem; }
+.topbalk nav a { color: #fff; opacity: 0.85; text-decoration: none; }
+.topbalk nav a:hover { opacity: 1; color: var(--oranje-licht); }
+
+/* Hero */
+.hero { background: var(--blauw-donker); color: #fff; padding: 3.5rem 0 3.25rem; }
+.hero .inner > :last-child { margin-bottom: 0; }
+.hero-badge { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 0.35rem 0.75rem; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1); color: var(--oranje-licht); }
+.hero h1 { color: #fff; font-size: clamp(2.2rem, 5.5vw, 3.3rem); line-height: 1.05; letter-spacing: -0.03em;
+  max-width: 18ch; margin: 1.1rem 0 1.1rem; }
+.hero p { color: var(--hero-tekst); font-size: 1.15rem; line-height: 1.55; max-width: 40rem; }
+.hero a { color: #fff; }
+.hero strong { color: #fff; }
+
+.knoppen { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.6rem 0 0; }
+.knop { display: inline-block; padding: 0.8rem 1.4rem; border-radius: 6px; font-weight: 600;
+  text-decoration: none; background: var(--oranje); color: #fff !important; border: 2px solid var(--oranje);
+  transition: transform 0.12s ease-out, background 0.12s; }
+.knop:hover { transform: translateY(-1px); background: #c96300; border-color: #c96300; }
+.knop-tweede { background: transparent; border-color: rgba(255, 255, 255, 0.4); }
+.knop-tweede:hover { background: rgba(255, 255, 255, 0.08); border-color: #fff; }
+.knop:focus-visible { outline: 3px solid var(--oranje-licht); outline-offset: 2px; }
+
+/* Bewijsregel: de cijfers komen uit site/hero.json en worden getoetst tegen de bron. */
+.bewijs { display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; margin: 2.25rem 0 0; padding: 0; list-style: none; }
+.bewijs li { font-size: 0.88rem; color: var(--hero-tekst); max-width: 12rem; margin: 0; }
+.bewijs b { display: block; font-size: 2rem; line-height: 1; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--oranje); margin-bottom: 0.3rem; }
+
+/* Kaarten en blokken in de thema-stijl: witte kaart, blauwe bovenrand, zachte schaduw. */
+.thema .kaart, .thema .card, .thema .rol { border: 1px solid var(--lijn); border-top: 4px solid var(--blauw);
+  border-radius: 12px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); background: #fff; }
+.thema .kaart { padding: 1.3rem 1.4rem; transition: transform 0.15s ease-out, box-shadow 0.15s; }
+.thema .kaart:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(13, 43, 77, 0.12);
+  border-top-color: var(--oranje); }
+.thema .kaart-naam, .thema .card-title { font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em;
+  color: var(--blauw-donker); font-size: 1.2rem; }
+.thema .zoekvak { border-radius: 12px; }
+.thema .zoekvak-kop { font-family: var(--sans); font-weight: 800; letter-spacing: -0.02em; }
+.thema th { background: var(--blauw-donker); }
+
+@media (max-width: 620px) {
+  .topbalk nav { gap: 1rem; font-size: 0.9rem; }
+  .hero { padding: 2.5rem 0 2.25rem; }
+  .bewijs { gap: 1rem 1.75rem; }
+  .bewijs b { font-size: 1.6rem; }
+}
