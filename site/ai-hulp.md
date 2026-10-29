@@ -100,7 +100,10 @@ procesdocument of een CMDB-export omzetten naar het datamodel) en bij de
 je beheersysteem omzetten naar het kolomcontract van een meetregel) en bij de
 [beleidsset informatiebeveiliging](https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/beleidsset-ai.html)
 (de contextvragen beantwoorden en de invulvelden invullen uit je eigen documenten; het model schrijft geen
-beleid). Hij wordt nog uitgebreid naar de
+beleid). Het voorstel voor de contextvragen kun je ook laden op [jouw profiel](/profiel/): dan geldt het niet
+alleen voor de beleidsset maar voor de hele commons, want de voorpagina en de kennisbank lezen hetzelfde profiel.
+Ook daar neem je per vraag over wat je aanvinkt, en alleen de vaste antwoorden komen in het profiel, nooit het
+citaat of andere tekst uit je document. Hij wordt nog uitgebreid naar de
 [zelfcheck](https://security-commons-nl.github.io/aanvalspaden/) en de
 [CSIR Assessment Tool](https://security-commons-nl.github.io/csir-assessment-tool/), in die volgorde.
 

@@ -5,6 +5,8 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 29-10: **AI-hulp wijst naar je profiel (plan het profiel, stap 5).** De uitleg op `/ai-hulp/` noemt dat het
+  voorstel voor de contextvragen ook op `/profiel/` te laden is, en dan voor de hele commons geldt.
 - 29-10: **De assistent vult het profiel (plan het profiel, stap 4).** Op `/profiel/` laad je het voorstel dat de
   AI-hulp van de beleidsset maakt (opdracht "Contextvragen beantwoorden uit een beschrijving van je organisatie",
   eigen sleutel of lokaal model). Per vraag zie je het voorstel en het citaat; een regel waarvan het citaat niet in

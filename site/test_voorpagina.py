@@ -133,6 +133,8 @@ def test_ai_hulp_pagina():
     # De markdown-backticks worden <code> met ge-escapete quotes; daarom op default-src toetsen.
     for belofte in ("sessionStorage", "default-src", "DPA-template", "citaat"):
         assert belofte in html, belofte
+    # Stap 5 van het plan het profiel: de uitleg wijst naar /profiel/, waar het voorstel ook geladen kan worden.
+    assert 'href="/profiel/"' in html, "de AI-uitleg noemt het profiel niet"
     assert chr(8212) not in html, "em-dash op de uitlegpagina"
 
     voor = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
