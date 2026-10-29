@@ -33,3 +33,5 @@ jobs:
       - run: node site/test_inhoudswijzers.mjs
       # De hero: cijfers nagerekend tegen de bronrepo's, thema aanwezig, niets van buiten.
       - run: node site/test_hero.mjs
+      # De profielpagina: formulier, knoppen, bewaarnaam, niets van buiten het domein.
+      - run: node site/test_profiel.mjs

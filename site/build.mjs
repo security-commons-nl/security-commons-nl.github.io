@@ -270,6 +270,7 @@ function updateSitemap() {
     'https://security-commons-nl.github.io/ai-hulp/',
     'https://security-commons-nl.github.io/backlog/',
     'https://security-commons-nl.github.io/werkplaats/',
+    'https://security-commons-nl.github.io/profiel/',
     ...readProjects().map((pr) => pr.live).filter(Boolean),
   ];
   for (const loc of kandidaten) {
@@ -322,7 +323,7 @@ function topbalk() {
   return `<header class="topbalk"><div class="inner">
 <a class="topbalk-merk" href="/"><img src="/logo.png" width="36" height="36"
    alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">Security Commons NL</a>
-<nav aria-label="Hoofdmenu"><a href="/#begin-bij-je-rol">Routes</a><a href="/kennisbank/">Kennisbank</a><a href="/normen/normwijzer.html">Normwijzer</a><a href="/#meedoen">Meedoen</a><a href="/werkplaats/">Werkplaats</a></nav>
+<nav aria-label="Hoofdmenu"><a href="/#begin-bij-je-rol">Routes</a><a href="/kennisbank/">Kennisbank</a><a href="/normen/normwijzer.html">Normwijzer</a><a href="/profiel/">Profiel</a><a href="/#meedoen">Meedoen</a><a href="/werkplaats/">Werkplaats</a></nav>
 </div></header>`;
 }
 
@@ -479,6 +480,34 @@ function buildWerkplaatsPage() {
     canonical: 'https://security-commons-nl.github.io/werkplaats/',
     body: rewriteLinks(tokens.map(renderToken).join('')),
     generatedFrom: 'PROJECTEN.md en site/werkplaats.md',
+  });
+}
+
+// Het profiel (plan de site is het product, stap 9): zestien vragen uit /kennisbank/profiel.json, ingevuld in de
+// browser onder de bewaarnaam commons-profiel. Het formulier en de knoppen staan hier; de logica in site/profiel.js.
+function profielFormulier() {
+  // Zonder lege regels: marked ziet een lege regel als einde van het HTML-blok en maakt dan alinea's van de code.
+  const script = readFileSync(join(ROOT, 'site', 'profiel.js'), 'utf8').replace(/<\//g, '<\\/').replace(/\n\s*\n/g, '\n');
+  return `<div class="profiel-balk">
+<p id="profiel-stand" class="profiel-stand">De vragenlijst wordt geladen.</p>
+<p class="profiel-knoppen"><button type="button" id="profiel-bestand">Opslaan als bestand</button> <button type="button" id="profiel-laad">Laden uit bestand</button><input type="file" id="profiel-laadveld" accept="application/json,.json" hidden> <button type="button" id="profiel-link">Link kopieren</button> <button type="button" id="profiel-wis" class="knop-licht">Wissen</button></p>
+<p id="profiel-melding" class="profiel-melding" aria-live="polite"></p>
+</div>
+<form id="profiel" class="profiel" aria-label="Profiel van je organisatie"></form>
+<script>
+${script}</script>
+`;
+}
+
+function buildProfielPage() {
+  const content = readFileSync(join(ROOT, 'site', 'profiel.md'), 'utf8').replace('<!-- PROFIELFORMULIER -->', profielFormulier());
+  const tokens = marked.lexer(content, { gfm: true });
+  return pageShell({
+    title: 'Jouw profiel: Security Commons NL',
+    description: 'Vul een keer in wat voor organisatie je bent, in zestien vaste keuzes zonder naam of inventaris. Blijft in je browser; de beleidsset en straks de routes en de kennisbank passen zich erop aan.',
+    canonical: 'https://security-commons-nl.github.io/profiel/',
+    body: rewriteLinks(tokens.map(renderToken).join('')),
+    generatedFrom: 'site/profiel.md en site/profiel.js; de vragen komen uit profiel.json van de kennisbank',
   });
 }
 
@@ -652,13 +681,14 @@ tools. Tooling van anderen staat in de
 `;
 }
 
-for (const map of ['tools', 'ai-hulp', 'backlog', 'werkplaats']) {
+for (const map of ['tools', 'ai-hulp', 'backlog', 'werkplaats', 'profiel']) {
   mkdirSync(join(ROOT, 'dist', map), { recursive: true });
 }
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsRedirect());
 writeFileSync(join(ROOT, 'dist', 'ai-hulp', 'index.html'), buildAiHulpPage());
 writeFileSync(join(ROOT, 'dist', 'werkplaats', 'index.html'), buildWerkplaatsPage());
+writeFileSync(join(ROOT, 'dist', 'profiel', 'index.html'), buildProfielPage());
 writeFileSync(join(ROOT, 'dist', 'backlog', 'index.html'), await buildBacklogPage());
 
 for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {
@@ -671,4 +701,4 @@ for (const file of STATIC_FILES) {
 }
 // Het thema als los bestand, zodat subsites het kunnen laden: https://security-commons-nl.github.io/thema.css
 copyFileSync(join(ROOT, 'site', 'thema.css'), join(ROOT, 'dist', 'thema.css'));
-console.log('Wrote dist/index.html, dist/werkplaats/index.html, dist/ai-hulp/index.html, dist/backlog/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
+console.log('Wrote dist/index.html, dist/werkplaats/index.html, dist/profiel/index.html, dist/ai-hulp/index.html, dist/backlog/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
