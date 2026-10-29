@@ -83,7 +83,8 @@ check('llms.txt kent /profiel/', readFileSync(join(ROOT, 'llms.txt'), 'utf8').in
   let lezerTekst = '';
   function FileReader() { this.readAsText = () => { this.result = lezerTekst; this.onload(); }; }
   const fetch = async () => ({ ok: true, json: async () => schema });
-  const scriptBron = js;
+  // Het gebouwde blok, niet de bron: zo test dit ook de omzetting door de build (review 29-10).
+  const scriptBron = blok.replace('<script>', '');
   new Function('document', 'localStorage', 'fetch', 'FileReader', 'location', 'history', 'navigator', 'Blob', 'URL', 'prompt', 'atob', 'btoa', 'escape', 'unescape', scriptBron)(
     document, localStorage, fetch, FileReader, { hash: '', origin: 'http://x', pathname: '/profiel/' }, { replaceState() {} }, {}, function () {}, {}, () => {}, atob, btoa, escape, unescape);
   await new Promise((r) => setTimeout(r, 20));
