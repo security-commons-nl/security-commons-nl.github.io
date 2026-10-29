@@ -430,13 +430,34 @@ ${script}</script>
 // De keuze is redactioneel en staat in site/routes.json, niet in deze build. Volgt rollen.json op (29-10-2026).
 function routes() {
   const data = JSON.parse(readFileSync(join(ROOT, 'site', 'routes.json'), 'utf8'));
-  const blokken = data.routes.map((r) => `
-  <div class="rol route" id="route-${escapeHtml(r.id)}">
+  const blok = (r) => `
+  <div class="rol route" id="route-${escapeHtml(r.id)}" data-route="${escapeHtml(r.id)}" data-soort="${escapeHtml(r.soort)}">
     <h3>${escapeHtml(r.rol)}</h3>
     <p class="rol-vraag">${escapeHtml(r.vraag)}</p>
     <ol>${r.stappen.map((s) => `<li><a href="${escapeHtml(s.url)}">${escapeHtml(s.titel)}</a><span class="stap-waarom">${escapeHtml(s.waarom)}</span></li>`).join('')}</ol>
-  </div>`).join('');
-  return `<section class="rollen routes" aria-labelledby="begin-bij-je-rol">${blokken}\n</section>\n`;
+  </div>`;
+  const rollen = data.routes.filter((r) => r.soort === 'rol');
+  const situaties = data.routes.filter((r) => r.soort === 'situatie');
+  // De rolkiezer en de suggestie verschijnen alleen met JavaScript; zonder staat alles er gewoon (site/rollen.js).
+  const kiezer = `<div class="rolkiezer" id="rolkiezer" hidden><span class="rolkiezer-kop">Jouw rol:</span> ${rollen
+    .map((r) => `<button type="button" data-rol="${escapeHtml(r.id)}" aria-pressed="false">${escapeHtml(r.rol)}</button>`)
+    .join(' ')} <button type="button" id="rol-alle" class="rol-alle" hidden></button></div>`;
+  return `${kiezer}
+<div class="profielsuggestie" id="profielsuggestie" hidden></div>
+<section class="rollen routes" id="routes-rollen" aria-labelledby="begin-bij-je-rol">${rollen.map(blok).join('')}
+</section>
+<h3 class="situaties-kop" id="zit-je-hierin">Zit je hierin?</h3>
+<section class="rollen routes situaties" id="routes-situaties" aria-labelledby="zit-je-hierin">${situaties.map(blok).join('')}
+</section>
+<script>
+${inlineScript('rollen.js')}</script>
+`;
+}
+
+// Een script uit site/ inline op de pagina. Twee valkuilen die op 29-10-2026 een pagina stil braken: marked ziet
+// een lege regel als einde van het HTML-blok en maakt dan alinea's van de code, en "</" moet "<\/" worden.
+function inlineScript(naam) {
+  return readFileSync(join(ROOT, 'site', naam), 'utf8').replace(/<\//g, '<\\/').replace(/\n\s*\n/g, '\n');
 }
 
 function buildLandingPage() {

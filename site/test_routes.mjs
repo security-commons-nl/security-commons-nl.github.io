@@ -21,6 +21,9 @@ const rollen = data.routes.map((r) => r.rol);
 check('vijf routes: CISO, ISO, Privacy officer, Bestuurder, Eerste honderd dagen',
   JSON.stringify(rollen) === JSON.stringify(['CISO', 'ISO', 'Privacy officer', 'Bestuurder', 'Eerste honderd dagen']));
 check('elke route heeft een unieke id', new Set(data.routes.map((r) => r.id)).size === data.routes.length);
+check('elke route heeft soort rol of situatie', data.routes.every((r) => r.soort === 'rol' || r.soort === 'situatie'));
+check('minstens vier rollen en een situatie', data.routes.filter((r) => r.soort === 'rol').length >= 4 && data.routes.some((r) => r.soort === 'situatie'));
+check('eerste honderd dagen is een situatie, geen rol', data.routes.find((r) => r.id === 'eerste-honderd-dagen').soort === 'situatie');
 for (const r of data.routes) {
   check(`${r.rol}: de vraag eindigt op een vraagteken`, r.vraag.endsWith('?'));
   check(`${r.rol}: vijf tot acht stappen (${r.stappen.length})`, r.stappen.length >= 5 && r.stappen.length <= 8);

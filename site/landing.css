@@ -228,3 +228,17 @@ ul.backlog code { font-size: .85em; white-space: nowrap; }
 .profiel-vraag legend small { font-weight: 400; color: var(--grijs); }
 .profiel-vraag label { display: block; margin: 0.25rem 0; cursor: pointer; }
 
+/* Rolkiezer, situaties en suggestie (plan het profiel, stap 3). */
+.rolkiezer { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.6rem 0 0.8rem; }
+.rolkiezer[hidden], .profielsuggestie[hidden], .route[hidden], .rol-alle[hidden] { display: none !important; }
+.rolkiezer-kop { font-weight: 600; margin-right: 0.2rem; }
+.rolkiezer button { font: inherit; font-size: 0.9rem; padding: 0.3rem 0.75rem; border: 1px solid var(--blauw); background: #fff; color: var(--blauw); border-radius: 999px; cursor: pointer; }
+.rolkiezer button[aria-pressed="true"] { background: var(--blauw); color: #fff; }
+.rolkiezer .rol-alle { border-style: dashed; }
+.profielsuggestie { border: 1px solid #c9dbe9; background: #f2f7fb; border-radius: 8px; padding: 0.6rem 0.9rem; margin: 0 0 0.9rem; }
+.profielsuggestie p { margin: 0.2rem 0; }
+.profielsuggestie .suggestie-kop { font-weight: 700; }
+.profielsuggestie button { font: inherit; font-size: 0.85rem; margin-left: 0.5rem; padding: 0.15rem 0.6rem; border: 1px solid var(--blauw); background: #fff; color: var(--blauw); border-radius: 6px; cursor: pointer; }
+.situaties-kop { margin-top: 1.2rem; }
+.route-voorgesteld { border-top-color: var(--oranje); box-shadow: 0 0 0 2px #f6d8b8; }
+

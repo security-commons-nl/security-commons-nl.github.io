@@ -5,6 +5,13 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 29-10: **Rol en situatie, en een suggestie uit je profiel (plan het profiel, stap 3).** `routes.json` heeft per
+  route een `soort`: vier rollen en de situatie "eerste honderd dagen", met dezelfde id's. Boven de routes een
+  rolkiezer (meer rollen tegelijk, bewaard onder `commons-rol`): gekozen rollen vooraan, de andere achter "Toon
+  alle rollen". Situaties staan in een eigen rij, "Zit je hierin?". Met een profiel leest de pagina
+  `/kennisbank/profielregels.json` en stelt een route of situatie voor, met het waarom en een knop om het voor de
+  sessie weg te klikken. Inline scripts gaan door een `inlineScript()` die de twee valkuilen van marked afvangt;
+  `site/test_rolkiezer.mjs` toetst het gedrag.
 - 29-10: **Jouw profiel (`/profiel/`, plan stap 9).** Zestien vragen uit `profiel.json` van de kennisbank, als
   vaste keuzes zonder naam of inventaris, ingevuld in de browser onder de bewaarnaam `commons-profiel` die elke
   pagina op dit domein kan lezen. Knoppen: opslaan als bestand, laden uit bestand, link kopieren (profiel achter
