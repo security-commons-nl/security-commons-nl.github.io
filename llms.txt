@@ -64,6 +64,7 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
 
 ## Tools
 
+- [Jouw profiel](https://security-commons-nl.github.io/profiel/): zestien vaste keuzes over wat voor organisatie je bent (geen naam, geen inventaris), ingevuld in de browser; de beleidsset leest het, de routes en de kennisbank volgen; de vragenlijst is /kennisbank/profiel.json
 - [AI-hulp met je eigen sleutel](https://security-commons-nl.github.io/ai-hulp/): wat de opt-in AI-hulp in de instrumenten doet en niet doet, wat er naar de leverancier gaat en wat op je apparaat blijft, drie gebruiksvormen van lokaal model tot gedeelde proxy met de verwerkersrol erbij, en waarom een voorstel altijd een voorstel blijft
 - [Anonimizer, browserversie](https://security-commons-nl.github.io/anonimizer-browser/): gevoelige gegevens uit een document verwijderen zonder installatie, alles draait in de eigen browser
 - [Weerbaarheid-game](https://security-commons-nl.github.io/weerbaarheid-game/): interactief bestuursdashboard dat de digitale kwetsbaarheid van een organisatie zichtbaar maakt voor college, directie en bestuurders

@@ -5,6 +5,11 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 29-10: **Jouw profiel (`/profiel/`, plan stap 9).** Zestien vragen uit `profiel.json` van de kennisbank, als
+  vaste keuzes zonder naam of inventaris, ingevuld in de browser onder de bewaarnaam `commons-profiel` die elke
+  pagina op dit domein kan lezen. Knoppen: opslaan als bestand, laden uit bestand, link kopieren (profiel achter
+  het hekje, verlaat de browser niet), wissen. Onbekende waarden vallen bij laden weg. De beleidsset leest
+  hetzelfde profiel; de voorpagina en de kennisbank volgen. Topbalk heeft een knop Profiel.
 - 29-10: **De site is het product (statuut C1 tot en met C3, plan 29-10-2026).** De projectenlijst, de
   gearchiveerde projecten en de infrastructuur staan niet meer op de voorpagina maar op een eigen pagina
   `/werkplaats/` (`site/werkplaats.md` plus de kaarten uit PROJECTEN.md). De voorpagina toont de routes per rol

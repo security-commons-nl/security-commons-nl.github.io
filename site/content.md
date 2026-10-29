@@ -18,7 +18,7 @@ Je bent op de voorkant: de kennis en de routes staan hieronder, direct te openen
 
 ## Begin bij je rol
 
-Per rol een route: in welke volgorde je begint, en bij elke stap waarom nu. Nieuw in de rol? Neem de route van de eerste honderd dagen.
+Per rol een route: in welke volgorde je begint, en bij elke stap waarom nu. Nieuw in de rol? Neem de route van de eerste honderd dagen. Vul [je profiel](/profiel/) in, dan past de beleidsset zich al aan; de routes en de kennisbank volgen.
 
 <!-- ROUTES -->
 

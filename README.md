@@ -17,6 +17,7 @@ leven op een subpad.
 | `site/thema.css` | Het thema van de commons (rijksblauw, sans-koppen, topbalk en hero); ook live op `/thema.css` voor de subsites |
 | `site/hero.json` | De cijfers in de hero, met bron per cijfer; `site/test_hero.mjs` telt ze na |
 | `site/routes.json` | De leesroutes per rol op de voorpagina (statuut C2); `site/test_routes.mjs` controleert vorm en of elk adres bestaat |
+| `site/profiel.md` en `site/profiel.js` | De profielpagina (`/profiel/`): zestien vragen uit `profiel.json` van de kennisbank, bewaard in de browser onder `commons-profiel`; `site/test_profiel.mjs` |
 | `site/werkplaats.md` | De werkplaatspagina (`/werkplaats/`): alle projecten met status, gearchiveerd en infrastructuur, uit PROJECTEN.md |
 | `robots.txt` | Alle crawlers en AI-systemen expliciet en vendor-neutraal toegestaan |
 | `llms.txt` | Inhoudswijzer voor LLM's/agents ([llmstxt.org](https://llmstxt.org)) |
