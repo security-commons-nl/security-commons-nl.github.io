@@ -207,3 +207,9 @@ ul.backlog code { font-size: .85em; white-space: nowrap; }
 .rol-vraag { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--grijs); }
 .rol ol { margin: 0; padding-left: 1.2rem; font-size: 0.95rem; }
 .rol li { margin: 0.25rem 0; }
+.routes { grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.route ol { counter-reset: stap; list-style: none; padding-left: 0; }
+.route li { position: relative; padding-left: 1.7rem; margin: 0.45rem 0; }
+.route li::before { counter-increment: stap; content: counter(stap); position: absolute; left: 0; top: 0.1rem; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--blauw); color: #fff; font-size: 0.72rem; font-weight: 700; display: grid; place-items: center; }
+.route li a { font-weight: 600; }
+.stap-waarom { display: block; font-size: 0.82rem; color: var(--grijs); line-height: 1.35; }
