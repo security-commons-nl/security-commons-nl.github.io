@@ -28,7 +28,8 @@
     var voor = blokken.filter(function (b) { return gekozen.indexOf(b.getAttribute('data-route')) !== -1; });
     var na = blokken.filter(function (b) { return gekozen.indexOf(b.getAttribute('data-route')) === -1; });
     voor.concat(na).forEach(function (b) { sectie.appendChild(b); });
-    na.forEach(function (b) { b.hidden = gekozen.length > 0 && !toonAlles; });
+    // Een route die het profiel voorstelt (route-voorgesteld) blijft zichtbaar, ook als hij niet bij een gekozen rol hoort.
+    na.forEach(function (b) { b.hidden = gekozen.length > 0 && !toonAlles && !(b.classList && b.classList.contains('route-voorgesteld')); });
     voor.forEach(function (b) { b.hidden = false; });
     alle.hidden = gekozen.length === 0 || na.length === 0;
     alle.textContent = toonAlles ? 'Alleen mijn rollen' : 'Toon alle rollen (' + na.length + ' meer)';
