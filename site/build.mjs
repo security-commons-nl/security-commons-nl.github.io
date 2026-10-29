@@ -269,6 +269,7 @@ function updateSitemap() {
     'https://security-commons-nl.github.io/',
     'https://security-commons-nl.github.io/ai-hulp/',
     'https://security-commons-nl.github.io/backlog/',
+    'https://security-commons-nl.github.io/werkplaats/',
     ...readProjects().map((pr) => pr.live).filter(Boolean),
   ];
   for (const loc of kandidaten) {
@@ -321,7 +322,7 @@ function topbalk() {
   return `<header class="topbalk"><div class="inner">
 <a class="topbalk-merk" href="/"><img src="/logo.png" width="36" height="36"
    alt="Logo Security Commons NL: een uil boven gebouwen van de publieke sector">Security Commons NL</a>
-<nav aria-label="Hoofdmenu"><a href="/#alle-projecten">Tools</a><a href="/kennisbank/">Kennisbank</a><a href="/normen/normwijzer.html">Normwijzer</a><a href="/#meedoen">Meedoen</a></nav>
+<nav aria-label="Hoofdmenu"><a href="/#begin-bij-je-rol">Routes</a><a href="/kennisbank/">Kennisbank</a><a href="/normen/normwijzer.html">Normwijzer</a><a href="/#meedoen">Meedoen</a><a href="/werkplaats/">Werkplaats</a></nav>
 </div></header>`;
 }
 
@@ -395,10 +396,12 @@ function kaartTekst(tekst) {
 function uitgelicht(vragen) {
   const rijen = readProjects().filter((p) => p.live).slice(0, 3);
   if (rijen.length < 3) throw new Error(`Minder dan drie projecten met een live link (${rijen.length})`);
+  // Statuut C3: op de voorpagina heet een instrument naar wat het doet, niet naar zijn repository. De naam
+  // staat achter een = bij de vraag in content.md; zonder = valt de kaart terug op de repo-naam.
   const kaarten = rijen.map((pr, i) => `
     <a class="kaart" href="${escapeHtml(pr.live)}">
-      ${vragen[i] ? `<span class="kaart-vraag">${escapeHtml(vragen[i])}</span>` : ''}
-      <span class="kaart-naam">${escapeHtml(pr.naam)}</span>
+      ${vragen[i] ? `<span class="kaart-vraag">${escapeHtml(vragen[i].split('=')[0].trim())}</span>` : ''}
+      <span class="kaart-naam">${escapeHtml(vragen[i] && vragen[i].includes('=') ? vragen[i].split('=')[1].trim() : pr.naam)}</span>
       <span class="kaart-wat">${escapeHtml(kaartTekst(pr.wat))}</span>
       <span class="kaart-voor">${escapeHtml(pr.doelgroep)}</span>
     </a>`).join('');
@@ -422,17 +425,17 @@ ${script}</script>
 `;
 }
 
-// De voordeur per rol: per rol drie stukken om mee te beginnen. De keuze is redactioneel en staat in
-// site/rollen.json, niet in deze build.
-function rollen() {
-  const data = JSON.parse(readFileSync(join(ROOT, 'site', 'rollen.json'), 'utf8'));
-  const blokken = data.rollen.map((r) => `
-  <div class="rol">
+// De leesroutes (statuut C2): per rol een geordende reeks stukken, met per stap een zin waarom dit nu.
+// De keuze is redactioneel en staat in site/routes.json, niet in deze build. Volgt rollen.json op (29-10-2026).
+function routes() {
+  const data = JSON.parse(readFileSync(join(ROOT, 'site', 'routes.json'), 'utf8'));
+  const blokken = data.routes.map((r) => `
+  <div class="rol route" id="route-${escapeHtml(r.id)}">
     <h3>${escapeHtml(r.rol)}</h3>
     <p class="rol-vraag">${escapeHtml(r.vraag)}</p>
-    <ol>${r.stukken.map((s) => `<li><a href="${escapeHtml(s.url)}">${escapeHtml(s.titel)}</a></li>`).join('')}</ol>
+    <ol>${r.stappen.map((s) => `<li><a href="${escapeHtml(s.url)}">${escapeHtml(s.titel)}</a><span class="stap-waarom">${escapeHtml(s.waarom)}</span></li>`).join('')}</ol>
   </div>`).join('');
-  return `<section class="rollen" aria-labelledby="begin-bij-je-rol">${blokken}\n</section>\n`;
+  return `<section class="rollen routes" aria-labelledby="begin-bij-je-rol">${blokken}\n</section>\n`;
 }
 
 function buildLandingPage() {
@@ -443,9 +446,7 @@ function buildLandingPage() {
   const vragen = merk && merk[1] ? merk[1].split('|').map((v) => v.trim()) : [];
   content = content.replace(merk ? merk[0] : '<!-- UITGELICHT -->', uitgelicht(vragen));
   content = content.replace('<!-- ZOEKVAK -->', zoekvak());
-  content = content.replace('<!-- ROLLEN -->', rollen());
-  content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
-  content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
+  content = content.replace('<!-- ROUTES -->', routes());
 
   // De hero staat redactioneel bovenaan content.md, tussen <!-- HERO --> en <!-- /HERO -->.
   const heroMatch = content.match(/<!-- HERO -->([\s\S]*?)<!-- \/HERO -->/);
@@ -462,6 +463,22 @@ function buildLandingPage() {
     canonical: 'https://security-commons-nl.github.io/',
     body: rewriteLinks(tokens.map(renderToken).join('')),
     generatedFrom: 'PROJECTEN.md en de site-bronnen',
+  });
+}
+
+// De werkplaats (statuut C1, C3): alle projecten met status en de weg naar GitHub. Stond tot 29-10-2026
+// op de voorpagina; daar staan nu alleen de routes en de keten van vier vragen.
+function buildWerkplaatsPage() {
+  let content = readFileSync(join(ROOT, 'site', 'werkplaats.md'), 'utf8');
+  content = content.replace('<!-- PROJECTEN_GROEPEN -->', projectGroepen());
+  content = content.replace('<!-- GEARCHIVEERD -->', gearchiveerdBlok());
+  const tokens = marked.lexer(content, { gfm: true });
+  return pageShell({
+    title: 'Werkplaats: alle projecten van Security Commons NL',
+    description: 'Alle projecten van Security Commons NL met hun status, de gearchiveerde projecten, de onderliggende infrastructuur en de weg naar de broncode op GitHub.',
+    canonical: 'https://security-commons-nl.github.io/werkplaats/',
+    body: rewriteLinks(tokens.map(renderToken).join('')),
+    generatedFrom: 'PROJECTEN.md en site/werkplaats.md',
   });
 }
 
@@ -619,15 +636,15 @@ function buildToolsRedirect() {
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=/">
-<link rel="canonical" href="https://security-commons-nl.github.io/">
+<meta http-equiv="refresh" content="0; url=/werkplaats/">
+<link rel="canonical" href="https://security-commons-nl.github.io/werkplaats/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="32x32">
 <meta name="robots" content="noindex">
 <title>Verplaatst naar de hoofdpagina</title>
 </head>
 <body>
-<p>De toolpagina is opgegaan in de <a href="/">hoofdpagina</a>: daar staat de projectentabel met alle
+<p>De toolpagina is opgegaan in de <a href="/werkplaats/">werkplaats</a>: daar staat de projectentabel met alle
 tools. Tooling van anderen staat in de
 <a href="https://security-commons-nl.github.io/kennisbank/security/referenties-tooling/">kennisbank</a>.</p>
 </body>
@@ -635,12 +652,13 @@ tools. Tooling van anderen staat in de
 `;
 }
 
-for (const map of ['tools', 'ai-hulp', 'backlog']) {
+for (const map of ['tools', 'ai-hulp', 'backlog', 'werkplaats']) {
   mkdirSync(join(ROOT, 'dist', map), { recursive: true });
 }
 writeFileSync(join(ROOT, 'dist', 'index.html'), buildLandingPage());
 writeFileSync(join(ROOT, 'dist', 'tools', 'index.html'), buildToolsRedirect());
 writeFileSync(join(ROOT, 'dist', 'ai-hulp', 'index.html'), buildAiHulpPage());
+writeFileSync(join(ROOT, 'dist', 'werkplaats', 'index.html'), buildWerkplaatsPage());
 writeFileSync(join(ROOT, 'dist', 'backlog', 'index.html'), await buildBacklogPage());
 
 for (const [naam, inhoud] of [['llms.txt', updateLlmsTxt()], ['sitemap.xml', updateSitemap()]]) {
@@ -653,4 +671,4 @@ for (const file of STATIC_FILES) {
 }
 // Het thema als los bestand, zodat subsites het kunnen laden: https://security-commons-nl.github.io/thema.css
 copyFileSync(join(ROOT, 'site', 'thema.css'), join(ROOT, 'dist', 'thema.css'));
-console.log('Wrote dist/index.html, dist/ai-hulp/index.html, dist/backlog/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');
+console.log('Wrote dist/index.html, dist/werkplaats/index.html, dist/ai-hulp/index.html, dist/backlog/index.html, dist/tools/index.html, llms.txt, sitemap.xml and static root files');

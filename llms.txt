@@ -60,7 +60,7 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
 ## Voor wie geen publieke organisatie is
 
 - Leveranciers: de Security Annex (hierboven, onder Kennisbank) is wat een publieke opdrachtgever van je vraagt; de zelfcheck aanvalspaden (hieronder, onder Prototype) laat zien welke aanvalspaden hij bij zichzelf toetst.
-- Journalisten en onderzoekers: alle code en tekst is open onder EUPL-1.2, de projectentabel op https://security-commons-nl.github.io/ is de volledige lijst, en https://github.com/security-commons-nl/.github/blob/main/BESLUITEN.md legt vast waarom dingen zijn zoals ze zijn.
+- Journalisten en onderzoekers: alle code en tekst is open onder EUPL-1.2, de projectentabel op https://security-commons-nl.github.io/werkplaats/ is de volledige lijst, en https://github.com/security-commons-nl/.github/blob/main/BESLUITEN.md legt vast waarom dingen zijn zoals ze zijn.
 
 ## Tools
 
@@ -85,6 +85,8 @@ https://security-commons-nl.github.io/kennisbank/llms.txt
 - [mshta-gebruik.kql](https://raw.githubusercontent.com/security-commons-nl/kennisbank/main/security/werkplekanalyse-e5/data/mshta-gebruik.kql)
 
 ## Alle projecten
+
+De volledige lijst met status en broncode staat op https://security-commons-nl.github.io/werkplaats/ (de werkplaats); de voorpagina toont alleen de routes per rol en de keten van vier vragen.
 
 <!-- projecten:start (gegenereerd, niet met de hand bewerken) -->
 
@@ -117,6 +119,7 @@ Ontwerp, plan of documentatie; nog geen werkende code.
 
 - [applicatiecheck](https://security-commons-nl.github.io/applicatiecheck/): Toont uit de applicatie zelf aan wat de BIO2 vraagt: configuratie-export en logsample deterministisch getoetst. Eerste toepassing: een zaaksysteem. Broncode: https://github.com/security-commons-nl/applicatiecheck
 - [policy-as-code](https://security-commons-nl.github.io/policy-as-code/): Beleid en normen (BIO 2.0, ISO 27001, AVG) als uitvoerbare, toetsbare regels in plaats van alleen tekst. Broncode: https://github.com/security-commons-nl/policy-as-code
+- [security-data-als-bron](https://security-commons-nl.github.io/security-data-als-bron/): Draaiboek en voorbeelden: security-data in Elastic, met AI als analist, ook voor architectuur, werkplek, netwerk, bedrijfsvoering en bestuur; met metrokaart, bestuursbeeld en LLM-triage in een verzonnen gemeente. Broncode: https://github.com/security-commons-nl/security-data-als-bron
 
 <!-- projecten:eind -->
 
