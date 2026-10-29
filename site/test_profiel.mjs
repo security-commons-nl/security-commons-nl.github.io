@@ -33,6 +33,9 @@ check('het schema komt van de kennisbank op dit domein', js.includes("'/kennisba
 check('geen fetch naar een ander domein', !/fetch\(['"]https?:/.test(js));
 check('de link draagt het profiel achter het hekje', js.includes("'#p='"));
 check('onbekende waarden vallen weg bij laden (schoon)', js.includes('function schoon('));
+check('een subvraag wordt een eigen vraag (zoals de generator hem schrijft)', js.includes('hoort_bij'));
+check('een bestand zonder geldig profiel wist niets', js.includes('bevat geen geldig profiel'));
+check('een link zonder geldig profiel wist niets', js.includes('De link bevat geen geldig profiel'));
 check('de naam van de organisatie komt nergens in het profiel', !/naam\s*:/.test(js) && !/organisatienaam/.test(js));
 check('geen em-dash', !html.includes(String.fromCharCode(8212)));
 // Stap 4: het voorstel van de assistent.

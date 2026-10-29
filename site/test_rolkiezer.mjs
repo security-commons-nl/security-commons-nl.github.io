@@ -24,7 +24,7 @@ function el(tag, attrs = {}) {
     addEventListener(s, f) { this._h[s] = f; },
     appendChild(k) { this.kinderen = this.kinderen.filter((x) => x !== k); this.kinderen.push(k); return k; },
     classList: null };
-  e.classList = { add: (c) => e.klassen.add(c) };
+  e.classList = { add: (c) => e.klassen.add(c), contains: (c) => e.klassen.has(c) };
   return e;
 }
 
@@ -99,6 +99,11 @@ check('de suggestie wijst naar /profiel/', r.links().includes('/profiel/'));
 const weg = r.vak.kinderen.flatMap((p) => p.kinderen).find((k) => k.tag === 'button');
 weg._h.click();
 check('"Niet meer tonen" verbergt hem voor de sessie', r.vak.hidden && r.s['commons-suggestie'] === 'weg');
+
+r = await draai({ rol: ['iso'], profiel: { cbw: ['essentieel'] }, regels: [{ id: 'b', als: { cbw: ['essentieel'] }, dan: { route: 'bestuurder' }, waarom: 'Onder de Cbw hoort het bestuur erbij.' }] });
+check('een voorgestelde rolroute blijft zichtbaar naast de gekozen rol', r.zichtbaar().includes('bestuurder') && r.zichtbaar().includes('iso'), r.zichtbaar().join(' '));
+r.knoppen.find((k) => k.attrs['data-rol'] === 'ciso')._h.click();
+check('en blijft zichtbaar na een klik op een andere rol (bevinding 4)', r.zichtbaar().includes('bestuurder'), r.zichtbaar().join(' '));
 
 r = await draai({ profiel: { capaciteit: 'geen' }, regels: startend, sessie: { 'commons-suggestie': 'weg' } });
 check('weggeklikt in deze sessie: niets opgehaald, geen suggestie', r.vak.hidden && r.opgehaald === 0);
