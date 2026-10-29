@@ -227,4 +227,5 @@ ul.backlog code { font-size: .85em; white-space: nowrap; }
 .profiel-vraag legend { font-weight: 700; padding: 0 0.3rem; }
 .profiel-vraag legend small { font-weight: 400; color: var(--grijs); }
 .profiel-vraag label { display: block; margin: 0.25rem 0; cursor: pointer; }
+.profiel-subvraag { margin-left: 1.2rem; border-left: 4px solid var(--lijn); }
 

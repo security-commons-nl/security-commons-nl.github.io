@@ -66,7 +66,7 @@
     var html = '';
     schema.vragen.forEach(function (v) {
       var soort = v.meerdere ? 'checkbox' : 'radio';
-      html += '<fieldset class="profiel-vraag"><legend>' + esc(v.vraag) + (v.meerdere ? ' <small>(meer antwoorden mogelijk)</small>' : '') + '</legend>';
+      html += '<fieldset class="profiel-vraag' + (v.hoort_bij ? ' profiel-subvraag' : '') + '"><legend>' + esc(v.vraag) + (v.meerdere ? ' <small>(meer antwoorden mogelijk)</small>' : '') + '</legend>';
       v.antwoorden.forEach(function (a) {
         html += '<label><input type="' + soort + '" name="' + esc(v.id) + '" value="' + esc(a.id) + '"> ' + esc(a.label) + '</label>';
       });
@@ -113,6 +113,7 @@
         try {
           var data = JSON.parse(String(lezer.result));
           var r = schoon(data && data.commons === 'profiel' ? data.profiel : data);
+          if (!Object.keys(r.profiel).length) { zeg('Dit bestand bevat geen geldig profiel; er is niets veranderd.', 'fout'); return; }
           bewaar(r.profiel); naarFormulier(r.profiel);
           zeg('Profiel geladen uit bestand' + (r.weg ? ' (' + r.weg + ' onbekende waarde(n) overgeslagen)' : '') + '.', 'ok');
         } catch (e) { zeg('Laden mislukt: geen leesbaar profiel.', 'fout'); }
@@ -131,14 +132,26 @@
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
   }).then(function (data) {
-    schema = data;
+    // Een subvraag (zoals BYOD onder werkplek) is in het profiel een eigen sleutel, precies zoals de
+    // beleidsset-generator hem schrijft. Hier wordt hij een gewone vraag direct na zijn hoofdvraag.
+    var vlak = [];
+    (data.vragen || []).forEach(function (v) {
+      var kopie = {}; Object.keys(v).forEach(function (k) { if (k !== 'subvraag') kopie[k] = v[k]; });
+      vlak.push(kopie);
+      if (v.subvraag) { var sub = { meerdere: false }; Object.keys(v.subvraag).forEach(function (k) { sub[k] = v.subvraag[k]; }); sub.hoort_bij = v.id; vlak.push(sub); }
+    });
+    schema = { versie: data.versie, vragen: vlak };
     teken(); knoppen();
     var vanLink = uitLink();
-    if (vanLink) {
+    if (vanLink && Object.keys(schoon(vanLink).profiel).length) {
       var r = schoon(vanLink);
       bewaar(r.profiel); naarFormulier(r.profiel);
       try { history.replaceState(null, '', location.pathname); } catch (e) {}
       zeg('Profiel uit de link overgenomen en bewaard in deze browser' + (r.weg ? ' (' + r.weg + ' onbekende waarde(n) overgeslagen)' : '') + '.', 'ok');
+    } else if (vanLink) {
+      try { history.replaceState(null, '', location.pathname); } catch (e) {}
+      naarFormulier(schoon(lees()).profiel);
+      zeg('De link bevat geen geldig profiel; je eigen profiel staat er nog.', 'fout');
     } else {
       naarFormulier(schoon(lees()).profiel);
     }

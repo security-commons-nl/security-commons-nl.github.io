@@ -1,10 +1,10 @@
-# Jouw profiel: zestien vragen, dan past de commons zich aan
+# Jouw profiel: achttien vragen, dan past de commons zich aan
 
 Vul één keer in wat voor organisatie je bent. Daarna weet elke pagina van de commons dat: de
 beleidsset kiest de passende blokken, en binnenkort tonen ook de voorpagina de route die bij je past en
 de kennisbank de stukken die voor jou het eerst tellen.
 
-**Wat erin staat, en wat niet.** Alleen kenmerken, als vaste keuzes: wat voor organisatie, hoe groot,
+**Wat erin staat, en wat niet.** Alleen kenmerken, als vaste keuzes (zestien vragen, twee met een vervolgvraag): wat voor organisatie, hoe groot,
 wie je IT beheert, waar je systemen draaien, of je onder de Cyberbeveiligingswet valt. Geen naam, geen
 leveranciers, geen applicaties, geen bevindingen. Zo blijft het profiel generiek en kun je het zonder
 zorgen delen met een collega. Wat je over je eigen organisatie wél wilt vastleggen, hoort niet hier maar
