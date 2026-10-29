@@ -191,9 +191,9 @@ def test_voordeur_per_rol():
     assert rollen == ["CISO", "ISO", "Privacy officer", "Bestuurder", "Eerste honderd dagen"], rollen
     assert not (ROOT / "site" / "rollen.json").exists(), "rollen.json is opgegaan in routes.json"
     html = (ROOT / "dist" / "index.html").read_text(encoding="utf-8")
-    blok = html[html.index('class="rollen routes"'):]
-    blok = blok[:blok.index("</section>")]
+    blok = html[html.index('id="rolkiezer"'):html.index('id="direct-aan-de-slag"')]
     assert blok.count('<div class="rol route"') == 5
+    assert blok.count('data-soort="rol"') == 4 and blok.count('data-soort="situatie"') == 1
     stappen = sum(len(r["stappen"]) for r in data["routes"])
     assert blok.count("<li>") == stappen
     assert blok.count('class="stap-waarom"') == stappen
@@ -202,7 +202,17 @@ def test_voordeur_per_rol():
         for s in r["stappen"]:
             assert f'href="{s["url"]}"' in blok, s["url"]
             assert s["url"].startswith("https://security-commons-nl.github.io/"), s["url"]
-    assert html.index('id="commons-zoekvak"') < html.index('class="rollen routes"') < html.index('id="direct-aan-de-slag"')
+    # Rollen in hun eigen sectie, situaties eronder onder "Zit je hierin?".
+    assert blok.index('id="routes-rollen"') < blok.index('id="zit-je-hierin"') < blok.index('id="routes-situaties"')
+    assert blok.index('id="route-eerste-honderd-dagen"') > blok.index('id="routes-situaties"')
+    # De rolkiezer: een knop per rol, verborgen zonder JavaScript, met de knop voor alle rollen.
+    kiezer = blok[:blok.index("</div>")]
+    assert kiezer.count("data-rol=") == 4 and 'id="rol-alle"' in kiezer and "hidden" in kiezer.split(">")[0]
+    assert 'id="profielsuggestie" hidden' in blok
+    script = blok[blok.index("<script>"):blok.index("</script>")]
+    assert "commons-rol" in script and "/kennisbank/profielregels.json" in script
+    assert "<p>" not in script and "<em>" not in script, "marked heeft het script aangetast"
+    assert html.index('id="commons-zoekvak"') < html.index('id="rolkiezer"') < html.index('class="rollen routes"') < html.index('id="direct-aan-de-slag"')
     # De privacy officer staat ook in de doelgroepregel.
     assert "privacy officers" in html[html.index('id="direct-aan-de-slag"'):][:600]
 

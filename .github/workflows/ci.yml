@@ -35,3 +35,5 @@ jobs:
       - run: node site/test_hero.mjs
       # De profielpagina: formulier, knoppen, bewaarnaam, niets van buiten het domein.
       - run: node site/test_profiel.mjs
+      # Rolkiezer en suggestie: het echte script op de gebouwde voorpagina, met een nagebootste browser.
+      - run: node site/test_rolkiezer.mjs

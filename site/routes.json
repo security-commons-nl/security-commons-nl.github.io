@@ -1,73 +1,214 @@
 {
-  "toelichting": "De leesroutes op de voorpagina (statuut C2, plan 29-10-2026): per rol een geordende reeks stukken, met per stap een zin waarom dit nu. Redactionele keuze; wijzigen is een regel hier. Alleen adressen van de commons zelf; test_routes.mjs controleert dat elk adres bestaat. Volgt rollen.json op (28-09-2026 tot 29-10-2026).",
+  "toelichting": "De leesroutes op de voorpagina (statuut C2, plan 29-10-2026): per rol een geordende reeks stukken, met per stap een zin waarom dit nu. Redactionele keuze; wijzigen is een regel hier. Alleen adressen van de commons zelf; test_routes.mjs controleert dat elk adres bestaat. Volgt rollen.json op (28-09-2026 tot 29-10-2026). Elke route heeft een soort (29-10-2026, plan het profiel): 'rol' is een functie, 'situatie' een tijdelijke toestand waarin iedere rol kan zitten (zoals nieuw in de functie). De id's veranderen niet.",
   "routes": [
     {
       "id": "ciso",
+      "soort": "rol",
       "rol": "CISO",
       "vraag": "Waar staan we, en wat moet ik regelen?",
       "stappen": [
-        {"titel": "De zelfcheck langs achttien aanvalspaden", "url": "https://security-commons-nl.github.io/aanvalspaden/", "waarom": "Een uur, alleen aan tafel: waar sta je, en drie acties voor morgen."},
-        {"titel": "Val ik onder de Cbw?", "url": "https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/", "waarom": "Bepaalt welke plichten en termijnen voor je gelden voordat je iets inricht."},
-        {"titel": "Wie doet wat: de stelselkaart security-gremia", "url": "https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/", "waarom": "Welke partij je waarvoor kunt aanspreken, van IBD tot NCSC."},
-        {"titel": "De Cbw-meldplicht en registratieplicht inrichten", "url": "https://security-commons-nl.github.io/kennisbank/governance/cbw-meldplicht-inrichten/", "waarom": "De eerste plicht met een klok erop; regel hem voordat het incident komt."},
-        {"titel": "Sturen op weerbaarheid in plaats van op maatregelen", "url": "https://security-commons-nl.github.io/kennisbank/security/sturen-op-weerbaarheid/", "waarom": "De taal waarmee je het bestuur meeneemt zonder maatregelenlijst."},
-        {"titel": "GRC als een risicogestuurde PDCA-ronde", "url": "https://security-commons-nl.github.io/kennisbank/governance/risicogestuurd-managementsysteem/", "waarom": "Security, privacy en continuiteit in een ronde, zonder GRC-tool."},
-        {"titel": "De meting op exports die je al hebt", "url": "https://security-commons-nl.github.io/aanvalspaden/meting/", "waarom": "Van zelfinschatting naar bewijs: 41 meetregels op je eigen data."}
+        {
+          "titel": "De zelfcheck langs achttien aanvalspaden",
+          "url": "https://security-commons-nl.github.io/aanvalspaden/",
+          "waarom": "Een uur, alleen aan tafel: waar sta je, en drie acties voor morgen."
+        },
+        {
+          "titel": "Val ik onder de Cbw?",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/val-ik-onder-de-cbw/",
+          "waarom": "Bepaalt welke plichten en termijnen voor je gelden voordat je iets inricht."
+        },
+        {
+          "titel": "Wie doet wat: de stelselkaart security-gremia",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/",
+          "waarom": "Welke partij je waarvoor kunt aanspreken, van IBD tot NCSC."
+        },
+        {
+          "titel": "De Cbw-meldplicht en registratieplicht inrichten",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/cbw-meldplicht-inrichten/",
+          "waarom": "De eerste plicht met een klok erop; regel hem voordat het incident komt."
+        },
+        {
+          "titel": "Sturen op weerbaarheid in plaats van op maatregelen",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/sturen-op-weerbaarheid/",
+          "waarom": "De taal waarmee je het bestuur meeneemt zonder maatregelenlijst."
+        },
+        {
+          "titel": "GRC als een risicogestuurde PDCA-ronde",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/risicogestuurd-managementsysteem/",
+          "waarom": "Security, privacy en continuiteit in een ronde, zonder GRC-tool."
+        },
+        {
+          "titel": "De meting op exports die je al hebt",
+          "url": "https://security-commons-nl.github.io/aanvalspaden/meting/",
+          "waarom": "Van zelfinschatting naar bewijs: 41 meetregels op je eigen data."
+        }
       ]
     },
     {
       "id": "iso",
+      "soort": "rol",
       "rol": "ISO",
       "vraag": "Wat moet ik doen, en hoe toon ik het aan?",
       "stappen": [
-        {"titel": "De zelfcheck langs achttien aanvalspaden", "url": "https://security-commons-nl.github.io/aanvalspaden/", "waarom": "Dezelfde start als de CISO, zodat jullie over hetzelfde beeld praten."},
-        {"titel": "Kritieke processen en herstelprioriteiten vaststellen", "url": "https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/", "waarom": "Zonder de kritieke processen weet je niet wat je als eerste beschermt."},
-        {"titel": "De procescheck: BIA en BIV per proces", "url": "https://security-commons-nl.github.io/procescheck/", "waarom": "Rekent RTO, RPO en blast radius uit in je browser; de uitkomst is je classificatie."},
-        {"titel": "De beleidsset informatiebeveiliging op maat", "url": "https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/", "waarom": "Eenentwintig stukken op BIO 2.0, gegenereerd uit contextvragen in plaats van overgetikt."},
-        {"titel": "De normwijzer: per maatregel wat je kunt doen", "url": "https://security-commons-nl.github.io/normen/normwijzer.html", "waarom": "Wat de norm vraagt, wat je doet en welk bewijs je dan hebt, voor BIO 2.0, NIST CSF, AVG en Wpg."},
-        {"titel": "De meting op exports die je al hebt", "url": "https://security-commons-nl.github.io/aanvalspaden/meting/", "waarom": "Het bewijs per aanvalspad, en de witte vlekken hardop."},
-        {"titel": "Security Annex voor leveranciers", "url": "https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/", "waarom": "Wat je van een leverancier vraagt, zodat de keten dezelfde lat haalt."}
+        {
+          "titel": "De zelfcheck langs achttien aanvalspaden",
+          "url": "https://security-commons-nl.github.io/aanvalspaden/",
+          "waarom": "Dezelfde start als de CISO, zodat jullie over hetzelfde beeld praten."
+        },
+        {
+          "titel": "Kritieke processen en herstelprioriteiten vaststellen",
+          "url": "https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/",
+          "waarom": "Zonder de kritieke processen weet je niet wat je als eerste beschermt."
+        },
+        {
+          "titel": "De procescheck: BIA en BIV per proces",
+          "url": "https://security-commons-nl.github.io/procescheck/",
+          "waarom": "Rekent RTO, RPO en blast radius uit in je browser; de uitkomst is je classificatie."
+        },
+        {
+          "titel": "De beleidsset informatiebeveiliging op maat",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/",
+          "waarom": "Eenentwintig stukken op BIO 2.0, gegenereerd uit contextvragen in plaats van overgetikt."
+        },
+        {
+          "titel": "De normwijzer: per maatregel wat je kunt doen",
+          "url": "https://security-commons-nl.github.io/normen/normwijzer.html",
+          "waarom": "Wat de norm vraagt, wat je doet en welk bewijs je dan hebt, voor BIO 2.0, NIST CSF, AVG en Wpg."
+        },
+        {
+          "titel": "De meting op exports die je al hebt",
+          "url": "https://security-commons-nl.github.io/aanvalspaden/meting/",
+          "waarom": "Het bewijs per aanvalspad, en de witte vlekken hardop."
+        },
+        {
+          "titel": "Security Annex voor leveranciers",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/security-annex-leveranciers/",
+          "waarom": "Wat je van een leverancier vraagt, zodat de keten dezelfde lat haalt."
+        }
       ]
     },
     {
       "id": "privacy-officer",
+      "soort": "rol",
       "rol": "Privacy officer",
       "vraag": "Hoe regel ik de privacykant?",
       "stappen": [
-        {"titel": "Privacy-eisen bij de start van een proces, project of aanbesteding", "url": "https://security-commons-nl.github.io/kennisbank/privacy/privacy-eisen-bij-de-start/", "waarom": "Het moment waarop je nog iets kunt veranderen zonder herstelwerk."},
-        {"titel": "Het register van verwerkingen beheren en publiceren", "url": "https://security-commons-nl.github.io/kennisbank/privacy/register-van-verwerkingen-beheren/", "waarom": "Het register is de basis onder elke DPIA en elk verzoek."},
-        {"titel": "Een DPIA in vijf stappen, met sjablonen", "url": "https://security-commons-nl.github.io/kennisbank/privacy/dpia-in-vijf-stappen/", "waarom": "De DPIA zoals een gemeente hem echt uitvoert, met de sjablonen erbij."},
-        {"titel": "Privacyovereenkomsten sluiten en controleren", "url": "https://security-commons-nl.github.io/kennisbank/privacy/privacy-overeenkomsten/", "waarom": "Verwerkers en gezamenlijke verantwoordelijken, en hoe je ze controleert."},
-        {"titel": "Verzoeken van betrokkenen afhandelen, met 25 standaardbrieven", "url": "https://security-commons-nl.github.io/kennisbank/privacy/rechten-van-betrokkenen/", "waarom": "De termijn loopt vanaf dag een; de brieven liggen klaar."},
-        {"titel": "Datalekken afhandelen, met afwegingskader en meldformulier", "url": "https://security-commons-nl.github.io/kennisbank/privacy/datalekken-afhandelen/", "waarom": "Melden of niet, binnen 72 uur, met het kader om die keuze te onderbouwen."},
-        {"titel": "Publicatiescan: persoonsgegevens in openbare stukken", "url": "https://security-commons-nl.github.io/publicatiescan/", "waarom": "Het datalek dat je zelf publiceert, voorkomen voordat het online staat."},
-        {"titel": "Anonimizer in de browser", "url": "https://security-commons-nl.github.io/anonimizer-browser/", "waarom": "Een document delen zonder persoonsgegevens; het document verlaat je browser niet."}
+        {
+          "titel": "Privacy-eisen bij de start van een proces, project of aanbesteding",
+          "url": "https://security-commons-nl.github.io/kennisbank/privacy/privacy-eisen-bij-de-start/",
+          "waarom": "Het moment waarop je nog iets kunt veranderen zonder herstelwerk."
+        },
+        {
+          "titel": "Het register van verwerkingen beheren en publiceren",
+          "url": "https://security-commons-nl.github.io/kennisbank/privacy/register-van-verwerkingen-beheren/",
+          "waarom": "Het register is de basis onder elke DPIA en elk verzoek."
+        },
+        {
+          "titel": "Een DPIA in vijf stappen, met sjablonen",
+          "url": "https://security-commons-nl.github.io/kennisbank/privacy/dpia-in-vijf-stappen/",
+          "waarom": "De DPIA zoals een gemeente hem echt uitvoert, met de sjablonen erbij."
+        },
+        {
+          "titel": "Privacyovereenkomsten sluiten en controleren",
+          "url": "https://security-commons-nl.github.io/kennisbank/privacy/privacy-overeenkomsten/",
+          "waarom": "Verwerkers en gezamenlijke verantwoordelijken, en hoe je ze controleert."
+        },
+        {
+          "titel": "Verzoeken van betrokkenen afhandelen, met 25 standaardbrieven",
+          "url": "https://security-commons-nl.github.io/kennisbank/privacy/rechten-van-betrokkenen/",
+          "waarom": "De termijn loopt vanaf dag een; de brieven liggen klaar."
+        },
+        {
+          "titel": "Datalekken afhandelen, met afwegingskader en meldformulier",
+          "url": "https://security-commons-nl.github.io/kennisbank/privacy/datalekken-afhandelen/",
+          "waarom": "Melden of niet, binnen 72 uur, met het kader om die keuze te onderbouwen."
+        },
+        {
+          "titel": "Publicatiescan: persoonsgegevens in openbare stukken",
+          "url": "https://security-commons-nl.github.io/publicatiescan/",
+          "waarom": "Het datalek dat je zelf publiceert, voorkomen voordat het online staat."
+        },
+        {
+          "titel": "Anonimizer in de browser",
+          "url": "https://security-commons-nl.github.io/anonimizer-browser/",
+          "waarom": "Een document delen zonder persoonsgegevens; het document verlaat je browser niet."
+        }
       ]
     },
     {
       "id": "bestuurder",
+      "soort": "rol",
       "rol": "Bestuurder",
       "vraag": "Hoe stuur ik op weerbaarheid?",
       "stappen": [
-        {"titel": "Sturen op weerbaarheid in plaats van op maatregelen", "url": "https://security-commons-nl.github.io/kennisbank/security/sturen-op-weerbaarheid/", "waarom": "De vraag die je als bestuurder stelt is niet welke maatregel, maar wat er omvalt."},
-        {"titel": "De weerbaarheidsgame voor college en directie", "url": "https://security-commons-nl.github.io/weerbaarheid-game/", "waarom": "Een gesprek van een uur dat zichtbaar maakt wat stukgaat als een schakel uitvalt."},
-        {"titel": "BCM uitleggen aan de bestuurder", "url": "https://security-commons-nl.github.io/kennisbank/bcm/bcm-voor-de-bestuurder/", "waarom": "Twee pagina's over continuiteit: wat je besluit en wat je laat regelen."},
-        {"titel": "Learning digitale veiligheid voor managers", "url": "https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/", "waarom": "Wat je eigen managers moeten weten en voorleven."},
-        {"titel": "Quantumveilig per laag: wat bestuur, directie en CISO nu doen", "url": "https://security-commons-nl.github.io/kennisbank/governance/quantumveilig-per-laag/", "waarom": "Het ene onderwerp waarop je nu een besluit neemt voor 2030."}
+        {
+          "titel": "Sturen op weerbaarheid in plaats van op maatregelen",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/sturen-op-weerbaarheid/",
+          "waarom": "De vraag die je als bestuurder stelt is niet welke maatregel, maar wat er omvalt."
+        },
+        {
+          "titel": "De weerbaarheidsgame voor college en directie",
+          "url": "https://security-commons-nl.github.io/weerbaarheid-game/",
+          "waarom": "Een gesprek van een uur dat zichtbaar maakt wat stukgaat als een schakel uitvalt."
+        },
+        {
+          "titel": "BCM uitleggen aan de bestuurder",
+          "url": "https://security-commons-nl.github.io/kennisbank/bcm/bcm-voor-de-bestuurder/",
+          "waarom": "Twee pagina's over continuiteit: wat je besluit en wat je laat regelen."
+        },
+        {
+          "titel": "Learning digitale veiligheid voor managers",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/awareness-digitale-veiligheid/",
+          "waarom": "Wat je eigen managers moeten weten en voorleven."
+        },
+        {
+          "titel": "Quantumveilig per laag: wat bestuur, directie en CISO nu doen",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/quantumveilig-per-laag/",
+          "waarom": "Het ene onderwerp waarop je nu een besluit neemt voor 2030."
+        }
       ]
     },
     {
       "id": "eerste-honderd-dagen",
+      "soort": "situatie",
       "rol": "Eerste honderd dagen",
       "vraag": "Nieuw als ISO of CISO: waar begin ik?",
       "stappen": [
-        {"titel": "Wie doet wat: de stelselkaart security-gremia", "url": "https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/", "waarom": "Week een: weten wie er al is voordat je iets zelf gaat bouwen."},
-        {"titel": "De zelfcheck langs achttien aanvalspaden", "url": "https://security-commons-nl.github.io/aanvalspaden/", "waarom": "Week twee: een eigen beeld, voordat je de rapporten van anderen leest."},
-        {"titel": "Kritieke processen en herstelprioriteiten vaststellen", "url": "https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/", "waarom": "Maand een: met proceseigenaren aan tafel, de enige manier om prioriteit te krijgen."},
-        {"titel": "Acht procedures voor informatiebeveiliging, van incident tot beleidsafwijking", "url": "https://security-commons-nl.github.io/kennisbank/security/procedures-informatiebeveiliging/", "waarom": "Maand een: de procedures die er moeten zijn voordat het eerste incident komt."},
-        {"titel": "BIO 2.0 invoeren, een plan van aanpak met urenraming", "url": "https://security-commons-nl.github.io/kennisbank/governance/bio2-implementeren/", "waarom": "Maand twee: een plan met uren per rol, zodat je om capaciteit kunt vragen."},
-        {"titel": "De beleidsset informatiebeveiliging op maat", "url": "https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/", "waarom": "Maand twee: beleid dat past bij je organisatie, in een middag gegenereerd."},
-        {"titel": "De normwijzer: per maatregel wat je kunt doen", "url": "https://security-commons-nl.github.io/normen/normwijzer.html", "waarom": "Maand drie: per maatregel wat je aantoont, voor de eerste rapportage."}
+        {
+          "titel": "Wie doet wat: de stelselkaart security-gremia",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/stelselkaart-security-gremia/",
+          "waarom": "Week een: weten wie er al is voordat je iets zelf gaat bouwen."
+        },
+        {
+          "titel": "De zelfcheck langs achttien aanvalspaden",
+          "url": "https://security-commons-nl.github.io/aanvalspaden/",
+          "waarom": "Week twee: een eigen beeld, voordat je de rapporten van anderen leest."
+        },
+        {
+          "titel": "Kritieke processen en herstelprioriteiten vaststellen",
+          "url": "https://security-commons-nl.github.io/kennisbank/bcm/kritieke-processen-vaststellen/",
+          "waarom": "Maand een: met proceseigenaren aan tafel, de enige manier om prioriteit te krijgen."
+        },
+        {
+          "titel": "Acht procedures voor informatiebeveiliging, van incident tot beleidsafwijking",
+          "url": "https://security-commons-nl.github.io/kennisbank/security/procedures-informatiebeveiliging/",
+          "waarom": "Maand een: de procedures die er moeten zijn voordat het eerste incident komt."
+        },
+        {
+          "titel": "BIO 2.0 invoeren, een plan van aanpak met urenraming",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/bio2-implementeren/",
+          "waarom": "Maand twee: een plan met uren per rol, zodat je om capaciteit kunt vragen."
+        },
+        {
+          "titel": "De beleidsset informatiebeveiliging op maat",
+          "url": "https://security-commons-nl.github.io/kennisbank/governance/beleidsset-informatiebeveiliging/",
+          "waarom": "Maand twee: beleid dat past bij je organisatie, in een middag gegenereerd."
+        },
+        {
+          "titel": "De normwijzer: per maatregel wat je kunt doen",
+          "url": "https://security-commons-nl.github.io/normen/normwijzer.html",
+          "waarom": "Maand drie: per maatregel wat je aantoont, voor de eerste rapportage."
+        }
       ]
     }
   ]
