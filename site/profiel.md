@@ -1,8 +1,8 @@
 # Jouw profiel: achttien vragen, dan past de commons zich aan
 
 Vul één keer in wat voor organisatie je bent. Daarna weet elke pagina van de commons dat: de
-beleidsset kiest de passende blokken, en binnenkort tonen ook de voorpagina de route die bij je past en
-de kennisbank de stukken die voor jou het eerst tellen.
+beleidsset kiest de passende blokken, de voorpagina stelt de route voor die bij je past, en de kennisbank
+zet de stukken die voor jou het eerst tellen bovenaan.
 
 **Wat erin staat, en wat niet.** Alleen kenmerken, als vaste keuzes (zestien vragen, twee met een vervolgvraag): wat voor organisatie, hoe groot,
 wie je IT beheert, waar je systemen draaien, of je onder de Cyberbeveiligingswet valt. Geen naam, geen
@@ -20,7 +20,10 @@ profiel zit achter het hekje in het adres en verlaat de browser niet. Met **Wiss
 ## Waar het profiel nu wordt gebruikt
 
 - [De beleidsset informatiebeveiliging op BIO 2.0](/kennisbank/governance/beleidsset-informatiebeveiliging/beleidsset-generator.html): dezelfde vragen, dus wat je hier invult staat daar al klaar.
-- De voorpagina (de route die past) en de kennisbank (de stukken die voor jou het eerst tellen) volgen; dat staat in [het plan](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-29-site-is-het-product.md).
+- [De voorpagina](/#begin-bij-je-rol): stelt met je profiel een route of situatie voor.
+- [De kennisbank](/kennisbank/): zet per vakgebied de stukken die voor jou het eerst tellen bovenaan, met een etiket waarom. Er verdwijnt niets.
+
+Hoe een antwoord doorwerkt, staat in [`profielregels.json`](/kennisbank/profielregels.json): als het profiel dit zegt, dan tellen deze stukken het eerst. Het plan staat in [het profiel](https://github.com/security-commons-nl/.github/blob/main/plannen/2026-10-29-profiel.md).
 
 De vragenlijst zelf is [`profiel.json`](/kennisbank/profiel.json) in de kennisbank, met per vraag de vaste
 antwoorden. Mis je een vraag of een antwoord? Dat is een [issue in de kennisbank](https://github.com/security-commons-nl/kennisbank/issues).

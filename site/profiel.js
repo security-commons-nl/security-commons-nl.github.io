@@ -128,6 +128,88 @@
     });
   }
 
+  // ── Voorstel van de assistent (plan het profiel, stap 4) ──
+  // De assistent is de AI-hulp van de beleidsset (opdracht "profiel"): die leest een beschrijving van je
+  // organisatie met je eigen sleutel, en levert een bestand met per vraag een voorstel en het citaat waar het
+  // op rust. Hier lees je dat bestand, zie je per vraag wat er wordt voorgesteld, en neem je over wat je
+  // aanvinkt. Een regel waarvan het citaat niet in je document stond, staat uit. Het citaat zelf komt nooit in
+  // het profiel; alleen de gekozen antwoord-id's, en alleen als ze in de vragenlijst bestaan.
+  function voorstelRegels(v) {
+    if (!v || v.formaat !== 'beleidsset-voorstel' || v.opdracht !== 'profiel' || !Array.isArray(v.items)) return null;
+    var regels = [], weg = 0;
+    v.items.forEach(function (item) {
+      var vraag = schema.vragen.filter(function (x) { return x.id === item.code; })[0];
+      if (!vraag) { weg++; return; }
+      var geldig = vraag.antwoorden.map(function (a) { return a.id; });
+      var antw = (Array.isArray(item.antwoorden) ? item.antwoorden : []).filter(function (a) { return geldig.indexOf(a) !== -1; });
+      if (!antw.length) { weg++; return; }
+      if (!vraag.meerdere) antw = antw.slice(0, 1);
+      regels.push({ code: vraag.id, vraag: vraag.vraag, meerdere: !!vraag.meerdere, antwoorden: antw,
+        labels: antw.map(function (a) { return vraag.antwoorden.filter(function (b) { return b.id === a; })[0].label; }),
+        bronregel: String(item.bronregel || ''), citaatKlopt: item.citaat_klopt === true });
+    });
+    return { regels: regels, weg: weg };
+  }
+  var voorstel = null;
+  function cel(tr, tekst) { var td = document.createElement('td'); td.textContent = tekst; tr.appendChild(td); return td; }
+  function toonVoorstel(v) {
+    var uitkomst = voorstelRegels(v);
+    var blok = document.getElementById('voorstel-blok');
+    if (!uitkomst) { zeg('Dit is geen voorstel van de assistent voor de contextvragen.', 'fout'); return; }
+    voorstel = uitkomst;
+    document.getElementById('voorstel-herkomst').textContent = 'Gemaakt op ' + (v.gemaakt || 'onbekende datum') +
+      (v.leverancier ? ' met ' + v.leverancier : '') + (v.model ? ' (model ' + v.model + ')' : '') +
+      '. Vink aan wat je overneemt; regels waarvan het citaat niet in je document stond, staan uit.' +
+      (uitkomst.weg ? ' ' + uitkomst.weg + ' voorstel(len) met een onbekende vraag of antwoord overgeslagen.' : '');
+    var tabel = document.getElementById('voorstel-tabel');
+    while (tabel.firstChild) tabel.removeChild(tabel.firstChild);
+    var kop = document.createElement('tr');
+    ['Overnemen', 'Vraag', 'Voorstel', 'Waar het op rust'].forEach(function (t) { var th = document.createElement('th'); th.textContent = t; kop.appendChild(th); });
+    tabel.appendChild(kop);
+    uitkomst.regels.forEach(function (r, i) {
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      var vink = document.createElement('input');
+      vink.type = 'checkbox'; vink.checked = r.citaatKlopt; vink.setAttribute('data-index', String(i)); vink.setAttribute('aria-label', 'overnemen');
+      td.appendChild(vink); tr.appendChild(td);
+      cel(tr, r.vraag);
+      cel(tr, r.labels.join(', '));
+      cel(tr, (r.citaatKlopt ? '' : 'niet in je document: ') + r.bronregel);
+      tabel.appendChild(tr);
+    });
+    blok.hidden = false;
+    zeg(uitkomst.regels.length + ' voorstel(len) geladen. Er is nog niets veranderd.', 'ok');
+  }
+  function voorstelKnoppen() {
+    var inp = document.getElementById('voorstel-bestand');
+    document.getElementById('voorstel-laad').addEventListener('click', function () { inp.click(); });
+    inp.addEventListener('change', function () {
+      var f = inp.files && inp.files[0]; inp.value = '';
+      if (!f) return;
+      var lezer = new FileReader();
+      lezer.onload = function () {
+        try { toonVoorstel(JSON.parse(String(lezer.result))); } catch (e) { zeg('Dit bestand is niet te lezen als voorstel.', 'fout'); }
+      };
+      lezer.readAsText(f);
+    });
+    document.getElementById('voorstel-overnemen').addEventListener('click', function () {
+      if (!voorstel) return;
+      var p = uitFormulier(), n = 0;
+      [].slice.call(document.querySelectorAll('#voorstel-tabel input:checked')).forEach(function (x) {
+        var r = voorstel.regels[+x.getAttribute('data-index')];
+        if (!r) return;
+        p[r.code] = r.meerdere ? r.antwoorden : r.antwoorden[0]; n++;
+      });
+      p = schoon(p).profiel;
+      bewaar(p); naarFormulier(p);
+      document.getElementById('voorstel-blok').hidden = true; voorstel = null;
+      zeg(n + ' antwoord(en) overgenomen uit het voorstel en bewaard in deze browser.', 'ok');
+    });
+    document.getElementById('voorstel-sluiten').addEventListener('click', function () {
+      voorstel = null; document.getElementById('voorstel-blok').hidden = true; zeg('Voorstel gesloten; er is niets veranderd.', 'ok');
+    });
+  }
+
   fetch(SCHEMA, { cache: 'no-cache' }).then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
@@ -141,7 +223,7 @@
       if (v.subvraag) { var sub = { meerdere: false }; Object.keys(v.subvraag).forEach(function (k) { sub[k] = v.subvraag[k]; }); sub.hoort_bij = v.id; vlak.push(sub); }
     });
     schema = { versie: data.versie, vragen: vlak };
-    teken(); knoppen();
+    teken(); knoppen(); voorstelKnoppen();
     var vanLink = uitLink();
     if (vanLink && Object.keys(schoon(vanLink).profiel).length) {
       var r = schoon(vanLink);

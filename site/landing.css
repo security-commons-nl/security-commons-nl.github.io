@@ -243,3 +243,10 @@ ul.backlog code { font-size: .85em; white-space: nowrap; }
 .situaties-kop { margin-top: 1.2rem; }
 .route-voorgesteld { border-top-color: var(--oranje); box-shadow: 0 0 0 2px #f6d8b8; }
 
+/* Voorstel van de assistent op /profiel/ (plan het profiel, stap 4). */
+.profiel-voorstel { border: 1px solid var(--lijn); border-radius: 8px; padding: 0.6rem 0.9rem; margin: 0 0 1rem; background: #fbfcfe; }
+.profiel-voorstel h2 { margin-top: 0.2rem; }
+.voorstel-blok[hidden] { display: none; }
+.voorstel-blok table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.voorstel-blok th, .voorstel-blok td { border-top: 1px solid var(--lijn); padding: 0.35rem 0.4rem; text-align: left; vertical-align: top; }
+

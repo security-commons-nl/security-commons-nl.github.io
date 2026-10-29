@@ -5,6 +5,12 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 29-10: **De assistent vult het profiel (plan het profiel, stap 4).** Op `/profiel/` laad je het voorstel dat de
+  AI-hulp van de beleidsset maakt (opdracht "Contextvragen beantwoorden uit een beschrijving van je organisatie",
+  eigen sleutel of lokaal model). Per vraag zie je het voorstel en het citaat; een regel waarvan het citaat niet in
+  je document staat, staat uit. Alleen wat je aanvinkt en wat in de vragenlijst bestaat, komt in het profiel; het
+  citaat nooit. Geen nieuwe AI-code: de citaatcontrole blijft op een plek. `/profiel/` noemt nu ook waar het
+  profiel doorwerkt (voorpagina en kennisbank).
 - 29-10: **Rol en situatie, en een suggestie uit je profiel (plan het profiel, stap 3).** `routes.json` heeft per
   route een `soort`: vier rollen en de situatie "eerste honderd dagen", met dezelfde id's. Boven de routes een
   rolkiezer (meer rollen tegelijk, bewaard onder `commons-rol`): gekozen rollen vooraan, de andere achter "Toon
