@@ -37,3 +37,5 @@ jobs:
       - run: node site/test_profiel.mjs
       # Rolkiezer en suggestie: het echte script op de gebouwde voorpagina, met een nagebootste browser.
       - run: node site/test_rolkiezer.mjs
+      # Leesroutes (C2): vorm, elk adres geeft 200, en een waarschuwing voor een instrument onder de lat (C5).
+      - run: node site/build.mjs && node site/test_routes.mjs
