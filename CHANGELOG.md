@@ -5,6 +5,9 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 30-10: De routetest waarschuwt voor een instrument in een route dat de lat (statuut C5) nog niet haalt: een
+  regel `LET OP` in de log en een `::warning` in de CI, geen fout. Een prototype dat er al stond, blijft tot zijn
+  eerstvolgende aanraking; zo blijft het zichtbaar. Nu geldt dat alleen voor de procescheck.
 - 30-10: `llms.txt` beschrijft het profiel zoals het nu werkt (voorpagina, kennisbank en beleidsset lezen het;
   het voorstel van de AI-hulp is op `/profiel/` over te nemen).
 - 29-10: **AI-hulp wijst naar je profiel (plan het profiel, stap 5).** De uitleg op `/ai-hulp/` noemt dat het

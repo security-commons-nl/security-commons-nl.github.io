@@ -2,7 +2,7 @@
 // Een route die naar een dode pagina wijst, is erger dan geen route: de lezer volgt hem.
 //
 //   node site/build.mjs && node site/test_routes.mjs
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -38,6 +38,31 @@ for (const r of data.routes) {
   }
 }
 check('geen em-dash in routes.json', !JSON.stringify(data).includes(String.fromCharCode(8212)));
+
+// 1b. Een instrument in een route hoort de lat te halen (statuut C5). Een prototype dat er al stond, mag
+// blijven tot zijn eerstvolgende aanraking; dat is een waarschuwing, geen fout, zodat het zichtbaar blijft.
+const projectenPad = [join(ROOT, 'org-profile', 'PROJECTEN.md'), join(ROOT, '..', '.github', 'PROJECTEN.md')]
+  .find((p) => existsSync(p));
+check('PROJECTEN.md gevonden voor de statuscontrole', Boolean(projectenPad));
+const projecten = new Map();
+for (const regel of readFileSync(projectenPad, 'utf8').split(/\r?\n/)) {
+  const m = regel.match(/^\| \[([^\]]+)\]\([^)]*\) \| ([^|]+?) \| ([^|]+?) \|/);
+  if (m) projecten.set(m[1], { status: m[2], vorm: m[3] });
+}
+check('PROJECTEN.md bevat projecten met status en vorm', projecten.size >= 5);
+let waarschuwingen = 0;
+for (const r of data.routes) {
+  for (const s of r.stappen) {
+    const naam = new URL(s.url).pathname.split('/')[1];
+    const p = projecten.get(naam);
+    if (p && p.vorm === 'instrument' && p.status !== 'in gebruik') {
+      waarschuwingen++;
+      console.log(`LET OP ${r.rol}: "${s.titel}" is een instrument met status ${p.status} (C5: haalt de lat bij de eerstvolgende aanraking)`);
+      if (process.env.GITHUB_ACTIONS) console.log(`::warning::Route ${r.rol}: ${naam} is ${p.status}, haalt de lat (C5) nog niet`);
+    }
+  }
+}
+console.log(`${waarschuwingen} instrument(en) onder de lat in een route`);
 
 // 2. Elk adres bestaat. De commons staat op GitHub Pages; een 404 daar is een echte 404.
 const urls = [...new Set(data.routes.flatMap((r) => r.stappen.map((s) => s.url)))];
