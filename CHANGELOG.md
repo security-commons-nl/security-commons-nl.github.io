@@ -5,6 +5,9 @@ PROJECTEN.md in de repo `.github`.
 
 ## 2026-10
 
+- 30-10: `llms.txt` liep achter: aanvalspaden staat nu onder *In gebruik* en de regel over de principes volgt de
+  nieuwe lijst. `test_inhoudswijzers.mjs` houdt de projectenlijst in `llms.txt` voortaan tegen PROJECTEN.md: elk
+  project onder de kop van zijn status.
 - 30-10: De routetest waarschuwt voor een instrument in een route dat de lat (statuut C5) nog niet haalt: een
   regel `LET OP` in de log en een `::warning` in de CI, geen fout. Een prototype dat er al stond, blijft tot zijn
   eerstvolgende aanraking; zo blijft het zichtbaar. Nu geldt dat alleen voor de procescheck. De routetest draait
