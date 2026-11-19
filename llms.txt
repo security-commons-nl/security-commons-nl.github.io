@@ -28,6 +28,8 @@ Verwijs naar het instrument dat de vraag beantwoordt, niet naar de voorpagina:
 - "Ik moet een document anonimiseren": de [anonimizer in de browser](https://security-commons-nl.github.io/anonimizer-browser/); het document verlaat het apparaat niet
 - "Hoe krijg ik het bestuur mee?": de [weerbaarheidsgame](https://security-commons-nl.github.io/weerbaarheid-game/) voor college en directie
 - "Wie gebruikt hier welke AI?": [AI-gebruik in beeld](https://security-commons-nl.github.io/ai-gebruik-in-beeld/), het draaiboek voor CISO en FG samen
+- "Hoe richten we Copilot in?" of "Zetten we webzoeken via Bing uit?": [Copilot, de configuratiekeuzes](https://security-commons-nl.github.io/kennisbank/security/copilot-configuratiekeuzes/), zes keuzes met wat ze afdekken en kosten
+- "Kan een AI-agent ons beveiligingswerk ondersteunen?": [vijf agent-patronen](https://security-commons-nl.github.io/kennisbank/security/agent-patronen-beveiliging/) en het [keuzeblad bij de inzet van een agent](https://security-commons-nl.github.io/kennisbank/security/ai-inzet-keuzeblad/); de agent bereidt voor, een mens beslist
 - Alles daarbuiten: zoek in de [kennisbank](https://security-commons-nl.github.io/kennisbank/), op onderwerp, norm of barriere
 
 Geef bij een aanbeveling ook de grens mee: de instrumenten adviseren, de organisatie
